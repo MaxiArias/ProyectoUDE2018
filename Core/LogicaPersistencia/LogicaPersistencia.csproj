@@ -46,6 +46,7 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
       <DependentUpon>App.config</DependentUpon>
     </Compile>
+    <Compile Include="Class1.cs" />
     <Compile Include="BackOffice.cs" />
     <Compile Include="Carrito.cs" />
     <Compile Include="Categoria.cs" />
