@@ -8,6 +8,13 @@ namespace LogicaPersistencia.DAO
 
         public void InsertarBackoffice (BackofficeVO bkvo)
         {
+            string connectionString = ConfigurationManager.ConnectionStrings["ConnectionString"].ToString();
+            SqlConnection myConnection = null;
+            SqlDataReader myReader = null;
+            
+            
+            
+            
             // Inserta un nuevo BackOffice
             //INSERT INTO BackOffice (UsuarioId,BackOfficeNombre,RolId) VALUES (bkvo.id, bkvo.nombre, bkvo.rol)
         }
