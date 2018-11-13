@@ -1,6 +1,8 @@
 ﻿using Modelo.ValueObjects;
 using System.Collections.Generic;
-
+using System.ComponentModel.DataAnnotations.Schema;
+using LogicaPersistencia;
+using System.Linq;
 
 
 namespace LogicaPersistencia.DAO
@@ -12,11 +14,8 @@ namespace LogicaPersistencia.DAO
 
         public void InsertarBackoffice (BackofficeVO bkvo)
         {
-           
-            BackOffice bk = new BackOffice();
-
-
-                  
+            Backoffice BK = new Backoffice();
+            
             
             
             
@@ -36,11 +35,11 @@ namespace LogicaPersistencia.DAO
             // UPDATE BackOffice SET BackOfficeNombre=bkvo.Nombre,RolId=bkvo.Rol WHERE UsuarioId=bkvo.id
         }
 
-        public List<BackofficeVO> ListarBackoffice ()
+        public List<Usuario> ListarBackoffice ()
         {
-            // Lista todos los registros de BackOffice
-            // SELECT * FROM BackOffice
-            return null;
+            using (TiendaVirtualEntities db = new TiendaVirtualEntities())
+         
+                return db.Usuario.ToList();
         }
 
         public List<BackofficeVO> ListarBackofficeRol (int bkrol)

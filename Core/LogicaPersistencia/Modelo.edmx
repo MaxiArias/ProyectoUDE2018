@@ -249,7 +249,7 @@
           <Property Name="CarritoId" Type="Int16" Nullable="false" />
           <Property Name="UsuarioId" Type="Int16" Nullable="false" />
           <Property Name="MonedaId" Type="Int16" Nullable="false" />
-          <Property Name="CarritoFechaCreacion" Type="DateTime" Nullable="false" />
+          <Property Name="CarritoFechaCreacion" Type="DateTime" Nullable="false" Precision="0" />
           <NavigationProperty Name="Cliente" Relationship="Self.FK_Carrito_Cliente" FromRole="Carrito" ToRole="Cliente" />
           <NavigationProperty Name="Moneda" Relationship="Self.FK_Carrito_Moneda" FromRole="Carrito" ToRole="Moneda" />
           <NavigationProperty Name="ItemCarrito" Relationship="Self.FK_ItemCarrito_Carrito" FromRole="Carrito" ToRole="ItemCarrito" />
@@ -309,7 +309,7 @@
           <Property Name="ProductoFoto" Type="String" MaxLength="30" FixedLength="true" Unicode="false" />
           <Property Name="ProductoPrecio" Type="Double" Nullable="false" />
           <Property Name="ProductoStock" Type="Int16" Nullable="false" />
-          <Property Name="ProductoFechaAlta" Type="DateTime" Nullable="false" />
+          <Property Name="ProductoFechaAlta" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="ProductoHabilitado" Type="Boolean" Nullable="false" />
           <Property Name="CategoriaId" Type="Int16" Nullable="false" />
           <NavigationProperty Name="ItemCarrito" Relationship="Self.FK_ItemCarrito_Producto" FromRole="Producto" ToRole="ItemCarrito" />
