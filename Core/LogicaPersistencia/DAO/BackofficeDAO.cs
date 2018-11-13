@@ -1,17 +1,22 @@
 ﻿using Modelo.ValueObjects;
 using System.Collections.Generic;
 
+
+
 namespace LogicaPersistencia.DAO
 {
     public class BackofficeDAO
     {
+        
+        private TiendaVirtualEntities DB = new TiendaVirtualEntities();
 
         public void InsertarBackoffice (BackofficeVO bkvo)
         {
-            string connectionString = ConfigurationManager.ConnectionStrings["ConnectionString"].ToString();
-            SqlConnection myConnection = null;
-            SqlDataReader myReader = null;
-            
+           
+            BackOffice bk = new BackOffice();
+
+
+                  
             
             
             

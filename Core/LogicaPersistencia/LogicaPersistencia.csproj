@@ -31,8 +31,11 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -41,25 +44,23 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ADOEDM.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ADOEDM.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ADOEDM.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ADOEDM.edmx</DependentUpon>
+    </Compile>
     <Compile Include="App.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
       <DependentUpon>App.config</DependentUpon>
     </Compile>
-    <Compile Include="Class1.cs" />
-    <Compile Include="BackOffice.cs" />
-    <Compile Include="Carrito.cs" />
-    <Compile Include="Categoria.cs" />
-    <Compile Include="Cliente.cs" />
-    <Compile Include="Empresa.cs" />
     <Compile Include="Enumerados.cs" />
     <Compile Include="Fachada.cs" />
-    <Compile Include="ItemsCarrito.cs" />
-    <Compile Include="Moneda.cs" />
-    <Compile Include="Persona.cs" />
-    <Compile Include="Producto.cs" />
-    <Compile Include="Rol.cs" />
-    <Compile Include="Usuario.cs" />
     <Compile Include="DAO\BackOfficeDAO.cs" />
     <Compile Include="DAO\CarritoDAO.cs" />
     <Compile Include="DAO\CategoriaDAO.cs" />
@@ -80,10 +81,26 @@
     <WCFMetadata Include="Connected Services\" />
   </ItemGroup>
   <ItemGroup>
+    <EntityDeploy Include="ADOEDM.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>ADOEDM.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="ADOEDM.edmx.diagram">
+      <DependentUpon>ADOEDM.edmx</DependentUpon>
+    </None>
     <None Include="App.config">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>App.Designer.cs</LastGenOutput>
     </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="ADOEDM.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>ADOEDM.Context.cs</LastGenOutput>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -1,0 +1,607 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="TiendaVirtualModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="BackOffice">
+          <Key>
+            <PropertyRef Name="UsuarioId" />
+          </Key>
+          <Property Name="UsuarioId" Type="smallint" Nullable="false" />
+          <Property Name="BackOfficeNombre" Type="char" MaxLength="30" Nullable="false" />
+          <Property Name="RolId" Type="smallint" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Carrito">
+          <Key>
+            <PropertyRef Name="CarritoId" />
+          </Key>
+          <Property Name="CarritoId" Type="smallint" Nullable="false" />
+          <Property Name="UsuarioId" Type="smallint" Nullable="false" />
+          <Property Name="MonedaId" Type="smallint" Nullable="false" />
+          <Property Name="CarritoFechaCreacion" Type="date" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Categoria">
+          <Key>
+            <PropertyRef Name="CategoriaId" />
+          </Key>
+          <Property Name="CategoriaId" Type="smallint" Nullable="false" />
+          <Property Name="CategoriaNombre" Type="char" MaxLength="30" Nullable="false" />
+          <Property Name="CategoriaDescripcion" Type="char" MaxLength="100" />
+          <Property Name="CategoriaHabilitado" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Cliente">
+          <Key>
+            <PropertyRef Name="UsuarioId" />
+          </Key>
+          <Property Name="UsuarioId" Type="smallint" Nullable="false" />
+          <Property Name="ClienteDireccion" Type="char" MaxLength="100" />
+          <Property Name="ClienteTelefono" Type="char" MaxLength="30" />
+          <Property Name="ClienteCI" Type="int" />
+          <Property Name="ClienteNombre" Type="char" MaxLength="30" />
+          <Property Name="EmpresaRUT" Type="char" MaxLength="12" />
+          <Property Name="EmpresaNombreContacto" Type="char" MaxLength="30" />
+          <Property Name="ClienteHabilitado" Type="bit" />
+        </EntityType>
+        <EntityType Name="ItemCarrito">
+          <Key>
+            <PropertyRef Name="CarritoId" />
+            <PropertyRef Name="ProductoId" />
+          </Key>
+          <Property Name="CarritoId" Type="smallint" Nullable="false" />
+          <Property Name="ProductoId" Type="smallint" Nullable="false" />
+          <Property Name="ProductoCantidad" Type="smallint" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Moneda">
+          <Key>
+            <PropertyRef Name="MonedaId" />
+          </Key>
+          <Property Name="MonedaId" Type="smallint" Nullable="false" />
+          <Property Name="MonedaAbreviatura" Type="char" MaxLength="10" Nullable="false" />
+          <Property Name="MonedaDescripción" Type="char" MaxLength="30" />
+          <Property Name="MonedaCotizacion" Type="float" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Producto">
+          <Key>
+            <PropertyRef Name="ProductoId" />
+          </Key>
+          <Property Name="ProductoId" Type="smallint" Nullable="false" />
+          <Property Name="ProductoNombre" Type="char" MaxLength="30" Nullable="false" />
+          <Property Name="ProductoDescripcion" Type="char" MaxLength="100" />
+          <Property Name="ProductoFoto" Type="char" MaxLength="30" />
+          <Property Name="ProductoPrecio" Type="float" Nullable="false" />
+          <Property Name="ProductoStock" Type="smallint" Nullable="false" />
+          <Property Name="ProductoFechaAlta" Type="date" Nullable="false" />
+          <Property Name="ProductoHabilitado" Type="bit" Nullable="false" />
+          <Property Name="CategoriaId" Type="smallint" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Rol">
+          <Key>
+            <PropertyRef Name="RolId" />
+          </Key>
+          <Property Name="RolId" Type="smallint" Nullable="false" />
+          <Property Name="RolNombre" Type="char" MaxLength="30" Nullable="false" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="Usuario">
+          <Key>
+            <PropertyRef Name="UsuarioId" />
+          </Key>
+          <Property Name="UsuarioId" Type="smallint" Nullable="false" />
+          <Property Name="TipoUsuario" Type="smallint" Nullable="false" />
+          <Property Name="UsuarioEmail" Type="char" MaxLength="50" Nullable="false" />
+          <Property Name="UsuarioContrasenia" Type="char" MaxLength="20" Nullable="false" />
+          <Property Name="UsuarioActivo" Type="bit" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_BackOffice_Rol">
+          <End Role="Rol" Type="Self.Rol" Multiplicity="1" />
+          <End Role="BackOffice" Type="Self.BackOffice" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Rol">
+              <PropertyRef Name="RolId" />
+            </Principal>
+            <Dependent Role="BackOffice">
+              <PropertyRef Name="RolId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_BackOffice_Usuario">
+          <End Role="Usuario" Type="Self.Usuario" Multiplicity="1" />
+          <End Role="BackOffice" Type="Self.BackOffice" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="UsuarioId" />
+            </Principal>
+            <Dependent Role="BackOffice">
+              <PropertyRef Name="UsuarioId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Carrito_Cliente">
+          <End Role="Cliente" Type="Self.Cliente" Multiplicity="1" />
+          <End Role="Carrito" Type="Self.Carrito" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Cliente">
+              <PropertyRef Name="UsuarioId" />
+            </Principal>
+            <Dependent Role="Carrito">
+              <PropertyRef Name="UsuarioId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Carrito_Moneda">
+          <End Role="Moneda" Type="Self.Moneda" Multiplicity="1" />
+          <End Role="Carrito" Type="Self.Carrito" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Moneda">
+              <PropertyRef Name="MonedaId" />
+            </Principal>
+            <Dependent Role="Carrito">
+              <PropertyRef Name="MonedaId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Cliente_Usuario">
+          <End Role="Usuario" Type="Self.Usuario" Multiplicity="1" />
+          <End Role="Cliente" Type="Self.Cliente" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="UsuarioId" />
+            </Principal>
+            <Dependent Role="Cliente">
+              <PropertyRef Name="UsuarioId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ItemCarrito_Carrito">
+          <End Role="Carrito" Type="Self.Carrito" Multiplicity="1" />
+          <End Role="ItemCarrito" Type="Self.ItemCarrito" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Carrito">
+              <PropertyRef Name="CarritoId" />
+            </Principal>
+            <Dependent Role="ItemCarrito">
+              <PropertyRef Name="CarritoId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ItemCarrito_Producto">
+          <End Role="Producto" Type="Self.Producto" Multiplicity="1" />
+          <End Role="ItemCarrito" Type="Self.ItemCarrito" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Producto">
+              <PropertyRef Name="ProductoId" />
+            </Principal>
+            <Dependent Role="ItemCarrito">
+              <PropertyRef Name="ProductoId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="TiendaVirtualModelStoreContainer">
+          <EntitySet Name="BackOffice" EntityType="Self.BackOffice" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Carrito" EntityType="Self.Carrito" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Categoria" EntityType="Self.Categoria" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Cliente" EntityType="Self.Cliente" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ItemCarrito" EntityType="Self.ItemCarrito" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Moneda" EntityType="Self.Moneda" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Producto" EntityType="Self.Producto" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Rol" EntityType="Self.Rol" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Usuario" EntityType="Self.Usuario" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_BackOffice_Rol" Association="Self.FK_BackOffice_Rol">
+            <End Role="Rol" EntitySet="Rol" />
+            <End Role="BackOffice" EntitySet="BackOffice" />
+          </AssociationSet>
+          <AssociationSet Name="FK_BackOffice_Usuario" Association="Self.FK_BackOffice_Usuario">
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="BackOffice" EntitySet="BackOffice" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Carrito_Cliente" Association="Self.FK_Carrito_Cliente">
+            <End Role="Cliente" EntitySet="Cliente" />
+            <End Role="Carrito" EntitySet="Carrito" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Carrito_Moneda" Association="Self.FK_Carrito_Moneda">
+            <End Role="Moneda" EntitySet="Moneda" />
+            <End Role="Carrito" EntitySet="Carrito" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Cliente_Usuario" Association="Self.FK_Cliente_Usuario">
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="Cliente" EntitySet="Cliente" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ItemCarrito_Carrito" Association="Self.FK_ItemCarrito_Carrito">
+            <End Role="Carrito" EntitySet="Carrito" />
+            <End Role="ItemCarrito" EntitySet="ItemCarrito" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ItemCarrito_Producto" Association="Self.FK_ItemCarrito_Producto">
+            <End Role="Producto" EntitySet="Producto" />
+            <End Role="ItemCarrito" EntitySet="ItemCarrito" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="TiendaVirtualModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="BackOffice">
+          <Key>
+            <PropertyRef Name="UsuarioId" />
+          </Key>
+          <Property Name="UsuarioId" Type="Int16" Nullable="false" />
+          <Property Name="BackOfficeNombre" Type="String" MaxLength="30" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="RolId" Type="Int16" Nullable="false" />
+          <NavigationProperty Name="Rol" Relationship="Self.FK_BackOffice_Rol" FromRole="BackOffice" ToRole="Rol" />
+          <NavigationProperty Name="Usuario" Relationship="Self.FK_BackOffice_Usuario" FromRole="BackOffice" ToRole="Usuario" />
+        </EntityType>
+        <EntityType Name="Carrito">
+          <Key>
+            <PropertyRef Name="CarritoId" />
+          </Key>
+          <Property Name="CarritoId" Type="Int16" Nullable="false" />
+          <Property Name="UsuarioId" Type="Int16" Nullable="false" />
+          <Property Name="MonedaId" Type="Int16" Nullable="false" />
+          <Property Name="CarritoFechaCreacion" Type="DateTime" Nullable="false" />
+          <NavigationProperty Name="Cliente" Relationship="Self.FK_Carrito_Cliente" FromRole="Carrito" ToRole="Cliente" />
+          <NavigationProperty Name="Moneda" Relationship="Self.FK_Carrito_Moneda" FromRole="Carrito" ToRole="Moneda" />
+          <NavigationProperty Name="ItemCarrito" Relationship="Self.FK_ItemCarrito_Carrito" FromRole="Carrito" ToRole="ItemCarrito" />
+        </EntityType>
+        <EntityType Name="Categoria">
+          <Key>
+            <PropertyRef Name="CategoriaId" />
+          </Key>
+          <Property Name="CategoriaId" Type="Int16" Nullable="false" />
+          <Property Name="CategoriaNombre" Type="String" MaxLength="30" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="CategoriaDescripcion" Type="String" MaxLength="100" FixedLength="true" Unicode="false" />
+          <Property Name="CategoriaHabilitado" Type="Boolean" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Cliente">
+          <Key>
+            <PropertyRef Name="UsuarioId" />
+          </Key>
+          <Property Name="UsuarioId" Type="Int16" Nullable="false" />
+          <Property Name="ClienteDireccion" Type="String" MaxLength="100" FixedLength="true" Unicode="false" />
+          <Property Name="ClienteTelefono" Type="String" MaxLength="30" FixedLength="true" Unicode="false" />
+          <Property Name="ClienteCI" Type="Int32" />
+          <Property Name="ClienteNombre" Type="String" MaxLength="30" FixedLength="true" Unicode="false" />
+          <Property Name="EmpresaRUT" Type="String" MaxLength="12" FixedLength="true" Unicode="false" />
+          <Property Name="EmpresaNombreContacto" Type="String" MaxLength="30" FixedLength="true" Unicode="false" />
+          <Property Name="ClienteHabilitado" Type="Boolean" />
+          <NavigationProperty Name="Carrito" Relationship="Self.FK_Carrito_Cliente" FromRole="Cliente" ToRole="Carrito" />
+          <NavigationProperty Name="Usuario" Relationship="Self.FK_Cliente_Usuario" FromRole="Cliente" ToRole="Usuario" />
+        </EntityType>
+        <EntityType Name="ItemCarrito">
+          <Key>
+            <PropertyRef Name="CarritoId" />
+            <PropertyRef Name="ProductoId" />
+          </Key>
+          <Property Name="CarritoId" Type="Int16" Nullable="false" />
+          <Property Name="ProductoId" Type="Int16" Nullable="false" />
+          <Property Name="ProductoCantidad" Type="Int16" Nullable="false" />
+          <NavigationProperty Name="Carrito" Relationship="Self.FK_ItemCarrito_Carrito" FromRole="ItemCarrito" ToRole="Carrito" />
+          <NavigationProperty Name="Producto" Relationship="Self.FK_ItemCarrito_Producto" FromRole="ItemCarrito" ToRole="Producto" />
+        </EntityType>
+        <EntityType Name="Moneda">
+          <Key>
+            <PropertyRef Name="MonedaId" />
+          </Key>
+          <Property Name="MonedaId" Type="Int16" Nullable="false" />
+          <Property Name="MonedaAbreviatura" Type="String" MaxLength="10" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="MonedaDescripción" Type="String" MaxLength="30" FixedLength="true" Unicode="false" />
+          <Property Name="MonedaCotizacion" Type="Double" Nullable="false" />
+          <NavigationProperty Name="Carrito" Relationship="Self.FK_Carrito_Moneda" FromRole="Moneda" ToRole="Carrito" />
+        </EntityType>
+        <EntityType Name="Producto">
+          <Key>
+            <PropertyRef Name="ProductoId" />
+          </Key>
+          <Property Name="ProductoId" Type="Int16" Nullable="false" />
+          <Property Name="ProductoNombre" Type="String" MaxLength="30" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="ProductoDescripcion" Type="String" MaxLength="100" FixedLength="true" Unicode="false" />
+          <Property Name="ProductoFoto" Type="String" MaxLength="30" FixedLength="true" Unicode="false" />
+          <Property Name="ProductoPrecio" Type="Double" Nullable="false" />
+          <Property Name="ProductoStock" Type="Int16" Nullable="false" />
+          <Property Name="ProductoFechaAlta" Type="DateTime" Nullable="false" />
+          <Property Name="ProductoHabilitado" Type="Boolean" Nullable="false" />
+          <Property Name="CategoriaId" Type="Int16" Nullable="false" />
+          <NavigationProperty Name="ItemCarrito" Relationship="Self.FK_ItemCarrito_Producto" FromRole="Producto" ToRole="ItemCarrito" />
+        </EntityType>
+        <EntityType Name="Rol">
+          <Key>
+            <PropertyRef Name="RolId" />
+          </Key>
+          <Property Name="RolId" Type="Int16" Nullable="false" />
+          <Property Name="RolNombre" Type="String" MaxLength="30" FixedLength="true" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="BackOffice" Relationship="Self.FK_BackOffice_Rol" FromRole="Rol" ToRole="BackOffice" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="Usuario">
+          <Key>
+            <PropertyRef Name="UsuarioId" />
+          </Key>
+          <Property Name="UsuarioId" Type="Int16" Nullable="false" />
+          <Property Name="TipoUsuario" Type="Int16" Nullable="false" />
+          <Property Name="UsuarioEmail" Type="String" MaxLength="50" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="UsuarioContrasenia" Type="String" MaxLength="20" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="UsuarioActivo" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="BackOffice" Relationship="Self.FK_BackOffice_Usuario" FromRole="Usuario" ToRole="BackOffice" />
+          <NavigationProperty Name="Cliente" Relationship="Self.FK_Cliente_Usuario" FromRole="Usuario" ToRole="Cliente" />
+        </EntityType>
+        <Association Name="FK_BackOffice_Rol">
+          <End Role="Rol" Type="Self.Rol" Multiplicity="1" />
+          <End Role="BackOffice" Type="Self.BackOffice" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Rol">
+              <PropertyRef Name="RolId" />
+            </Principal>
+            <Dependent Role="BackOffice">
+              <PropertyRef Name="RolId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_BackOffice_Usuario">
+          <End Role="Usuario" Type="Self.Usuario" Multiplicity="1" />
+          <End Role="BackOffice" Type="Self.BackOffice" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="UsuarioId" />
+            </Principal>
+            <Dependent Role="BackOffice">
+              <PropertyRef Name="UsuarioId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Carrito_Cliente">
+          <End Role="Cliente" Type="Self.Cliente" Multiplicity="1" />
+          <End Role="Carrito" Type="Self.Carrito" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Cliente">
+              <PropertyRef Name="UsuarioId" />
+            </Principal>
+            <Dependent Role="Carrito">
+              <PropertyRef Name="UsuarioId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Carrito_Moneda">
+          <End Role="Moneda" Type="Self.Moneda" Multiplicity="1" />
+          <End Role="Carrito" Type="Self.Carrito" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Moneda">
+              <PropertyRef Name="MonedaId" />
+            </Principal>
+            <Dependent Role="Carrito">
+              <PropertyRef Name="MonedaId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ItemCarrito_Carrito">
+          <End Role="Carrito" Type="Self.Carrito" Multiplicity="1" />
+          <End Role="ItemCarrito" Type="Self.ItemCarrito" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Carrito">
+              <PropertyRef Name="CarritoId" />
+            </Principal>
+            <Dependent Role="ItemCarrito">
+              <PropertyRef Name="CarritoId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Cliente_Usuario">
+          <End Role="Usuario" Type="Self.Usuario" Multiplicity="1" />
+          <End Role="Cliente" Type="Self.Cliente" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="UsuarioId" />
+            </Principal>
+            <Dependent Role="Cliente">
+              <PropertyRef Name="UsuarioId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ItemCarrito_Producto">
+          <End Role="Producto" Type="Self.Producto" Multiplicity="1" />
+          <End Role="ItemCarrito" Type="Self.ItemCarrito" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Producto">
+              <PropertyRef Name="ProductoId" />
+            </Principal>
+            <Dependent Role="ItemCarrito">
+              <PropertyRef Name="ProductoId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="TiendaVirtualEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="BackOffice" EntityType="Self.BackOffice" />
+          <EntitySet Name="Carrito" EntityType="Self.Carrito" />
+          <EntitySet Name="Categoria" EntityType="Self.Categoria" />
+          <EntitySet Name="Cliente" EntityType="Self.Cliente" />
+          <EntitySet Name="ItemCarrito" EntityType="Self.ItemCarrito" />
+          <EntitySet Name="Moneda" EntityType="Self.Moneda" />
+          <EntitySet Name="Producto" EntityType="Self.Producto" />
+          <EntitySet Name="Rol" EntityType="Self.Rol" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
+          <EntitySet Name="Usuario" EntityType="Self.Usuario" />
+          <AssociationSet Name="FK_BackOffice_Rol" Association="Self.FK_BackOffice_Rol">
+            <End Role="Rol" EntitySet="Rol" />
+            <End Role="BackOffice" EntitySet="BackOffice" />
+          </AssociationSet>
+          <AssociationSet Name="FK_BackOffice_Usuario" Association="Self.FK_BackOffice_Usuario">
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="BackOffice" EntitySet="BackOffice" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Carrito_Cliente" Association="Self.FK_Carrito_Cliente">
+            <End Role="Cliente" EntitySet="Cliente" />
+            <End Role="Carrito" EntitySet="Carrito" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Carrito_Moneda" Association="Self.FK_Carrito_Moneda">
+            <End Role="Moneda" EntitySet="Moneda" />
+            <End Role="Carrito" EntitySet="Carrito" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ItemCarrito_Carrito" Association="Self.FK_ItemCarrito_Carrito">
+            <End Role="Carrito" EntitySet="Carrito" />
+            <End Role="ItemCarrito" EntitySet="ItemCarrito" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Cliente_Usuario" Association="Self.FK_Cliente_Usuario">
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="Cliente" EntitySet="Cliente" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ItemCarrito_Producto" Association="Self.FK_ItemCarrito_Producto">
+            <End Role="Producto" EntitySet="Producto" />
+            <End Role="ItemCarrito" EntitySet="ItemCarrito" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="TiendaVirtualModelStoreContainer" CdmEntityContainer="TiendaVirtualEntities">
+          <EntitySetMapping Name="BackOffice">
+            <EntityTypeMapping TypeName="TiendaVirtualModel.BackOffice">
+              <MappingFragment StoreEntitySet="BackOffice">
+                <ScalarProperty Name="UsuarioId" ColumnName="UsuarioId" />
+                <ScalarProperty Name="BackOfficeNombre" ColumnName="BackOfficeNombre" />
+                <ScalarProperty Name="RolId" ColumnName="RolId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Carrito">
+            <EntityTypeMapping TypeName="TiendaVirtualModel.Carrito">
+              <MappingFragment StoreEntitySet="Carrito">
+                <ScalarProperty Name="CarritoId" ColumnName="CarritoId" />
+                <ScalarProperty Name="UsuarioId" ColumnName="UsuarioId" />
+                <ScalarProperty Name="MonedaId" ColumnName="MonedaId" />
+                <ScalarProperty Name="CarritoFechaCreacion" ColumnName="CarritoFechaCreacion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Categoria">
+            <EntityTypeMapping TypeName="TiendaVirtualModel.Categoria">
+              <MappingFragment StoreEntitySet="Categoria">
+                <ScalarProperty Name="CategoriaId" ColumnName="CategoriaId" />
+                <ScalarProperty Name="CategoriaNombre" ColumnName="CategoriaNombre" />
+                <ScalarProperty Name="CategoriaDescripcion" ColumnName="CategoriaDescripcion" />
+                <ScalarProperty Name="CategoriaHabilitado" ColumnName="CategoriaHabilitado" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Cliente">
+            <EntityTypeMapping TypeName="TiendaVirtualModel.Cliente">
+              <MappingFragment StoreEntitySet="Cliente">
+                <ScalarProperty Name="UsuarioId" ColumnName="UsuarioId" />
+                <ScalarProperty Name="ClienteDireccion" ColumnName="ClienteDireccion" />
+                <ScalarProperty Name="ClienteTelefono" ColumnName="ClienteTelefono" />
+                <ScalarProperty Name="ClienteCI" ColumnName="ClienteCI" />
+                <ScalarProperty Name="ClienteNombre" ColumnName="ClienteNombre" />
+                <ScalarProperty Name="EmpresaRUT" ColumnName="EmpresaRUT" />
+                <ScalarProperty Name="EmpresaNombreContacto" ColumnName="EmpresaNombreContacto" />
+                <ScalarProperty Name="ClienteHabilitado" ColumnName="ClienteHabilitado" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ItemCarrito">
+            <EntityTypeMapping TypeName="TiendaVirtualModel.ItemCarrito">
+              <MappingFragment StoreEntitySet="ItemCarrito">
+                <ScalarProperty Name="CarritoId" ColumnName="CarritoId" />
+                <ScalarProperty Name="ProductoId" ColumnName="ProductoId" />
+                <ScalarProperty Name="ProductoCantidad" ColumnName="ProductoCantidad" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Moneda">
+            <EntityTypeMapping TypeName="TiendaVirtualModel.Moneda">
+              <MappingFragment StoreEntitySet="Moneda">
+                <ScalarProperty Name="MonedaId" ColumnName="MonedaId" />
+                <ScalarProperty Name="MonedaAbreviatura" ColumnName="MonedaAbreviatura" />
+                <ScalarProperty Name="MonedaDescripción" ColumnName="MonedaDescripción" />
+                <ScalarProperty Name="MonedaCotizacion" ColumnName="MonedaCotizacion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Producto">
+            <EntityTypeMapping TypeName="TiendaVirtualModel.Producto">
+              <MappingFragment StoreEntitySet="Producto">
+                <ScalarProperty Name="ProductoId" ColumnName="ProductoId" />
+                <ScalarProperty Name="ProductoNombre" ColumnName="ProductoNombre" />
+                <ScalarProperty Name="ProductoDescripcion" ColumnName="ProductoDescripcion" />
+                <ScalarProperty Name="ProductoFoto" ColumnName="ProductoFoto" />
+                <ScalarProperty Name="ProductoPrecio" ColumnName="ProductoPrecio" />
+                <ScalarProperty Name="ProductoStock" ColumnName="ProductoStock" />
+                <ScalarProperty Name="ProductoFechaAlta" ColumnName="ProductoFechaAlta" />
+                <ScalarProperty Name="ProductoHabilitado" ColumnName="ProductoHabilitado" />
+                <ScalarProperty Name="CategoriaId" ColumnName="CategoriaId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Rol">
+            <EntityTypeMapping TypeName="TiendaVirtualModel.Rol">
+              <MappingFragment StoreEntitySet="Rol">
+                <ScalarProperty Name="RolId" ColumnName="RolId" />
+                <ScalarProperty Name="RolNombre" ColumnName="RolNombre" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="TiendaVirtualModel.sysdiagrams">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Usuario">
+            <EntityTypeMapping TypeName="TiendaVirtualModel.Usuario">
+              <MappingFragment StoreEntitySet="Usuario">
+                <ScalarProperty Name="UsuarioId" ColumnName="UsuarioId" />
+                <ScalarProperty Name="TipoUsuario" ColumnName="TipoUsuario" />
+                <ScalarProperty Name="UsuarioEmail" ColumnName="UsuarioEmail" />
+                <ScalarProperty Name="UsuarioContrasenia" ColumnName="UsuarioContrasenia" />
+                <ScalarProperty Name="UsuarioActivo" ColumnName="UsuarioActivo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Ninguno" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
