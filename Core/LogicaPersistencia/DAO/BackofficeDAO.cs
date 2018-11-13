@@ -5,19 +5,24 @@ using LogicaPersistencia;
 using System.Linq;
 
 
+
+
 namespace LogicaPersistencia.DAO
 {
     public class BackofficeDAO
     {
-        
-        private TiendaVirtualEntities DB = new TiendaVirtualEntities();
+
+        //BackOffice BK = new BackOffice();
 
         public void InsertarBackoffice (BackofficeVO bkvo)
         {
-            Backoffice BK = new Backoffice();
-            
-            
-            
+            BackOffice be = new BackOffice(bkvo);
+
+            using (TiendaVirtualEntities db = new TiendaVirtualEntities())
+            {
+                db.BackOffice.Add(be);
+                db.SaveChanges();
+            }
             
             // Inserta un nuevo BackOffice
             //INSERT INTO BackOffice (UsuarioId,BackOfficeNombre,RolId) VALUES (bkvo.id, bkvo.nombre, bkvo.rol)
@@ -35,11 +40,12 @@ namespace LogicaPersistencia.DAO
             // UPDATE BackOffice SET BackOfficeNombre=bkvo.Nombre,RolId=bkvo.Rol WHERE UsuarioId=bkvo.id
         }
 
-        public List<Usuario> ListarBackoffice ()
+        public List<UsuarioVO> ListarBackoffice ()
         {
             using (TiendaVirtualEntities db = new TiendaVirtualEntities())
-         
-                return db.Usuario.ToList();
+            {
+                return db.Usuario.ToList().Select(usu => usu.DarUsuarioVO()).ToList();
+            }
         }
 
         public List<BackofficeVO> ListarBackofficeRol (int bkrol)
