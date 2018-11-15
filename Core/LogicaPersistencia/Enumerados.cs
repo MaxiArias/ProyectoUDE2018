@@ -13,5 +13,11 @@
             Backoffice = 0,
             Cliente = 1
         }
+
+        public enum TipoCliente
+        {
+            Persona = 0,
+            Empresa = 1
+        }
     }
 }
