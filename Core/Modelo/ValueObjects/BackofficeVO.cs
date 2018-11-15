@@ -6,7 +6,7 @@ namespace Modelo.ValueObjects
     {
         // Atributos
         private String nombre;
-        private String rol;
+        private string rol;
         
         // Properties
         public String Nombre { get { return nombre; } }

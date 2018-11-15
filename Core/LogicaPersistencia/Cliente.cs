@@ -28,6 +28,7 @@ namespace LogicaPersistencia
         public string EmpresaRUT { get; set; }
         public string EmpresaNombreContacto { get; set; }
         public Nullable<bool> ClienteHabilitado { get; set; }
+        public string TipoCliente { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Carrito> Carrito { get; set; }
