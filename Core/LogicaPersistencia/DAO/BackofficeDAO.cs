@@ -30,8 +30,14 @@ namespace LogicaPersistencia.DAO
 
         public void BorrarBackoffice (int bkid)
         {
-            //Elimina el Backoffice del que se pasa su id
-            //DELETE FROM BackOffice WHERE UsuarioId=bkid
+            BackofficeVO bkvo = new BackofficeVO() { UsuarioId = bkid };
+            db.Entry(studentToDelete).State = EntityState.Deleted;
+
+            using (TiendaVirtualEntities db = new TiendaVirtualEntities())
+            {
+                db.BackOffice.Add(be);
+                db.SaveChanges();
+            }
         }
 
         public void ModificarBackoffice (BackofficeVO bkvo)
