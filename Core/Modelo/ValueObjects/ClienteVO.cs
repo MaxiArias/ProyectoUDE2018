@@ -7,16 +7,19 @@ namespace Modelo.ValueObjects
         // Atributos
         private String direccion;
         private String telefono;
+        private String tipoCliente;
         
         // Properties
         public string Direccion { get { return direccion; } }
         public string Telefono { get { return telefono; } }
+        public string TipoCliente { get { return tipoCliente; } }
 
         // Constructores
-        public ClienteVO(String dir, string tel, int id, string mail, string pass, Boolean activo) : base(id, mail, pass, activo)
+        public ClienteVO(String dir, string tel, String tipoC, int id, string mail, string pass, Boolean activo, String tipo) : base(id, mail, pass, activo, tipo)
         {
             direccion = dir;
             telefono = tel;
+            tipoCliente = tipoC;
         }
     }
 }

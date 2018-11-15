@@ -10,7 +10,7 @@ namespace LogicaPersistencia.DAO
 
         }
 
-        public void EliminarCliente(int cliid)
+        public void BorrarCliente(int cliid)
         {
 
         }
