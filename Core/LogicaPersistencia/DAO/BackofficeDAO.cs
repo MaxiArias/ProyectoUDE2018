@@ -12,8 +12,6 @@ namespace LogicaPersistencia.DAO
     public class BackofficeDAO
     {
 
-        //BackOffice BK = new BackOffice();
-
         public void InsertarBackoffice (BackofficeVO bkvo)
         {
             BackOffice be = new BackOffice(bkvo);
@@ -28,22 +26,22 @@ namespace LogicaPersistencia.DAO
             //INSERT INTO BackOffice (UsuarioId,BackOfficeNombre,RolId) VALUES (bkvo.id, bkvo.nombre, bkvo.rol)
         }
 
-        public void BorrarBackoffice (int bkid)
+        public void BorrarBackoffice (BackofficeVO bkvo)
         {
-            BackofficeVO bkvo = new BackofficeVO() { UsuarioId = bkid };
-            db.Entry(studentToDelete).State = EntityState.Deleted;
-
             using (TiendaVirtualEntities db = new TiendaVirtualEntities())
             {
-                db.BackOffice.Add(be);
+                db.Entry(bkvo).State = System.Data.Entity.EntityState.Deleted;
                 db.SaveChanges();
             }
         }
 
         public void ModificarBackoffice (BackofficeVO bkvo)
         {
-            //Modifica los datos del Backoffice dado, a excepción del id.
-            // UPDATE BackOffice SET BackOfficeNombre=bkvo.Nombre,RolId=bkvo.Rol WHERE UsuarioId=bkvo.id
+            using (TiendaVirtualEntities db = new TiendaVirtualEntities())
+            {
+                db.Entry(bkvo).State = System.Data.Entity.EntityState.Modified;
+                db.SaveChanges();
+            }
         }
 
         public List<UsuarioVO> ListarBackoffice ()
@@ -52,6 +50,20 @@ namespace LogicaPersistencia.DAO
             {
                 return db.Usuario.ToList().Select(usu => usu.DarUsuarioVO()).ToList();
             }
+        }
+
+
+        public BackofficeVO DarBackoffice (int id)
+        {
+            using (TiendaVirtualEntities db = new TiendaVirtualEntities())
+            {
+                //revisar como es con linq
+                BackofficeVO bko = new BackofficeVO(from g in db.Usuario select * where g.UsuarioId= id);
+
+                return bko;
+            }
+
+
         }
 
         public List<BackofficeVO> ListarBackofficeRol (int bkrol)
