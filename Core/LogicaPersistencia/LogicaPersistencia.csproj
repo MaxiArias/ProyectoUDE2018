@@ -68,6 +68,7 @@
       <DependentUpon>Modelo.tt</DependentUpon>
     </Compile>
     <Compile Include="Enumerados.cs" />
+    <Compile Include="FabricaFachadas.cs" />
     <Compile Include="Fachada.cs" />
     <Compile Include="DAO\BackOfficeDAO.cs" />
     <Compile Include="DAO\CarritoDAO.cs" />
@@ -77,6 +78,8 @@
     <Compile Include="DAO\ProductoDAO.cs" />
     <Compile Include="DAO\RolDAO.cs" />
     <Compile Include="DAO\UsuarioDAO.cs" />
+    <Compile Include="IFachadaWeb.cs" />
+    <Compile Include="IFachadaWin.cs" />
     <Compile Include="ItemCarrito.cs">
       <DependentUpon>Modelo.tt</DependentUpon>
     </Compile>

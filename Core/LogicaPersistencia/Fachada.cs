@@ -3,7 +3,7 @@ using Modelo.ValueObjects;
 
 namespace LogicaPersistencia
 {
-    public class Fachada /*: IfachadaWin, IfachadaWeb*/
+    public class Fachada : IFachadaWin, IFachadaWeb
     {
         public void InsertarCategoria (CategoriaVO catvo)
         {
