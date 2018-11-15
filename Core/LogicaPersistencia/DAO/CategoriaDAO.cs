@@ -59,7 +59,7 @@ namespace LogicaPersistencia.DAO
             }
         }
 
-        public void EliminarCategoria(int catid)
+        public void BorrarCategoria(int catid)
         {
             //aca va el delete y la conexion a la base de datos.    
         }

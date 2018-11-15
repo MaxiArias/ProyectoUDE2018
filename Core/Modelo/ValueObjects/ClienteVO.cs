@@ -13,7 +13,7 @@ namespace Modelo.ValueObjects
         public string Telefono { get { return telefono; } }
 
         // Constructores
-        public ClienteVO(String dir, string tel, int id, string mail, string pass, Boolean activo) : base(id, mail, pass, activo)
+        public ClienteVO(String dir, string tel, int id, string mail, string pass, Boolean activo, String tipo) : base(id, mail, pass, activo, tipo)
         {
             direccion = dir;
             telefono = tel;

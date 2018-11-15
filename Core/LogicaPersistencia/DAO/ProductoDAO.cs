@@ -10,7 +10,7 @@ namespace LogicaPersistencia.DAO
             //aca va el insert y la conexion a la base de datos.    
         }
 
-        public void BorrarProducto(ProductoVO prodvo)
+        public void BorrarProducto(int proid)
         {
             //aca va el delete y la conexion a la base de datos.    
         }
