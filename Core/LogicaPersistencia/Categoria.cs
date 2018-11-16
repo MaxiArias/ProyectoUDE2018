@@ -14,7 +14,7 @@ namespace LogicaPersistencia
     
     public partial class Categoria
     {
-        public short CategoriaId { get; set; }
+        public int CategoriaId { get; set; }
         public string CategoriaNombre { get; set; }
         public string CategoriaDescripcion { get; set; }
         public bool CategoriaHabilitado { get; set; }

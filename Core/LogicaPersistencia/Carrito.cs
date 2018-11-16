@@ -20,9 +20,9 @@ namespace LogicaPersistencia
             this.ItemCarrito = new HashSet<ItemCarrito>();
         }
     
-        public short CarritoId { get; set; }
-        public short UsuarioId { get; set; }
-        public short MonedaId { get; set; }
+        public int CarritoId { get; set; }
+        public int UsuarioId { get; set; }
+        public int MonedaId { get; set; }
         public System.DateTime CarritoFechaCreacion { get; set; }
     
         public virtual Cliente Cliente { get; set; }

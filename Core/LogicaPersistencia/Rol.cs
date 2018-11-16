@@ -20,7 +20,7 @@ namespace LogicaPersistencia
             this.BackOffice = new HashSet<BackOffice>();
         }
     
-        public short RolId { get; set; }
+        public int RolId { get; set; }
         public string RolNombre { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

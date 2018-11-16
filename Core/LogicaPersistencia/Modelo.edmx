@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="TiendaVirtualModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="TiendaVirtualModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="BackOffice">
           <Key>
             <PropertyRef Name="UsuarioId" />
@@ -228,7 +228,8 @@
             <End Role="ItemCarrito" EntitySet="ItemCarrito" />
           </AssociationSet>
         </EntityContainer>
-      </Schema></edmx:StorageModels>
+      </Schema>
+    </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="TiendaVirtualModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -236,9 +237,9 @@
           <Key>
             <PropertyRef Name="UsuarioId" />
           </Key>
-          <Property Name="UsuarioId" Type="Int16" Nullable="false" />
+          <Property Name="UsuarioId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="BackOfficeNombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="RolId" Type="Int16" Nullable="false" />
+          <Property Name="RolId" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Rol" Relationship="Self.FK_BackOffice_Rol" FromRole="BackOffice" ToRole="Rol" />
           <NavigationProperty Name="Usuario" Relationship="Self.FK_BackOffice_Usuario" FromRole="BackOffice" ToRole="Usuario" />
         </EntityType>
@@ -246,9 +247,9 @@
           <Key>
             <PropertyRef Name="CarritoId" />
           </Key>
-          <Property Name="CarritoId" Type="Int16" Nullable="false" />
-          <Property Name="UsuarioId" Type="Int16" Nullable="false" />
-          <Property Name="MonedaId" Type="Int16" Nullable="false" />
+          <Property Name="CarritoId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UsuarioId" Type="Int32" Nullable="false" />
+          <Property Name="MonedaId" Type="Int32" Nullable="false" />
           <Property Name="CarritoFechaCreacion" Type="DateTime" Nullable="false" Precision="0" />
           <NavigationProperty Name="Cliente" Relationship="Self.FK_Carrito_Cliente" FromRole="Carrito" ToRole="Cliente" />
           <NavigationProperty Name="Moneda" Relationship="Self.FK_Carrito_Moneda" FromRole="Carrito" ToRole="Moneda" />
@@ -258,7 +259,7 @@
           <Key>
             <PropertyRef Name="CategoriaId" />
           </Key>
-          <Property Name="CategoriaId" Type="Int16" Nullable="false" />
+          <Property Name="CategoriaId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="CategoriaNombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="CategoriaDescripcion" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
           <Property Name="CategoriaHabilitado" Type="Boolean" Nullable="false" />
@@ -267,7 +268,7 @@
           <Key>
             <PropertyRef Name="UsuarioId" />
           </Key>
-          <Property Name="UsuarioId" Type="Int16" Nullable="false" />
+          <Property Name="UsuarioId" Type="Int32" Nullable="false" />
           <Property Name="ClienteDireccion" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="ClienteTelefono" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="ClienteCI" Type="Int32" />
@@ -275,18 +276,18 @@
           <Property Name="EmpresaRUT" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
           <Property Name="EmpresaNombreContacto" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="ClienteHabilitado" Type="Boolean" />
+          <Property Name="TipoCliente" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="Carrito" Relationship="Self.FK_Carrito_Cliente" FromRole="Cliente" ToRole="Carrito" />
           <NavigationProperty Name="Usuario" Relationship="Self.FK_Cliente_Usuario" FromRole="Cliente" ToRole="Usuario" />
-          <Property Name="TipoCliente" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="ItemCarrito">
           <Key>
             <PropertyRef Name="CarritoId" />
             <PropertyRef Name="ProductoId" />
           </Key>
-          <Property Name="CarritoId" Type="Int16" Nullable="false" />
-          <Property Name="ProductoId" Type="Int16" Nullable="false" />
-          <Property Name="ProductoCantidad" Type="Int16" Nullable="false" />
+          <Property Name="CarritoId" Type="Int32" Nullable="false" />
+          <Property Name="ProductoId" Type="Int32" Nullable="false" />
+          <Property Name="ProductoCantidad" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Carrito" Relationship="Self.FK_ItemCarrito_Carrito" FromRole="ItemCarrito" ToRole="Carrito" />
           <NavigationProperty Name="Producto" Relationship="Self.FK_ItemCarrito_Producto" FromRole="ItemCarrito" ToRole="Producto" />
         </EntityType>
@@ -294,7 +295,7 @@
           <Key>
             <PropertyRef Name="MonedaId" />
           </Key>
-          <Property Name="MonedaId" Type="Int16" Nullable="false" />
+          <Property Name="MonedaId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="MonedaAbreviatura" Type="String" MaxLength="5" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="MonedaDescripción" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="MonedaCotizacion" Type="Double" Nullable="false" />
@@ -304,22 +305,22 @@
           <Key>
             <PropertyRef Name="ProductoId" />
           </Key>
-          <Property Name="ProductoId" Type="Int16" Nullable="false" />
+          <Property Name="ProductoId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="ProductoNombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="ProductoDescripcion" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
           <Property Name="ProductoFoto" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="ProductoPrecio" Type="Double" Nullable="false" />
-          <Property Name="ProductoStock" Type="Int16" Nullable="false" />
+          <Property Name="ProductoStock" Type="Int32" Nullable="false" />
           <Property Name="ProductoFechaAlta" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="ProductoHabilitado" Type="Boolean" Nullable="false" />
-          <Property Name="CategoriaId" Type="Int16" Nullable="false" />
+          <Property Name="CategoriaId" Type="Int32" Nullable="false" />
           <NavigationProperty Name="ItemCarrito" Relationship="Self.FK_ItemCarrito_Producto" FromRole="Producto" ToRole="ItemCarrito" />
         </EntityType>
         <EntityType Name="Rol">
           <Key>
             <PropertyRef Name="RolId" />
           </Key>
-          <Property Name="RolId" Type="Int16" Nullable="false" />
+          <Property Name="RolId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="RolNombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <NavigationProperty Name="BackOffice" Relationship="Self.FK_BackOffice_Rol" FromRole="Rol" ToRole="BackOffice" />
         </EntityType>
@@ -337,8 +338,8 @@
           <Key>
             <PropertyRef Name="UsuarioId" />
           </Key>
-          <Property Name="UsuarioId" Type="Int16" Nullable="false" />
-          <Property Name="TipoUsuario" Type="Int16" Nullable="false" />
+          <Property Name="UsuarioId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TipoUsuario" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="UsuarioEmail" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="UsuarioContrasenia" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="UsuarioActivo" Type="Boolean" Nullable="false" />
@@ -507,7 +508,6 @@
           <EntitySetMapping Name="Cliente">
             <EntityTypeMapping TypeName="TiendaVirtualModel.Cliente">
               <MappingFragment StoreEntitySet="Cliente">
-                <ScalarProperty Name="TipoCliente" ColumnName="TipoCliente" />
                 <ScalarProperty Name="UsuarioId" ColumnName="UsuarioId" />
                 <ScalarProperty Name="ClienteDireccion" ColumnName="ClienteDireccion" />
                 <ScalarProperty Name="ClienteTelefono" ColumnName="ClienteTelefono" />
@@ -516,6 +516,7 @@
                 <ScalarProperty Name="EmpresaRUT" ColumnName="EmpresaRUT" />
                 <ScalarProperty Name="EmpresaNombreContacto" ColumnName="EmpresaNombreContacto" />
                 <ScalarProperty Name="ClienteHabilitado" ColumnName="ClienteHabilitado" />
+                <ScalarProperty Name="TipoCliente" ColumnName="TipoCliente" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

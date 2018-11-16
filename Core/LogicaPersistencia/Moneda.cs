@@ -20,7 +20,7 @@ namespace LogicaPersistencia
             this.Carrito = new HashSet<Carrito>();
         }
     
-        public short MonedaId { get; set; }
+        public int MonedaId { get; set; }
         public string MonedaAbreviatura { get; set; }
         public string MonedaDescripción { get; set; }
         public double MonedaCotizacion { get; set; }

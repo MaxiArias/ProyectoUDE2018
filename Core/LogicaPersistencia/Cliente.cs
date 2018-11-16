@@ -20,7 +20,7 @@ namespace LogicaPersistencia
             this.Carrito = new HashSet<Carrito>();
         }
     
-        public short UsuarioId { get; set; }
+        public int UsuarioId { get; set; }
         public string ClienteDireccion { get; set; }
         public string ClienteTelefono { get; set; }
         public Nullable<int> ClienteCI { get; set; }

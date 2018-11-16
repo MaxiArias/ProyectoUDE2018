@@ -14,9 +14,9 @@ namespace LogicaPersistencia
     
     public partial class ItemCarrito
     {
-        public short CarritoId { get; set; }
-        public short ProductoId { get; set; }
-        public short ProductoCantidad { get; set; }
+        public int CarritoId { get; set; }
+        public int ProductoId { get; set; }
+        public int ProductoCantidad { get; set; }
     
         public virtual Carrito Carrito { get; set; }
         public virtual Producto Producto { get; set; }

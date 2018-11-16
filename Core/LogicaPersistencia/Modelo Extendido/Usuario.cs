@@ -11,7 +11,7 @@ namespace LogicaPersistencia
     {
         public UsuarioVO DarUsuarioVO()
         {
-            return new UsuarioVO(UsuarioId, UsuarioEmail, UsuarioContrasenia, UsuarioActivo);
+            return new UsuarioVO(UsuarioId, UsuarioEmail, UsuarioContrasenia, UsuarioActivo, TipoUsuario);
            
         }
 

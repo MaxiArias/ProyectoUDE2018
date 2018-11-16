@@ -4,16 +4,16 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="0ca10517a1fe4522827a2259f0b97e30" Name="Diagram1">
+      <Diagram DiagramId="a65b450aa7dc419eb4df2f0d40ee73a3" Name="Diagram1">
         <EntityTypeShape EntityType="TiendaVirtualModel.BackOffice" Width="1.5" PointX="3" PointY="2.5" IsExpanded="true" />
         <EntityTypeShape EntityType="TiendaVirtualModel.Carrito" Width="1.5" PointX="5.25" PointY="6.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="TiendaVirtualModel.Categoria" Width="1.5" PointX="7.75" PointY="1.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="TiendaVirtualModel.Categoria" Width="1.5" PointX="7.75" PointY="1.25" IsExpanded="true" />
         <EntityTypeShape EntityType="TiendaVirtualModel.Cliente" Width="1.5" PointX="3" PointY="5.75" IsExpanded="true" />
         <EntityTypeShape EntityType="TiendaVirtualModel.ItemCarrito" Width="1.5" PointX="7.5" PointY="6.25" IsExpanded="true" />
         <EntityTypeShape EntityType="TiendaVirtualModel.Moneda" Width="1.5" PointX="3" PointY="10.25" IsExpanded="true" />
         <EntityTypeShape EntityType="TiendaVirtualModel.Producto" Width="1.5" PointX="5.25" PointY="1.75" IsExpanded="true" />
         <EntityTypeShape EntityType="TiendaVirtualModel.Rol" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="TiendaVirtualModel.sysdiagrams" Width="1.5" PointX="5.75" PointY="9.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="TiendaVirtualModel.sysdiagrams" Width="1.5" PointX="5.75" PointY="9.25" IsExpanded="true" />
         <EntityTypeShape EntityType="TiendaVirtualModel.Usuario" Width="1.5" PointX="0.75" PointY="3.375" IsExpanded="true" />
         <AssociationConnector Association="TiendaVirtualModel.FK_BackOffice_Rol" ManuallyRouted="false" />
         <AssociationConnector Association="TiendaVirtualModel.FK_BackOffice_Usuario" ManuallyRouted="false" />

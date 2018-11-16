@@ -14,9 +14,9 @@ namespace LogicaPersistencia
     
     public partial class BackOffice
     {
-        public short UsuarioId { get; set; }
+        public int UsuarioId { get; set; }
         public string BackOfficeNombre { get; set; }
-        public short RolId { get; set; }
+        public int RolId { get; set; }
     
         public virtual Rol Rol { get; set; }
         public virtual Usuario Usuario { get; set; }

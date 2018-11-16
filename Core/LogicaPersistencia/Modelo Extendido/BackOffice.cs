@@ -14,11 +14,18 @@ namespace LogicaPersistencia
 
         }
 
-        public BackOffice(BackofficeVO vo)
+        public BackOffice(BackofficeInsVO vo)
         {
             this.BackOfficeNombre = vo.Nombre;
-            this.RolId = Convert.ToInt16(vo.Rol);
-            this.UsuarioId = (short) vo.IdUsuario;
+            this.RolId = vo.RolId;
+            this.UsuarioId = vo.IdUsuario;
+        }
+
+        public BackofficeVO DarBackofficeVO()
+        {
+            
+            return new BackofficeVO(BackOfficeNombre, Rol.RolNombre, Usuario.UsuarioId, Usuario.UsuarioEmail, Usuario.UsuarioContrasenia, Usuario.UsuarioActivo, Usuario.TipoUsuario);
+
         }
     }
 }

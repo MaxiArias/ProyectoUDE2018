@@ -14,8 +14,8 @@ namespace LogicaPersistencia
     
     public partial class Usuario
     {
-        public short UsuarioId { get; set; }
-        public short TipoUsuario { get; set; }
+        public int UsuarioId { get; set; }
+        public string TipoUsuario { get; set; }
         public string UsuarioEmail { get; set; }
         public string UsuarioContrasenia { get; set; }
         public bool UsuarioActivo { get; set; }

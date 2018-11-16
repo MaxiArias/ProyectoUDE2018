@@ -40,6 +40,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ValueObjects\BackofficeInsVO.cs" />
     <Compile Include="ValueObjects\BackofficeVO.cs" />
     <Compile Include="ValueObjects\CarritoVO.cs" />
     <Compile Include="ValueObjects\CategoriaVO.cs" />

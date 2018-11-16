@@ -12,7 +12,7 @@ namespace LogicaPersistencia.DAO
     public class BackofficeDAO
     {
 
-        public void InsertarBackoffice (BackofficeVO bkvo)
+        public void InsertarBackoffice (BackofficeInsVO bkvo)
         {
             BackOffice be = new BackOffice(bkvo);
 
@@ -22,8 +22,6 @@ namespace LogicaPersistencia.DAO
                 db.SaveChanges();
             }
             
-            // Inserta un nuevo BackOffice
-            //INSERT INTO BackOffice (UsuarioId,BackOfficeNombre,RolId) VALUES (bkvo.id, bkvo.nombre, bkvo.rol)
         }
 
         public void BorrarBackoffice (BackofficeVO bkvo)
@@ -44,33 +42,27 @@ namespace LogicaPersistencia.DAO
             }
         }
 
-        public List<UsuarioVO> ListarBackoffice ()
+        public List<BackofficeVO> ListarBackoffice ()
         {
             using (TiendaVirtualEntities db = new TiendaVirtualEntities())
             {
-                return db.Usuario.ToList().Select(usu => usu.DarUsuarioVO()).ToList();
+                return db.BackOffice.ToList().Select(back => back.DarBackofficeVO()).ToList();
             }
         }
 
 
-        public BackofficeVO DarBackoffice (int id)
+       public bool MemberBackoffice(string mail)
         {
             using (TiendaVirtualEntities db = new TiendaVirtualEntities())
             {
-                //revisar como es con linq
-                BackofficeVO bko = new BackofficeVO(from g in db.Usuario select * where g.UsuarioId= id);
+                
+                var primerBackOfficeEseMail = (from back in db.BackOffice
+                                               where back.Usuario.UsuarioEmail == mail
+                                                select back).FirstOrDefault();
 
-                return bko;
+              return primerBackOfficeEseMail != null;               
             }
-
-
         }
 
-        public List<BackofficeVO> ListarBackofficeRol (int bkrol)
-        {
-            // Lista los Backoffice que poseen un determinado rol
-            // SELECT * FROM BackOffice WHERE RolId=bkrol
-             return null;
-        }
     }
 }

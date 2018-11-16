@@ -20,15 +20,15 @@ namespace LogicaPersistencia
             this.ItemCarrito = new HashSet<ItemCarrito>();
         }
     
-        public short ProductoId { get; set; }
+        public int ProductoId { get; set; }
         public string ProductoNombre { get; set; }
         public string ProductoDescripcion { get; set; }
         public string ProductoFoto { get; set; }
         public double ProductoPrecio { get; set; }
-        public short ProductoStock { get; set; }
+        public int ProductoStock { get; set; }
         public System.DateTime ProductoFechaAlta { get; set; }
         public bool ProductoHabilitado { get; set; }
-        public short CategoriaId { get; set; }
+        public int CategoriaId { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ItemCarrito> ItemCarrito { get; set; }
