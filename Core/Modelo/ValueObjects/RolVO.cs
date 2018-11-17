@@ -13,6 +13,8 @@ namespace Modelo.ValueObjects
         public string Nombre { get { return nombre; } }
 
         // Constructores
+        public RolVO() { }
+
         public RolVO(int idr, string nom)
         {
             idRol = idr;

@@ -17,6 +17,8 @@ namespace Modelo.ValueObjects
         public Boolean Habilitado { get { return habilitado; } }
 
         // Constructores
+        public CategoriaVO() { }
+
         public CategoriaVO(int idc, string nom, string desc, Boolean hab)
         {
             idCategoria = idc;

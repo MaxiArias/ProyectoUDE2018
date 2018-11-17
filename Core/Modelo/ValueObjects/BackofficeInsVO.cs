@@ -17,6 +17,7 @@ namespace Modelo.ValueObjects
             public int RolId { get { return rolid; } }
 
             // Constructores
+            public BackofficeInsVO () { }
 
             public BackofficeInsVO(String nom, int rol, int id, string mail, string pass, Boolean activo, String tipo) : base(id, mail, pass, activo, tipo)
             {

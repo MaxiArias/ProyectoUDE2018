@@ -13,6 +13,8 @@
         public int IdCliente { get { return idCliente; } }
 
         // Constructores
+        public ItemCarritoVO() { }
+
         public ItemCarritoVO(int idp, int cant, int idcliente)
         {
             idProducto = idp;

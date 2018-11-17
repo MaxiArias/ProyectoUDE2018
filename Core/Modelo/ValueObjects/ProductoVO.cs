@@ -27,6 +27,8 @@ namespace Modelo.ValueObjects
         public int IdCategoria { get { return idCategoria; } }
 
         // Constructores
+        public ProductoVO() { }
+
         public ProductoVO(int idp, string nom, string desc, string foto, float precio, int stk, DateTime alta, Boolean hab, int idCat)
         {
             idProducto = idp;

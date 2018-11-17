@@ -15,6 +15,8 @@ namespace Modelo.ValueObjects
         public string RazonSocial { get { return razonSocial; } }
 
         // Constructores
+        public EmpresaVO() { }
+
         public EmpresaVO(int ruc, string contact, string razon, string dir, string tel, String tipoC, int id, string mail, string pass, Boolean activo, String tipo) : base(dir, tel, tipoC, id, mail, pass, activo, tipo)
         {
             rut = ruc;

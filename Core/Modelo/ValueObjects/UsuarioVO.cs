@@ -19,6 +19,9 @@ namespace Modelo.ValueObjects
         public String TipoUsuario { get { return tipoUsuario; } }
 
         // Constructores
+
+        public UsuarioVO() { }
+
         public UsuarioVO(int id, String mail, String pass, Boolean activo, String tipo)
         {
             idUsuario = id;
