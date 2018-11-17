@@ -22,6 +22,7 @@
         <AssociationConnector Association="TiendaVirtualModel.FK_ItemCarrito_Carrito" ManuallyRouted="false" />
         <AssociationConnector Association="TiendaVirtualModel.FK_Cliente_Usuario" ManuallyRouted="false" />
         <AssociationConnector Association="TiendaVirtualModel.FK_ItemCarrito_Producto" ManuallyRouted="false" />
+        <AssociationConnector Association="TiendaVirtualModel.FK__Producto__Catego__04E4BC85" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
