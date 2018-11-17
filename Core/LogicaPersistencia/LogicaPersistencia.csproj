@@ -84,6 +84,7 @@
       <DependentUpon>Modelo.tt</DependentUpon>
     </Compile>
     <Compile Include="Modelo Extendido\BackOffice.cs" />
+    <Compile Include="Modelo Extendido\Carrito.cs" />
     <Compile Include="Modelo Extendido\Usuario.cs" />
     <Compile Include="Modelo.Context.cs">
       <AutoGen>True</AutoGen>
