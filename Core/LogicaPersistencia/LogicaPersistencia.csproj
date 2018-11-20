@@ -85,6 +85,8 @@
     </Compile>
     <Compile Include="Modelo Extendido\BackOffice.cs" />
     <Compile Include="Modelo Extendido\Carrito.cs" />
+    <Compile Include="Modelo Extendido\Categoria.cs" />
+    <Compile Include="Modelo Extendido\ItemCarrito.cs" />
     <Compile Include="Modelo Extendido\Usuario.cs" />
     <Compile Include="Modelo.Context.cs">
       <AutoGen>True</AutoGen>

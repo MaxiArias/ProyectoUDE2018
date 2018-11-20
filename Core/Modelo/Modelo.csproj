@@ -46,6 +46,7 @@
     <Compile Include="ValueObjects\CategoriaVO.cs" />
     <Compile Include="ValueObjects\ClienteVO.cs" />
     <Compile Include="ValueObjects\EmpresaVO.cs" />
+    <Compile Include="ValueObjects\ItemCarritoInsVO.cs" />
     <Compile Include="ValueObjects\ItemCarritoVO.cs" />
     <Compile Include="ValueObjects\MonedaVO.cs" />
     <Compile Include="ValueObjects\PersonaVO.cs" />
