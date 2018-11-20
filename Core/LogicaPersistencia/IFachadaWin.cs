@@ -11,50 +11,48 @@ namespace LogicaPersistencia
     {
         void InsertarCategoria(CategoriaVO catvo);
 
-        void BorrarCategoria(int catid);
+        void BorrarCategoria(CategoriaVO catvo);
 
         void ModificarCategoria(CategoriaVO catvo);
 
-        void InsertarCliente(ClienteVO clivo);
+        List<CategoriaVO> ListarCategorias();
 
-        void BorrarCliente(int cliid);
+        void InsertarBackoffice(BackofficeInsVO bacvo);
 
-        void ModificarCliente(ClienteVO clivo);
-
-        void InsertarBackoffice(BackofficeVO bacvo);
-
-        void BorrarBackoffice(int bacid);
+        void BorrarBackoffice(BackofficeVO bacvo);
 
         void ModificarBackoffice(BackofficeVO bacvo);
 
-        void InsertarCarrito(CarritoVO carvo);
-
-        void BorrarCarrito(int carid);
-
-        void ModificarCarrito(CarritoVO carvo);
+        List<BackofficeVO> ListarBackoffice();
 
         void InsertarMoneda(MonedaVO monvo);
 
-        void BorrarMoneda(int monid);
+        void BorrarMoneda(MonedaVO monvo);
 
         void ModificarMoneda(MonedaVO monvo);
 
+        List<MonedaVO> ListarMonedas();
+
         void InsertarProducto(ProductoVO provo);
 
-        void BorrarProducto(int proid);
+        void BorrarProducto(ProductoVO provo);
 
         void ModificarProducto(ProductoVO provo);
 
+        List<ProductoVO> ListarProductos();
+
         void InsertarRol(RolVO rolvo);
 
-        void BorrarRol(int rolid);
+        void BorrarRol(RolVO rolvo);
 
         void ModificarRol(RolVO rolvo);
 
-        void InsertarUsuario(UsuarioVO usuvo);
+        List<RolVO> ListarRoles();
 
-        void BorrarUsuario(int usuid);
+        //void InsertarUsuario(UsuarioVO usuvo);
 
-        void ModificarUsuario(UsuarioVO usuvo);
+        //void BorrarUsuario(int usuid);
+
+        //void ModificarUsuario(UsuarioVO usuvo);
     }
 } 

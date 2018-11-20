@@ -17,6 +17,8 @@ namespace Modelo.ValueObjects
         public float Cotizacion { get { return cotizacion; } }
 
         // Constructores
+        public MonedaVO() { }
+
         public MonedaVO(int idm, string abrev, string desc, float cotiza)
         {
             idMoneda = idm;

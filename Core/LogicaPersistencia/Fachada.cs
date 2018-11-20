@@ -1,5 +1,6 @@
 ﻿using LogicaPersistencia.DAO;
 using Modelo.ValueObjects;
+using System.Collections.Generic;
 
 namespace LogicaPersistencia
 {
@@ -11,10 +12,10 @@ namespace LogicaPersistencia
             catdao.InsertarCategoria(catvo);
         }
 
-        public void BorrarCategoria(int catid)
+        public void BorrarCategoria(CategoriaVO catvo)
         {
             CategoriaDAO catdao = new CategoriaDAO();
-            catdao.BorrarCategoria(catid);
+            //catdao.BorrarCategoria(catvo);
         }
 
         public void ModificarCategoria(CategoriaVO catvo)
@@ -23,34 +24,40 @@ namespace LogicaPersistencia
             catdao.ModificarCategoria(catvo);
         }
 
-        public void InsertarCliente(ClienteVO clivo)
+        public List<CategoriaVO> ListarCategorias()
         {
-            ClienteDAO clidao = new ClienteDAO();
-            clidao.InsertarCliente(clivo);
+            CategoriaDAO catdao = new CategoriaDAO();
+            return catdao.ListarCategorias();
         }
 
-        public void BorrarCliente(int cliid)
-        {
-            ClienteDAO clidao = new ClienteDAO();
-            clidao.BorrarCliente(cliid);
-        }
+        //public void InsertarCliente(ClienteVO clivo)
+        //{
+        //    ClienteDAO clidao = new ClienteDAO();
+        //    clidao.InsertarCliente(clivo);
+        //}
 
-        public void ModificarCliente(ClienteVO clivo)
-        {
-            ClienteDAO clidao = new ClienteDAO();
-            clidao.ModificarCliente(clivo);
-        }
+        //public void BorrarCliente(int cliid)
+        //{
+        //    ClienteDAO clidao = new ClienteDAO();
+        //    clidao.BorrarCliente(cliid);
+        //}
 
-        public void InsertarBackoffice(BackofficeVO bacvo)
+        //public void ModificarCliente(ClienteVO clivo)
+        //{
+        //    ClienteDAO clidao = new ClienteDAO();
+        //    clidao.ModificarCliente(clivo);
+        //}
+
+        public void InsertarBackoffice(BackofficeInsVO bacvo)
         {
             BackofficeDAO bacdao = new BackofficeDAO();
             bacdao.InsertarBackoffice(bacvo);
         }
 
-        public void BorrarBackoffice(int bacid)
+        public void BorrarBackoffice(BackofficeVO bacvo)
         {
             BackofficeDAO bacdao = new BackofficeDAO();
-            bacdao.BorrarBackoffice(bacid);
+            bacdao.BorrarBackoffice(bacvo);
         }
 
         public void ModificarBackoffice(BackofficeVO bacvo)
@@ -59,23 +66,29 @@ namespace LogicaPersistencia
             bacdao.ModificarBackoffice(bacvo);
         }
 
-        public void InsertarCarrito(CarritoVO carvo)
+        public List<BackofficeVO> ListarBackoffice()
         {
-            CarritoDAO cardao = new CarritoDAO();
-            cardao.InsertarCarrito(carvo);
+            BackofficeDAO bacdao = new BackofficeDAO();
+            return bacdao.ListarBackoffice();
         }
 
-        public void BorrarCarrito(int carid)
-        {
-            CarritoDAO cardao = new CarritoDAO();
-            cardao.BorrarCarrito(carid);
-        }
+        //public void InsertarCarrito(CarritoVO carvo)
+        //{
+        //    CarritoDAO cardao = new CarritoDAO();
+        //    cardao.InsertarCarrito(carvo);
+        //}
 
-        public void ModificarCarrito(CarritoVO carvo)
-        {
-            CarritoDAO cardao = new CarritoDAO();
-            cardao.ModificarCarrito(carvo);
-        }
+        //public void BorrarCarrito(int carid)
+        //{
+        //    CarritoDAO cardao = new CarritoDAO();
+        //    cardao.BorrarCarrito(carid);
+        //}
+
+        //public void ModificarCarrito(CarritoVO carvo)
+        //{
+        //    CarritoDAO cardao = new CarritoDAO();
+        //    cardao.ModificarCarrito(carvo);
+        //}
 
         public void InsertarMoneda(MonedaVO monvo)
         {
@@ -83,10 +96,10 @@ namespace LogicaPersistencia
             mondao.InsertarMoneda(monvo);
         }
 
-        public void BorrarMoneda(int monid)
+        public void BorrarMoneda(MonedaVO monvo)
         {
             MonedaDAO mondao = new MonedaDAO();
-            mondao.BorrarMoneda(monid);
+            //mondao.BorrarMoneda(monvo);
         }
 
         public void ModificarMoneda(MonedaVO monvo)
@@ -95,16 +108,23 @@ namespace LogicaPersistencia
             mondao.ModificarMoneda(monvo);
         }
 
+        public List<MonedaVO> ListarMonedas()
+        {
+            MonedaDAO mondao = new MonedaDAO();
+            //return mondao.ListarMonedas();
+            return null;
+        }
+
         public void InsertarProducto(ProductoVO provo)
         {
             ProductoDAO prodao = new ProductoDAO();
             prodao.InsertarProducto(provo);
         }
 
-        public void BorrarProducto(int proid)
+        public void BorrarProducto(ProductoVO provo)
         {
             ProductoDAO prodao = new ProductoDAO();
-            prodao.BorrarProducto(proid);
+            //prodao.BorrarProducto(provo);
         }
 
         public void ModificarProducto(ProductoVO provo)
@@ -113,22 +133,34 @@ namespace LogicaPersistencia
             prodao.ModificarProducto(provo);
         }
 
+        public List<ProductoVO> ListarProductos()
+        {
+            ProductoDAO prodao = new ProductoDAO();
+            return prodao.ListarProductos();
+        }
+
         public void InsertarRol(RolVO rolvo)
         {
             RolDAO roldao = new RolDAO();
             roldao.InsertarRol(rolvo);
         }
 
-        public void BorrarRol(int rolid)
+        public void BorrarRol(RolVO rolvo)
         {
             RolDAO roldao = new RolDAO();
-            roldao.BorrarRol(rolid);
+            //roldao.BorrarRol(rolvo);
         }
 
         public void ModificarRol(RolVO rolvo)
         {
             RolDAO roldao = new RolDAO();
             roldao.ModificarRol(rolvo);
+        }
+
+        public List<RolVO> ListarRoles()
+        {
+            RolDAO roldao = new RolDAO();
+            return roldao.ListarRoles();
         }
 
         public void InsertarUsuario(UsuarioVO usuvo)
@@ -148,6 +180,8 @@ namespace LogicaPersistencia
             UsuarioDAO usudao = new UsuarioDAO();
             usudao.ModificarUsuario(usuvo);
         }
+
+
 
     }
 }

@@ -34,6 +34,8 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.ServiceModel" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -42,21 +44,116 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Connected Services\TiendaVirtualWebservice\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+    <None Include="Connected Services\TiendaVirtualWebservice\ConsolaPrueba.TiendaVirtualWebservice.BackofficeVO.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\TiendaVirtualWebservice\ConsolaPrueba.TiendaVirtualWebservice.BorrarBackofficeResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\TiendaVirtualWebservice\ConsolaPrueba.TiendaVirtualWebservice.BorrarCategoriaResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\TiendaVirtualWebservice\ConsolaPrueba.TiendaVirtualWebservice.BorrarMonedaResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\TiendaVirtualWebservice\ConsolaPrueba.TiendaVirtualWebservice.BorrarProductoResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\TiendaVirtualWebservice\ConsolaPrueba.TiendaVirtualWebservice.BorrarRolResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\TiendaVirtualWebservice\ConsolaPrueba.TiendaVirtualWebservice.CategoriaVO.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\TiendaVirtualWebservice\ConsolaPrueba.TiendaVirtualWebservice.HelloWorldResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\TiendaVirtualWebservice\ConsolaPrueba.TiendaVirtualWebservice.InsertarBackofficeResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\TiendaVirtualWebservice\ConsolaPrueba.TiendaVirtualWebservice.InsertarCategoriaResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\TiendaVirtualWebservice\ConsolaPrueba.TiendaVirtualWebservice.InsertarMonedaResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\TiendaVirtualWebservice\ConsolaPrueba.TiendaVirtualWebservice.InsertarProductoResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\TiendaVirtualWebservice\ConsolaPrueba.TiendaVirtualWebservice.InsertarRolResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\TiendaVirtualWebservice\ConsolaPrueba.TiendaVirtualWebservice.ListarBackofficeResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\TiendaVirtualWebservice\ConsolaPrueba.TiendaVirtualWebservice.ListarCategoriasResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\TiendaVirtualWebservice\ConsolaPrueba.TiendaVirtualWebservice.ListarMonedasResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\TiendaVirtualWebservice\ConsolaPrueba.TiendaVirtualWebservice.ListarProductosResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\TiendaVirtualWebservice\ConsolaPrueba.TiendaVirtualWebservice.ListarRolesResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\TiendaVirtualWebservice\ConsolaPrueba.TiendaVirtualWebservice.ModificarBackofficeResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\TiendaVirtualWebservice\ConsolaPrueba.TiendaVirtualWebservice.ModificarCategoriaResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\TiendaVirtualWebservice\ConsolaPrueba.TiendaVirtualWebservice.ModificarMonedaResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\TiendaVirtualWebservice\ConsolaPrueba.TiendaVirtualWebservice.ModificarProductoResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\TiendaVirtualWebservice\ConsolaPrueba.TiendaVirtualWebservice.ModificarRolResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\TiendaVirtualWebservice\ConsolaPrueba.TiendaVirtualWebservice.MonedaVO.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\TiendaVirtualWebservice\ConsolaPrueba.TiendaVirtualWebservice.ProductoVO.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\TiendaVirtualWebservice\ConsolaPrueba.TiendaVirtualWebservice.RolVO.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\TiendaVirtualWebservice\WebService.wsdl" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\LogicaPersistencia\LogicaPersistencia.csproj">
-      <Project>{a50b3a11-32e0-4251-9797-cdb8edd5b951}</Project>
-      <Name>LogicaPersistencia</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Modelo\Modelo.csproj">
-      <Project>{58FD2F58-0DA4-4C3F-AC90-8D6CAB950E0E}</Project>
-      <Name>Modelo</Name>
-    </ProjectReference>
+    <WCFMetadata Include="Connected Services\" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadataStorage Include="Connected Services\TiendaVirtualWebservice\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\TiendaVirtualWebservice\WebService.disco" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\TiendaVirtualWebservice\configuration91.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\TiendaVirtualWebservice\configuration.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\TiendaVirtualWebservice\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

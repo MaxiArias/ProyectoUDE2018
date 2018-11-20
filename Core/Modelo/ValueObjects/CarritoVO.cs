@@ -17,6 +17,8 @@ namespace Modelo.ValueObjects
         public int IdMoneda { get { return idMoneda; } }
 
         // Constructores
+        public CarritoVO() { }
+
         public CarritoVO(int idcarro, int client, DateTime creacion, int idmon)
         {
             idCarrito = idcarro;
