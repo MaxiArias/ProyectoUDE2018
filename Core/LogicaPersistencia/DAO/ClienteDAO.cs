@@ -7,7 +7,7 @@ namespace LogicaPersistencia.DAO
     {
         public void InsertarCliente (ClienteVO clivo)
         {
-
+            //((EmpresaVO)clivo).Rut
         }
 
         public void BorrarCliente(int cliid)

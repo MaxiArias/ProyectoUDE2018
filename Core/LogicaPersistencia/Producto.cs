@@ -24,7 +24,7 @@ namespace LogicaPersistencia
         public string ProductoNombre { get; set; }
         public string ProductoDescripcion { get; set; }
         public string ProductoFoto { get; set; }
-        public double ProductoPrecio { get; set; }
+        public decimal ProductoPrecio { get; set; }
         public int ProductoStock { get; set; }
         public System.DateTime ProductoFechaAlta { get; set; }
         public bool ProductoHabilitado { get; set; }

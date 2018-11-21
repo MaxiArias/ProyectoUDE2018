@@ -12,18 +12,17 @@ namespace LogicaPersistencia
 
         public ItemCarrito(ItemCarritoVO vo)
         {
-            this.CarritoId = vo.
-            this.Producto.ItemCarrito = 
-            this.Carrito = vo.Carrito;
-            this.ProductoId = vo.ProductoId;
-            this.Producto = vo.Producto;
-            this.ProductoCantidad = ProductoCantidad;*/
+            this.ProductoId = vo.IdProducto;
+            this.Producto.ProductoNombre = vo.ProductoNombre; 
+            this.Producto.ProductoDescripcion= vo.ProductoDescripcion;
+            this.ProductoCantidad = vo.Cantidad;
+            this.Carrito.Cliente.UsuarioId = vo.IdCliente;
         }
 
         public ItemCarritoVO DarItemCarrito()
         {
 
-            return new CategoriaVO(Carrito.Cliente.UsuarioId);
+            return new ItemCarritoVO(ProductoId, Producto.ProductoPrecio, Producto.ProductoNombre, Producto.ProductoDescripcion, ProductoCantidad, Carrito.Cliente.UsuarioId );
 
         }
 

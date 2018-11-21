@@ -71,7 +71,7 @@
           <Property Name="ProductoNombre" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="ProductoDescripcion" Type="varchar" MaxLength="150" />
           <Property Name="ProductoFoto" Type="varchar" MaxLength="50" />
-          <Property Name="ProductoPrecio" Type="float" Nullable="false" />
+          <Property Name="ProductoPrecio" Type="money" Nullable="false" />
           <Property Name="ProductoStock" Type="int" Nullable="false" />
           <Property Name="ProductoFechaAlta" Type="date" Nullable="false" />
           <Property Name="ProductoHabilitado" Type="bit" Nullable="false" />
@@ -325,7 +325,7 @@
           <Property Name="ProductoNombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="ProductoDescripcion" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
           <Property Name="ProductoFoto" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="ProductoPrecio" Type="Double" Nullable="false" />
+          <Property Name="ProductoPrecio" Type="Decimal" Nullable="false" />
           <Property Name="ProductoStock" Type="Int32" Nullable="false" />
           <Property Name="ProductoFechaAlta" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="ProductoHabilitado" Type="Boolean" Nullable="false" />
