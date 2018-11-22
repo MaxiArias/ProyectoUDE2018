@@ -6,40 +6,31 @@ namespace Modelo.ValueObjects
     {
         // Atributos
         private int idProducto;
-        private String nombre;
-        private String descripcion;
-        private String foto;
-        private float precio;
-        private int stock;
-        private DateTime fechaAlta;
-        private Boolean habilitado;
-        private int idCategoria;
-
         // Properties
         public int IdProducto { get { return idProducto; } }
-        public string Nombre { get { return nombre; } }
-        public string Descripcion { get { return descripcion; } }
-        public string Foto { get { return foto; } }
-        public float Precio { get { return precio; } }
-        public int Stock { get { return stock; } }
-        public DateTime FechaAlta { get { return fechaAlta; } }
-        public Boolean Habilitado { get { return habilitado; } }
-        public int IdCategoria { get { return idCategoria; } }
+        public string Nombre { get; set;}
+        public string Descripcion { get; set;}
+        public string Foto { get; set;}
+        public decimal Precio { get; set;}
+        public int Stock { get; set;}
+        public DateTime FechaAlta { get; set;}
+        public Boolean Habilitado { get; set;}
+        public int IdCategoria { get; set;}
 
         // Constructores
         public ProductoVO() { }
 
-        public ProductoVO(int idp, string nom, string desc, string foto, float precio, int stk, DateTime alta, Boolean hab, int idCat)
+        public ProductoVO(int idp, string nom, string desc, string foto, decimal precio, int stk, DateTime alta, Boolean hab, int idCat)
         {
             idProducto = idp;
-            nombre = nom;
-            descripcion = desc;
-            this.foto = foto;
-            this.precio = precio;
-            stock = stk;
-            fechaAlta = alta;
-            habilitado = hab;
-            idCategoria = idCat;
+            Nombre = nom;
+            Descripcion = desc;
+            Foto = foto;
+            Precio = precio;
+            Stock = stk;
+            FechaAlta = alta;
+            Habilitado = hab;
+            IdCategoria = idCat;
         }
     }
 }

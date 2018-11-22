@@ -89,6 +89,8 @@
     <Compile Include="Modelo Extendido\Cliente.cs" />
     <Compile Include="Modelo Extendido\ItemCarrito.cs" />
     <Compile Include="Modelo Extendido\Moneda.cs" />
+    <Compile Include="Modelo Extendido\Producto.cs" />
+    <Compile Include="Modelo Extendido\Rol.cs" />
     <Compile Include="Modelo Extendido\Usuario.cs" />
     <Compile Include="Modelo.Context.cs">
       <AutoGen>True</AutoGen>
