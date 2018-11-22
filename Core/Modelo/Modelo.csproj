@@ -45,6 +45,7 @@
     <Compile Include="ValueObjects\CarritoVO.cs" />
     <Compile Include="ValueObjects\CategoriaVO.cs" />
     <Compile Include="ValueObjects\ClienteVO.cs" />
+    <Compile Include="ValueObjects\EmpresaInsVO.cs" />
     <Compile Include="ValueObjects\EmpresaVO.cs" />
     <Compile Include="ValueObjects\ItemCarritoInsVO.cs" />
     <Compile Include="ValueObjects\ItemCarritoVO.cs" />

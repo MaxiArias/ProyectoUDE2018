@@ -22,7 +22,7 @@ namespace LogicaPersistencia
         public EmpresaVO DarEmpresa()
         {
 
-            return new EmpresaVO(EmpresaRUT,EmpresaNombreContacto,ClienteDireccion,ClienteTelefono,TipoCliente,UsuarioId, usua );
+            return new EmpresaVO(EmpresaRUT,EmpresaNombreContacto,ClienteDireccion,ClienteTelefono, this.Usuario.UsuarioEmail );
 
         }
 

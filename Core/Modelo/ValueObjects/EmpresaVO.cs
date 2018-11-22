@@ -7,6 +7,11 @@ namespace Modelo.ValueObjects
         // Atributes
         public string rut;
         public String contacto;
+        //private string empresaRUT;
+        private string empresaNombreContacto;
+        private string clienteDireccion;
+        private string clienteTelefono;
+        private string usuarioEmail;
 
         // Properties
         public string Rut { get { return rut; } }
@@ -20,7 +25,17 @@ namespace Modelo.ValueObjects
         {
             rut = ruc;
             contacto = contact;
-            razonSocial = razon;
+            
+            
+        }
+
+        public EmpresaVO(string empresaRUT, string empresaNombreContacto, string clienteDireccion, string clienteTelefono, string usuarioEmail)
+        {
+            this.empresaRUT = empresaRUT;
+            this.empresaNombreContacto = empresaNombreContacto;
+            this.clienteDireccion = clienteDireccion;
+            this.clienteTelefono = clienteTelefono;
+            this.usuarioEmail = usuarioEmail;
         }
     }
 }
