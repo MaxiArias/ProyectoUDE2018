@@ -5,19 +5,56 @@ namespace LogicaPersistencia.DAO
 {
     public class CarritoDAO
     {
-        internal void InsertarCarrito(CarritoVO carvo)
+        public void InsertarCarrito(CarritoVO carvo)
         {
-            throw new NotImplementedException();
+            Carrito ca = new Carrito(carvo);
+
+            using (TiendaVirtualEntities db = new TiendaVirtualEntities())
+            {
+                db.Carrito.Add(ca);
+                db.SaveChanges();
+            }
         }
 
-        internal void BorrarCarrito(int carid)
+        public void BorrarCarrito(CarritoVO carvo)
+            {
+                using (TiendaVirtualEntities db = new TiendaVirtualEntities())
+                {
+                    db.Entry(carvo).State = System.Data.Entity.EntityState.Deleted;
+                    db.SaveChanges();
+                }
+            }
+
+        public void ModificarCarrito(CarritoVO carvo)
         {
-            throw new NotImplementedException();
+            using (TiendaVirtualEntities db = new TiendaVirtualEntities())
+            {
+                db.Entry(carvo).State = System.Data.Entity.EntityState.Modified;
+                db.SaveChanges();
+            }
         }
 
-        internal void ModificarCarrito(CarritoVO carvo)
+        public bool ExisteCarro(int idusuario)
         {
-            throw new NotImplementedException();
+            using (TiendaVirtualEntities db = new TiendaVirtualEntities())
+            {
+
+                var primerIdUsuario = (from back in db.Carrito
+                                               where back.UsuarioId == idusuario
+                                               select back).FirstOrDefault();
+
+                return primerIdUsuario != null;
+            }
         }
+
+
+        public CarritoVO DarCarro (int idusuario)
+        {
+            using (TiendaVirtualEntities db = new TiendaVirtualEntities())
+            {
+                return db.Carrito.Select(back => back.DarCarritoO());
+            }
+        }
+       
     }
 }
