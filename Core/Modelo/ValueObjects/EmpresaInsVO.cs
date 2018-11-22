@@ -20,7 +20,7 @@ namespace Modelo.ValueObjects
         // Constructores
         public EmpresaInsVO() { }
 
-        public EmpresaInsVO(string ruc, string contact, string dir, string tel, String tipoC, int id, string mail, string pass, Boolean activo, String tipo) : base(dir, tel, nombre, tipoC, id, mail, pass, activo, tipo)
+        public EmpresaInsVO(string ruc, string contact, string dir, string tel, String tipoC, string nom, int id, string mail, string pass, Boolean activo, String tipo) : base(dir, tel, nom, tipoC, id, mail, pass, activo, tipo)
         {
             rut = ruc;
             contacto = contact;

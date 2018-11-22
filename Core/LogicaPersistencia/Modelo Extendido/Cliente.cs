@@ -22,23 +22,23 @@ namespace LogicaPersistencia
         public EmpresaVO DarEmpresa()
         {
 
-            return new EmpresaVO(EmpresaRUT,EmpresaNombreContacto,ClienteDireccion,ClienteTelefono, this.Usuario.UsuarioEmail );
+            return new EmpresaVO(this.EmpresaRUT,EmpresaNombreContacto,ClienteDireccion,ClienteTelefono,this.TipoCliente, this.ClienteNombre, this.UsuarioId, this.Usuario.UsuarioEmail,this.Usuario.UsuarioContrasenia, this.Usuario.UsuarioActivo, this.Usuario.TipoUsuario );
 
         }
 
         public Cliente(PersonaVO vo)
         {
+            this.ClienteCI = vo.Cedula;
+            this.ClienteNombre = vo.Nombre;
             this.ClienteDireccion = vo.Direccion;
-            this.ClienteNombre = vo.ProductoNombre;
-            this.Producto.ProductoDescripcion = vo.ProductoDescripcion;
-            this.ProductoCantidad = vo.Cantidad;
-            this.Carrito.Cliente.UsuarioId = vo.IdCliente;
+            this.ClienteTelefono = vo.Telefono;
+            this.UsuarioId = vo.IdUsuario;
         }
 
-        public PersonaVO DarEmpresa()
+        public PersonaVO DarPersona()
         {
 
-            return new PersonaVO(ProductoId, Producto.ProductoPrecio, Producto.ProductoNombre, Producto.ProductoDescripcion, ProductoCantidad, Carrito.Cliente.UsuarioId);
+            return new PersonaVO(this.ClienteCI, this.ClienteNombre, this.ClienteDireccion, this.ClienteTelefono, this.TipoCliente, this.UsuarioId,this.Usuario.UsuarioEmail, this.Usuario.UsuarioContrasenia, this.Usuario.UsuarioActivo, this.Usuario.TipoUsuario);
 
         }
 
