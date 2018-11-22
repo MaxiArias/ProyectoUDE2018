@@ -47,15 +47,6 @@ namespace LogicaPersistencia.DAO
                 return primerIdUsuario != null;
             }
         }
-
-
-        public CarritoVO DarCarro (int idusuario)
-        {
-            using (TiendaVirtualEntities db = new TiendaVirtualEntities())
-            {
-                return db.Carrito.Contains(idusuario);
-            }
-        }
        
     }
 }

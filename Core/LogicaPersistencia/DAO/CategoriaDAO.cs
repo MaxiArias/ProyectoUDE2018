@@ -48,9 +48,5 @@ namespace LogicaPersistencia.DAO
             }
         }
 
-        public CategoriaVO DarCategoria (int catid)
-        {
-            return null;
-        }
     }
 }
