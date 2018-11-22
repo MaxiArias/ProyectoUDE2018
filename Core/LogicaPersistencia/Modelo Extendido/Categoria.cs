@@ -17,7 +17,7 @@ namespace LogicaPersistencia
             this.CategoriaHabilitado = vo.Habilitado;
         }
 
-        public CategoriaVO DarCategoria()
+        public CategoriaVO DarCategoriaVO()
         {
 
             return new CategoriaVO(CategoriaId, CategoriaNombre, CategoriaDescripcion, CategoriaHabilitado);

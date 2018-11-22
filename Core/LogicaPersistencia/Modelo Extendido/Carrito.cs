@@ -22,7 +22,7 @@ namespace LogicaPersistencia
             this.CarritoFechaCreacion = vo.FechaCreacion;
         }
 
-        public CarritoVO DarCarrito()
+        public CarritoVO DarCarritoVO()
         {
 
             return new CarritoVO(CarritoId, UsuarioId, CarritoFechaCreacion, MonedaId);

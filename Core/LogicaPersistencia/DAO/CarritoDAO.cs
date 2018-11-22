@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using Modelo.ValueObjects;
 
 namespace LogicaPersistencia.DAO
@@ -52,7 +53,7 @@ namespace LogicaPersistencia.DAO
         {
             using (TiendaVirtualEntities db = new TiendaVirtualEntities())
             {
-                return db.Carrito.Select(back => back.DarCarritoO());
+                return db.Carrito.Contains(idusuario);
             }
         }
        

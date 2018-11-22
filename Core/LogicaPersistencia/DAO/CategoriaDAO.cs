@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
+using System.Linq;
 
 namespace LogicaPersistencia.DAO
 {
@@ -11,67 +12,40 @@ namespace LogicaPersistencia.DAO
     {
         public void InsertarCategoria(CategoriaVO catvo)
         {
-            //aca va el insert y la conexion a la base de datos. 
-            SqlConnection con = null;
-            try
+            Categoria cat = new Categoria(catvo);
+
+            using (TiendaVirtualEntities db = new TiendaVirtualEntities())
             {
-                String connectionString = ConfigurationManager.ConnectionStrings["connectionString"].ToString();
-                Console.Write(connectionString);
-                Console.Read();
-                con = new SqlConnection(connectionString);
-                con.Open();
-                String query = "INSERT INTO Categoria values(1,@Nombre,@Descripcion,@Habilitado)";
-                SqlCommand comando = new SqlCommand(query, con);
-                SqlParameter descripcionParameter = new SqlParameter()
-                {
-                    ParameterName = "@Descripcion",
-                    Value = catvo.Descripcion,
-                    SqlDbType = SqlDbType.VarChar
-                };
-                comando.Parameters.Add(descripcionParameter);
-                SqlParameter nombreParameter = new SqlParameter()
-                {
-                    ParameterName = "@Nombre",
-                    Value = catvo.Nombre,
-                    SqlDbType = SqlDbType.VarChar
-                };
-                comando.Parameters.Add(nombreParameter);
-                SqlParameter habilitadoParameter = new SqlParameter()
-                {
-                    ParameterName = "@Habilitado",
-                    Value = catvo.Habilitado,
-                    SqlDbType = SqlDbType.VarChar
-                };
-                comando.Parameters.Add(habilitadoParameter);
-                comando.ExecuteNonQuery();
+                db.Categoria.Add(cat);
+                db.SaveChanges();
             }
-            catch (SqlException exc)
-            {
-                Console.WriteLine(exc.StackTrace);
-            }
-            catch (Exception exc)
-            {
-                Console.WriteLine(exc.StackTrace);
-            }
-            finally
-            {
-                con.Close();
-            }
+
         }
 
-        public void BorrarCategoria(int catid)
+        public void BorrarCategoria(CategoriaVO catvo)
         {
-            //aca va el delete y la conexion a la base de datos.    
+            using (TiendaVirtualEntities db = new TiendaVirtualEntities())
+            {
+                db.Entry(catvo).State = System.Data.Entity.EntityState.Deleted;
+                db.SaveChanges();
+            }
         }
 
         public void ModificarCategoria(CategoriaVO catvo)
         {
-            //aca va el update y la conexion a la base de datos.    
+            using (TiendaVirtualEntities db = new TiendaVirtualEntities())
+            {
+                db.Entry(catvo).State = System.Data.Entity.EntityState.Modified;
+                db.SaveChanges();
+            }
         }
 
         public List<CategoriaVO> ListarCategorias()
         {
-            return null;
+            using (TiendaVirtualEntities db = new TiendaVirtualEntities())
+            {
+                return db.Categoria.ToList().Select(back => back.DarCategoriaVO()).ToList();
+            }
         }
 
         public CategoriaVO DarCategoria (int catid)
