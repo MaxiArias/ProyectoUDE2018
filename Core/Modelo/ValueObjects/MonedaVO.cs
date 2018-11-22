@@ -6,25 +6,22 @@ namespace Modelo.ValueObjects
     {
         // Atributos
         private int idMoneda;
-        private String abreviatura;
-        private String descripcion;
-        private float cotizacion;
 
         // Properties
         public int IdMoneda { get { return idMoneda; } }
-        public string Abreviatura { get { return abreviatura; } }
-        public string Descripcion { get { return descripcion; } }
-        public float Cotizacion { get { return cotizacion; } }
+        public string Abreviatura { get; set;}
+        public string Descripcion { get; set;}
+        public double Cotizacion { get; set;}
 
         // Constructores
         public MonedaVO() { }
 
-        public MonedaVO(int idm, string abrev, string desc, float cotiza)
+        public MonedaVO(int idm, string abrev, string desc, double cotiza)
         {
             idMoneda = idm;
-            abreviatura = abrev;
-            descripcion = desc;
-            cotizacion = cotiza;
+            Abreviatura = abrev;
+            Descripcion = desc;
+            Cotizacion = cotiza;
         }
     }
 }
