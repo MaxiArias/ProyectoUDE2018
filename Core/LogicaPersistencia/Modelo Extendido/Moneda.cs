@@ -18,7 +18,7 @@ namespace LogicaPersistencia
             this.MonedaDescripción = vo.Descripcion;
         }
 
-        public MonedaVO DarMoneda()
+        public MonedaVO DarMonedaVO()
         {
 
             return new MonedaVO(MonedaId,MonedaAbreviatura, MonedaDescripción, MonedaCotizacion);
