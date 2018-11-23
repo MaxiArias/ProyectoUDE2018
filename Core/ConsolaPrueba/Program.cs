@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using ConsolaPrueba.TiendaVirtualWebservice;
+using ConsolaPrueba.WSreferencia;
 
 namespace ConsolaPrueba
 {
@@ -18,13 +18,26 @@ namespace ConsolaPrueba
             //catdao.InsertarCategoria(catvo);
 
             WebServiceSoapClient ws = new WebServiceSoapClient();
-            CategoriaVO catvo = new CategoriaVO()
+            //CategoriaVO catvo = new CategoriaVO()
+            //{
+            //    Nombre = "Computadoras",
+            //    Descripcion = "Computadoras y notebooks",
+            //    Habilitado = true
+            //};
+            //ws.InsertarCategoria(new CategoriaVO());
+
+            BackofficeInsVO bo = new BackofficeInsVO()
             {
-                Nombre = "Computadoras",
-                Descripcion = "Computadoras y notebooks",
-                Habilitado = true
+                Activo=true,
+                Nombre="Juan Perez",
+                Email="juan@prueba.com",
+                Password="123456",
+                RolId=1,
+                TipoUsuario="backoffice"
             };
-            ws.InsertarCategoria(new CategoriaVO());
+
+            ws.InsertarBackoffice(bo);
+
         }
     }
 }

@@ -5,10 +5,10 @@ namespace Modelo.ValueObjects
     public class PersonaVO : ClienteVO
     {
         // Atributos
-        private int cedula;
+        private int? cedula;
 
         // Properties
-        public int Cedula { get { return cedula; } }
+        public int? Cedula { get { return cedula; } }
 
         // Constructores
         public PersonaVO() { }

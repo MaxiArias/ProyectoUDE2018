@@ -9,20 +9,20 @@ namespace Modelo.ValueObjects
     public class BackofficeInsVO : UsuarioVO
     {
             // Atributos
-            private String nombre;
-            private int rolid;
+            //private String nombre;
+            //private int rolid;
 
             // Properties
-            public String Nombre { get { return nombre; } }
-            public int RolId { get { return rolid; } }
+            public String Nombre { get; set; }
+            public int RolId { get; set; }
 
-            // Constructores
+        // Constructores
             public BackofficeInsVO () { }
 
             public BackofficeInsVO(String nom, int rol, int id, string mail, string pass, Boolean activo, String tipo) : base(id, mail, pass, activo, tipo)
             {
-                nombre = nom;
-                this.rolid = rol;
+                Nombre = nom;
+                this.RolId = rol;
             }
 
 

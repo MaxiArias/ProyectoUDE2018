@@ -35,7 +35,7 @@ namespace LogicaPersistencia.DAO
             }
         }
 
-        public bool ExisteCarro(int idusuario)
+        public bool ExisteCarrito(int idusuario)
         {
             using (TiendaVirtualEntities db = new TiendaVirtualEntities())
             {

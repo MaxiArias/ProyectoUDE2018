@@ -9,7 +9,6 @@
         private int productoId;
         private double productoPrecio;
         private int productoCantidad;
-        private object ;
 
         // Properties
         public int IdProducto { get { return idProducto; } }

@@ -51,7 +51,7 @@ namespace LogicaPersistencia.DAO
         }
 
 
-       public bool MemberBackoffice(string mail)
+       public bool ExisteBackoffice(string mail)
         {
             using (TiendaVirtualEntities db = new TiendaVirtualEntities())
             {

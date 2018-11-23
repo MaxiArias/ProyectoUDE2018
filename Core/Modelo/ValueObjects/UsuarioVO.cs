@@ -5,18 +5,18 @@ namespace Modelo.ValueObjects
     public class UsuarioVO
     {
         // Atributos
-        private int idUsuario;
-        private String email;
-        private String password;
-        private Boolean activo;
-        private String tipoUsuario;
+        //private int idUsuario;
+        //private String email;
+        //private String password;
+        //private Boolean activo;
+        //private String tipoUsuario;
 
         // Properties
-        public int IdUsuario { get { return idUsuario; } }
-        public String Email { get { return email; } }
-        public String Password { get { return password; } }
-        public Boolean Activo { get { return activo; } }
-        public String TipoUsuario { get { return tipoUsuario; } }
+        public int IdUsuario { get; set; }
+        public String Email { get; set; }
+        public String Password { get; set; }
+        public Boolean Activo { get; set; }
+        public String TipoUsuario { get; set; }
 
         // Constructores
 
@@ -24,11 +24,11 @@ namespace Modelo.ValueObjects
 
         public UsuarioVO(int id, String mail, String pass, Boolean activo, String tipo)
         {
-            idUsuario = id;
-            email = mail;
-            password = pass;
-            this.activo = activo;
-            tipoUsuario = tipo;
+            IdUsuario = id;
+            Email = mail;
+            Password = pass;
+            this.Activo = activo;
+            TipoUsuario = tipo;
         }
     }
 }
