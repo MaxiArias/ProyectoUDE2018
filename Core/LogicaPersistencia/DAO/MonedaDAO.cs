@@ -1,23 +1,47 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using Modelo.ValueObjects;
 
 namespace LogicaPersistencia.DAO
 {
     public class MonedaDAO
     {
-        internal void InsertarMoneda(MonedaVO monvo)
+        public void InsertarMoneda(MonedaVO monvo)
         {
-            throw new NotImplementedException();
+            Moneda mo = new Moneda(monvo);
+
+            using (TiendaVirtualEntities db = new TiendaVirtualEntities())
+            {
+                db.Moneda.Add(mo);
+                db.SaveChanges();
+            }
         }
 
-        internal void BorrarMoneda(int monid)
+        public void BorrarMoneda(MonedaVO monvo)
         {
-            throw new NotImplementedException();
+            using (TiendaVirtualEntities db = new TiendaVirtualEntities())
+            {
+                db.Entry(monvo).State = System.Data.Entity.EntityState.Deleted;
+                db.SaveChanges();
+            }
         }
 
-        internal void ModificarMoneda(MonedaVO monvo)
+        public void ModificarMoneda(MonedaVO monvo)
         {
-            throw new NotImplementedException();
+            using (TiendaVirtualEntities db = new TiendaVirtualEntities())
+            {
+                db.Entry(monvo).State = System.Data.Entity.EntityState.Modified;
+                db.SaveChanges();
+            }
+        }
+
+        public List<MonedaVO> ListarMonedas()
+        {
+            using (TiendaVirtualEntities db = new TiendaVirtualEntities())
+            {
+                return db.Moneda.ToList().Select(back => back.DarMonedaVO()).ToList();
+            }
         }
     }
 }

@@ -7,17 +7,31 @@ namespace LogicaPersistencia.DAO
     {
         public void InsertarProducto(ProductoVO prodvo)
         {
-            //aca va el insert y la conexion a la base de datos.    
+            Producto pr = new Producto(prodvo);
+
+            using (TiendaVirtualEntities db = new TiendaVirtualEntities())
+            {
+                db.Producto.Add(pr);
+                db.SaveChanges();
+            }
         }
 
-        public void BorrarProducto(int proid)
+        public void BorrarProducto(ProductoVO prodvo)
         {
-            //aca va el delete y la conexion a la base de datos.    
+            using (TiendaVirtualEntities db = new TiendaVirtualEntities())
+            {
+                db.Entry(prodvo).State = System.Data.Entity.EntityState.Deleted;
+                db.SaveChanges();
+            }
         }
 
         public void ModificarProducto(ProductoVO prodvo)
         {
-            //aca va el update y la conexion a la base de datos.    
+            using (TiendaVirtualEntities db = new TiendaVirtualEntities())
+            {
+                db.Entry(prodvo).State = System.Data.Entity.EntityState.Modified;
+                db.SaveChanges();
+            }
         }
 
         public void ModificarStockProducto(ProductoVO prodvo)
