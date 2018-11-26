@@ -6,6 +6,13 @@ namespace LogicaPersistencia
 {
     public class Fachada : IFachadaWin, IFachadaWeb
     {
+        public bool UsuarioLogin(string mail,string password)
+        {
+            UsuarioDAO usudao = new UsuarioDAO();
+            //return usudao.UsuarioLogin(mail, password);
+            return true;
+        }
+
         public void InsertarCategoria (CategoriaVO catvo)
         {
             CategoriaDAO catdao = new CategoriaDAO();
@@ -15,7 +22,7 @@ namespace LogicaPersistencia
         public void BorrarCategoria(CategoriaVO catvo)
         {
             CategoriaDAO catdao = new CategoriaDAO();
-            //catdao.BorrarCategoria(catvo);
+            catdao.BorrarCategoria(catvo);
         }
 
         public void ModificarCategoria(CategoriaVO catvo)
@@ -29,24 +36,6 @@ namespace LogicaPersistencia
             CategoriaDAO catdao = new CategoriaDAO();
             return catdao.ListarCategorias();
         }
-
-        //public void InsertarCliente(ClienteVO clivo)
-        //{
-        //    ClienteDAO clidao = new ClienteDAO();
-        //    clidao.InsertarCliente(clivo);
-        //}
-
-        //public void BorrarCliente(int cliid)
-        //{
-        //    ClienteDAO clidao = new ClienteDAO();
-        //    clidao.BorrarCliente(cliid);
-        //}
-
-        //public void ModificarCliente(ClienteVO clivo)
-        //{
-        //    ClienteDAO clidao = new ClienteDAO();
-        //    clidao.ModificarCliente(clivo);
-        //}
 
         public void InsertarBackoffice(BackofficeInsVO bacvo)
         {
@@ -72,24 +61,6 @@ namespace LogicaPersistencia
             return bacdao.ListarBackoffice();
         }
 
-        //public void InsertarCarrito(CarritoVO carvo)
-        //{
-        //    CarritoDAO cardao = new CarritoDAO();
-        //    cardao.InsertarCarrito(carvo);
-        //}
-
-        //public void BorrarCarrito(int carid)
-        //{
-        //    CarritoDAO cardao = new CarritoDAO();
-        //    cardao.BorrarCarrito(carid);
-        //}
-
-        //public void ModificarCarrito(CarritoVO carvo)
-        //{
-        //    CarritoDAO cardao = new CarritoDAO();
-        //    cardao.ModificarCarrito(carvo);
-        //}
-
         public void InsertarMoneda(MonedaVO monvo)
         {
             MonedaDAO mondao = new MonedaDAO();
@@ -99,7 +70,7 @@ namespace LogicaPersistencia
         public void BorrarMoneda(MonedaVO monvo)
         {
             MonedaDAO mondao = new MonedaDAO();
-            //mondao.BorrarMoneda(monvo);
+            mondao.BorrarMoneda(monvo);
         }
 
         public void ModificarMoneda(MonedaVO monvo)
@@ -111,8 +82,7 @@ namespace LogicaPersistencia
         public List<MonedaVO> ListarMonedas()
         {
             MonedaDAO mondao = new MonedaDAO();
-            //return mondao.ListarMonedas();
-            return null;
+            return mondao.ListarMonedas();
         }
 
         public void InsertarProducto(ProductoVO provo)
@@ -124,7 +94,7 @@ namespace LogicaPersistencia
         public void BorrarProducto(ProductoVO provo)
         {
             ProductoDAO prodao = new ProductoDAO();
-            //prodao.BorrarProducto(provo);
+            prodao.BorrarProducto(provo);
         }
 
         public void ModificarProducto(ProductoVO provo)
@@ -148,7 +118,7 @@ namespace LogicaPersistencia
         public void BorrarRol(RolVO rolvo)
         {
             RolDAO roldao = new RolDAO();
-            //roldao.BorrarRol(rolvo);
+            roldao.BorrarRol(rolvo);
         }
 
         public void ModificarRol(RolVO rolvo)
@@ -163,25 +133,66 @@ namespace LogicaPersistencia
             return roldao.ListarRoles();
         }
 
-        public void InsertarUsuario(UsuarioVO usuvo)
+        public void InsertarCliente(ClienteVO clivo)
         {
-            UsuarioDAO usudao = new UsuarioDAO();
-            usudao.InsertarUsuario(usuvo);
+            ClienteDAO clidao = new ClienteDAO();
+            clidao.InsertarCliente(clivo);
         }
 
-        public void BorrarUsuario(int usuid)
+        public void BorrarCliente(int cliid)
         {
-            UsuarioDAO usudao = new UsuarioDAO();
-            usudao.BorrarUsuario(usuid);
+            ClienteDAO clidao = new ClienteDAO();
+            clidao.BorrarCliente(cliid);
         }
 
-        public void ModificarUsuario(UsuarioVO usuvo)
+        public void ModificarCliente(ClienteVO clivo)
         {
-            UsuarioDAO usudao = new UsuarioDAO();
-            usudao.ModificarUsuario(usuvo);
+            ClienteDAO clidao = new ClienteDAO();
+            clidao.ModificarCliente(clivo);
         }
 
+        //public void InsertarCarrito(CarritoVO carvo)
+        //{
+        //    CarritoDAO cardao = new CarritoDAO();
+        //    cardao.InsertarCarrito(carvo);
+        //}
 
+        //public void BorrarCarrito(int carid)
+        //{
+        //    CarritoDAO cardao = new CarritoDAO();
+        //    cardao.BorrarCarrito(carid);
+        //}
+
+        //public void ModificarCarrito(CarritoVO carvo)
+        //{
+        //    CarritoDAO cardao = new CarritoDAO();
+        //    cardao.ModificarCarrito(carvo);
+        //}
+
+        //public void InsertarUsuario(UsuarioVO usuvo)
+        //{
+        //    UsuarioDAO usudao = new UsuarioDAO();
+        //    usudao.InsertarUsuario(usuvo);
+        //}
+
+        //public void BorrarUsuario(UsuarioVO usuvo)
+        //{
+        //    UsuarioDAO usudao = new UsuarioDAO();
+        //    usudao.BorrarUsuario(usuvo);
+        //}
+
+        //public void ModificarUsuario(UsuarioVO usuvo)
+        //{
+        //    UsuarioDAO usudao = new UsuarioDAO();
+        //    usudao.ModificarUsuario(usuvo);
+        //}
+
+        //public List<UsuarioVO> ListarUsuarios()
+        //{
+        //    UsuarioDAO usudao = new UsuarioDAO();
+        //    //return usudao.ListarUsuarios();
+        //    return null;
+        //}
 
     }
 }

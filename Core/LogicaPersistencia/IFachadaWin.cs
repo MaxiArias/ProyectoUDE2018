@@ -9,6 +9,8 @@ namespace LogicaPersistencia
 {
     public interface IFachadaWin
     {
+        bool UsuarioLogin(string mail, string password);
+
         void InsertarCategoria(CategoriaVO catvo);
 
         void BorrarCategoria(CategoriaVO catvo);
