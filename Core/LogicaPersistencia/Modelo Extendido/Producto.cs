@@ -23,7 +23,7 @@ namespace LogicaPersistencia
             
         }
 
-        public ProductoVO DarProducto()
+        public ProductoVO DarProductoVO()
         {
 
             return new ProductoVO(ProductoId, ProductoNombre, ProductoDescripcion, ProductoFoto, ProductoPrecio, ProductoStock,ProductoFechaAlta, ProductoHabilitado, CategoriaId);

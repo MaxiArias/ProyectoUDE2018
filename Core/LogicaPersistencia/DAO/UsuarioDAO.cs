@@ -34,5 +34,11 @@ namespace LogicaPersistencia.DAO
                 db.SaveChanges();
             }
         }
+
+        public bool LoginUsuario(string mail, string pass)
+        {
+
+
+        }
     }
 }
