@@ -27,5 +27,13 @@ namespace LogicaPersistencia
             return new UsuarioVO(UsuarioId, UsuarioEmail, UsuarioContrasenia, UsuarioActivo, TipoUsuario);
         }
 
+        public bool UsuarioLogin(string mail, string pass)
+        {
+            bool exitoso = false;
+            if (this.UsuarioEmail == mail && this.UsuarioContrasenia == pass)
+                exitoso = true;
+
+            return exitoso;
+        }
     }
 }

@@ -1,5 +1,6 @@
 ﻿using Modelo.ValueObjects;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace LogicaPersistencia.DAO
 {
@@ -60,8 +61,10 @@ namespace LogicaPersistencia.DAO
 
         public List<ProductoVO> ListarProductos()
         {
-            return null;
-            //aca va el update y la conexion a la base de datos.    
+            using (TiendaVirtualEntities db = new TiendaVirtualEntities())
+            {
+                return db.Producto.ToList().Select(back => back.DarProductoVO()).ToList();
+            }
         }
 
     }
