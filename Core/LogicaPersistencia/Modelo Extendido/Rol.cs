@@ -16,7 +16,7 @@ namespace LogicaPersistencia
             this.RolNombre = vo.Nombre;
         }
 
-        public RolVO DarRol()
+        public RolVO DarRolVO()
         {
 
             return new RolVO(RolId, RolNombre);

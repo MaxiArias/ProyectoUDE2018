@@ -13,21 +13,26 @@ namespace LogicaPersistencia.DAO
             using (TiendaVirtualEntities db = new TiendaVirtualEntities())
             {
                 db.Usuario.Add(ue);
-                //ue.BackOffice = new BackOffice();
-                //ue.BackOffice.BackOfficeNombre = ((BackofficeInsVO)(usuvo)).Nombre;
-                //ue.BackOffice.RolId = ((BackofficeInsVO)(usuvo)).RolId;
                 db.SaveChanges();
             }
         }
 
-        public void BorrarUsuario(int usuid)
+        public void BorrarUsuario(UsuarioVO usuvo)
         {
-            throw new NotImplementedException();
+            using (TiendaVirtualEntities db = new TiendaVirtualEntities())
+            {
+                db.Entry(usuvo).State = System.Data.Entity.EntityState.Deleted;
+                db.SaveChanges();
+            }
         }
 
         public void ModificarUsuario(UsuarioVO usuvo)
         {
-            throw new NotImplementedException();
+            using (TiendaVirtualEntities db = new TiendaVirtualEntities())
+            {
+                db.Entry(usuvo).State = System.Data.Entity.EntityState.Modified;
+                db.SaveChanges();
+            }
         }
     }
 }
