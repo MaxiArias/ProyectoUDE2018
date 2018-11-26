@@ -14,10 +14,20 @@ namespace LogicaPersistencia.DAO
 
         public void InsertarBackoffice (BackofficeInsVO bkvo)
         {
+            var useless = System.Data.Entity.SqlServer.SqlProviderServices.Instance;
+
             BackOffice be = new BackOffice(bkvo);
 
             using (TiendaVirtualEntities db = new TiendaVirtualEntities())
             {
+                int uid = (from user in db.Usuario
+                           where user.UsuarioEmail == bkvo.Email
+                           select user).First().UsuarioId;
+                be.UsuarioId = uid;
+                System.Console.WriteLine(uid);
+                System.Console.Read();
+                be.RolId = bkvo.RolId;
+                be.BackOfficeNombre = bkvo.Nombre;
                 db.BackOffice.Add(be);
                 db.SaveChanges();
             }

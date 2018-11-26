@@ -155,5 +155,15 @@
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\LogicaPersistencia\LogicaPersistencia.csproj">
+      <Project>{A50B3A11-32E0-4251-9797-CDB8EDD5B951}</Project>
+      <Name>LogicaPersistencia</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Modelo\Modelo.csproj">
+      <Project>{58FD2F58-0DA4-4C3F-AC90-8D6CAB950E0E}</Project>
+      <Name>Modelo</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -18,7 +18,6 @@ namespace LogicaPersistencia
         {
             this.BackOfficeNombre = vo.Nombre;
             this.RolId = vo.RolId;
-            this.UsuarioId = vo.IdUsuario;
         }
 
         public BackofficeVO DarBackofficeVO()
