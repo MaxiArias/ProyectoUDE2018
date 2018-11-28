@@ -19,9 +19,10 @@ namespace WebService
     public class WebService : System.Web.Services.WebService
     {
         [WebMethod]
-        public string HelloWorld()
+        public bool UsuarioLogin(String mail,String password)
         {
-            return "Hola a todos";
+            IFachadaWin fac = new FabricaFachadas().CrearFachadaWin;
+            return fac.UsuarioLogin(mail, password);
         }
 
         [WebMethod]
