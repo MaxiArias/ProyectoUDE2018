@@ -34,22 +34,27 @@ namespace LogicaPersistencia.DAO
             
         }
 
-        public void BorrarBackoffice (BackofficeVO bkvo)
+        public void BorrarBackoffice (int idusr)
         {
             using (TiendaVirtualEntities db = new TiendaVirtualEntities())
             {
-                db.Entry(bkvo).State = System.Data.Entity.EntityState.Deleted;
+                var backoff = db.BackOffice.Where(u => u.UsuarioId == idusr).FirstOrDefault();
+                db.BackOffice.Remove(backoff);
                 db.SaveChanges();
             }
         }
 
-        public void ModificarBackoffice (BackofficeVO bkvo)
+
+        public void CambiarRolBackoffice (int idusr, int rolid)
         {
             using (TiendaVirtualEntities db = new TiendaVirtualEntities())
             {
-                db.Entry(bkvo).State = System.Data.Entity.EntityState.Modified;
+
+                var backoff = db.BackOffice.Where(s => s.UsuarioId == idusr).FirstOrDefault();
+                backoff.RolId = rolid;
                 db.SaveChanges();
             }
+
         }
 
         public List<BackofficeVO> ListarBackoffice ()

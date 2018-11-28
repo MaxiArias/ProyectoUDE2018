@@ -17,46 +17,76 @@ namespace LogicaPersistencia.DAO
             }
         }
 
-        public void BorrarProducto(ProductoVO prodvo)
+        public void BorrarProducto(int idprod)
         {
             using (TiendaVirtualEntities db = new TiendaVirtualEntities())
             {
-                db.Entry(prodvo).State = System.Data.Entity.EntityState.Deleted;
+                var producto = db.Producto.Where(s => s.ProductoId == idprod).FirstOrDefault();
+                db.Producto.Remove(producto);
                 db.SaveChanges();
             }
         }
 
         public void ModificarProducto(ProductoVO prodvo)
         {
+            
             using (TiendaVirtualEntities db = new TiendaVirtualEntities())
             {
-                db.Entry(prodvo).State = System.Data.Entity.EntityState.Modified;
+                var producto = db.Producto.Where(s => s.ProductoId == prodvo.IdProducto).FirstOrDefault();
+                producto.ProductoNombre = prodvo.Nombre;
+                producto.ProductoDescripcion = prodvo.Descripcion;
+                producto.ProductoHabilitado = prodvo.Habilitado;
+                producto.ProductoPrecio = prodvo.Precio;
+                producto.ProductoStock = prodvo.Stock;
                 db.SaveChanges();
             }
         }
 
-        public void ModificarStockProducto(ProductoVO prodvo)
+        public void ModificarStockProducto(int idprod, int cantstock)
         {
-            //aca va el update y la conexion a la base de datos.    
+
+            using (TiendaVirtualEntities db = new TiendaVirtualEntities())
+            {
+
+                var producto = db.Producto.Where(s => s.ProductoId == idprod).FirstOrDefault();
+                producto.ProductoStock = cantstock;
+                db.SaveChanges();
+            }
+         }
+
+        public void HabilitarProducto (int idprod, bool habilito)
+        {
+
+            using (TiendaVirtualEntities db = new TiendaVirtualEntities())
+            {
+
+                var producto = db.Producto.Where(s => s.ProductoId == idprod).FirstOrDefault();
+                producto.ProductoHabilitado = habilito ;
+                db.SaveChanges();
+            }
+
+        }
+        public ProductoVO DarProductoPorID(int idprod)
+        {
+            using (TiendaVirtualEntities db = new TiendaVirtualEntities())
+            {
+
+                var producto = db.Producto.Where(s => s.ProductoId == idprod).FirstOrDefault();
+       
+                return producto.DarProductoVO();
+            }
+
         }
 
-        public ProductoVO DarProductoPorID(ProductoVO prodvo)
+        public List<ProductoVO> ListarProductoPorCategoria(int idcatego)
         {
-            int idproducto = prodvo.IdProducto;
-                return prodvo;
-                //aca va el update y la conexion a la base de datos.    
-        }
+            using (TiendaVirtualEntities db = new TiendaVirtualEntities())
+            {
 
-        public List<ProductoVO> ListarProductoPorCategoria(ProductoVO prodvo)
-        {
-            return null;
-            //aca va el update y la conexion a la base de datos.    
-        }
+                var producto = db.Producto.Where(s => s.CategoriaId== idcatego).ToList();
 
-        public List<ProductoVO> ListarProductoPorDescripcion(ProductoVO prodvo)
-        {
-            return null;
-            //aca va el update y la conexion a la base de datos.    
+                return producto.Select(back => back.DarProductoVO()).ToList();
+            }
         }
 
         public List<ProductoVO> ListarProductos()

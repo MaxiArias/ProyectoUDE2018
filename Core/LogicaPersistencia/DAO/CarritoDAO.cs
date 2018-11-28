@@ -17,20 +17,12 @@ namespace LogicaPersistencia.DAO
             }
         }
 
-        public void BorrarCarrito(CarritoVO carvo)
+        public void BorrarCarrito(int idcarro)
             {
-                using (TiendaVirtualEntities db = new TiendaVirtualEntities())
-                {
-                    db.Entry(carvo).State = System.Data.Entity.EntityState.Deleted;
-                    db.SaveChanges();
-                }
-            }
-
-        public void ModificarCarrito(CarritoVO carvo)
-        {
             using (TiendaVirtualEntities db = new TiendaVirtualEntities())
             {
-                db.Entry(carvo).State = System.Data.Entity.EntityState.Modified;
+                var carro = db.Carrito.Where(s => s.CarritoId == idcarro).FirstOrDefault();
+                db.Carrito.Remove(carro);
                 db.SaveChanges();
             }
         }
@@ -47,6 +39,30 @@ namespace LogicaPersistencia.DAO
                 return primerIdUsuario != null;
             }
         }
-       
+
+        public void ModificarMonedaCarrito (int idcarro, int monedaid)
+        {
+
+            using (TiendaVirtualEntities db = new TiendaVirtualEntities())
+            {
+                var carro = db.Carrito.Where(s => s.CarritoId == idcarro).FirstOrDefault();
+                carro.MonedaId = monedaid;
+                db.SaveChanges();
+            }
+
+        }
+
+        public CarritoVO DarCarrito(int idcarro)
+        {
+            using (TiendaVirtualEntities db = new TiendaVirtualEntities())
+            {
+
+                var carro = db.Carrito.Where(s => s.CarritoId == idcarro).FirstOrDefault();
+
+                return carro.DarCarritoVO();
+            }
+
+        }
+
     }
 }
