@@ -18,20 +18,22 @@ namespace LogicaPersistencia.DAO
             }
         }
 
-        public void BorrarMoneda(MonedaVO monvo)
+        public void BorrarMoneda(int monedaid)
         {
             using (TiendaVirtualEntities db = new TiendaVirtualEntities())
             {
-                db.Entry(monvo).State = System.Data.Entity.EntityState.Deleted;
+                var moid = db.Moneda.Where(s => s.MonedaId == monedaid).FirstOrDefault();
+                db.Moneda.Remove(moid);
                 db.SaveChanges();
             }
         }
 
-        public void ModificarMoneda(MonedaVO monvo)
+        public void ModificarMonedaCotizacion(int monedaid, double cotiza)
         {
             using (TiendaVirtualEntities db = new TiendaVirtualEntities())
             {
-                db.Entry(monvo).State = System.Data.Entity.EntityState.Modified;
+                var moid = db.Moneda.Where(s => s.MonedaId == monedaid).FirstOrDefault();
+                moid.MonedaCotizacion = cotiza;
                 db.SaveChanges();
             }
         }

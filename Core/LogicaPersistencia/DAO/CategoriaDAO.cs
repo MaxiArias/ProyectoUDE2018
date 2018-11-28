@@ -22,22 +22,26 @@ namespace LogicaPersistencia.DAO
 
         }
 
-        public void BorrarCategoria(CategoriaVO catvo)
+        public void BorrarCategoria(int catid)
         {
             using (TiendaVirtualEntities db = new TiendaVirtualEntities())
-            {
-                db.Entry(catvo).State = System.Data.Entity.EntityState.Deleted;
-                db.SaveChanges();
-            }
-        }
+                {
+                    var cate = db.Categoria.Where(s => s.CategoriaId == catid).FirstOrDefault();
+                    db.Categoria.Remove(cate);
+                    db.SaveChanges();
+                }
+         }
+        
 
-        public void ModificarCategoria(CategoriaVO catvo)
+        public void ModificarDescripcionCategoria(int catid , string desc)
         {
             using (TiendaVirtualEntities db = new TiendaVirtualEntities())
             {
-                db.Entry(catvo).State = System.Data.Entity.EntityState.Modified;
+                var cate = db.Categoria.Where(s => s.CategoriaId == catid).FirstOrDefault();
+                cate.CategoriaDescripcion = desc;
                 db.SaveChanges();
             }
+
         }
 
         public List<CategoriaVO> ListarCategorias()

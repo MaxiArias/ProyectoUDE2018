@@ -17,22 +17,25 @@ namespace LogicaPersistencia.DAO
             }
         }
 
-        public void BorrarRol (RolVO rolvo)
+        public void BorrarRol (int rolid)
         {
             using (TiendaVirtualEntities db = new TiendaVirtualEntities())
             {
-                db.Entry(rolvo).State = System.Data.Entity.EntityState.Deleted;
+                var rol = db.Rol.Where(s => s.RolId == rolid).FirstOrDefault();
+                db.Rol.Remove(rol);
                 db.SaveChanges();
             }
 
 
         }
 
-        public void ModificarRol (RolVO rolvo)
+        public void ModificarRol (int rolid, string nom)
         {
             using (TiendaVirtualEntities db = new TiendaVirtualEntities())
             {
-                db.Entry(rolvo).State = System.Data.Entity.EntityState.Modified;
+
+                var rol = db.Rol.Where(s => s.RolId == rolid ).FirstOrDefault();
+                rol.RolNombre = nom;
                 db.SaveChanges();
             }
         }
