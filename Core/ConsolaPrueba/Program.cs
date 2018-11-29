@@ -1,11 +1,11 @@
-﻿using LogicaPersistencia.DAO;
-using Modelo.ValueObjects;
+﻿//using LogicaPersistencia.DAO;
+//using Modelo.ValueObjects;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-//using ConsolaPrueba.WSreferencia;
+using ConsolaPrueba.WSreferencia;
 
 namespace ConsolaPrueba
 {
@@ -17,14 +17,14 @@ namespace ConsolaPrueba
             //CategoriaDAO catdao = new CategoriaDAO();
             //catdao.InsertarCategoria(catvo);
 
-            //WebServiceSoapClient ws = new WebServiceSoapClient();
-            //CategoriaVO catvo = new CategoriaVO()
-            //{
-            //    Nombre = "Computadoras",
-            //    Descripcion = "Computadoras y notebooks",
-            //    Habilitado = true
-            //};
-            //ws.InsertarCategoria(new CategoriaVO());
+            WebServiceSoapClient ws = new WebServiceSoapClient();
+            CategoriaVO catvo = new CategoriaVO()
+            {
+                Nombre = "Computadoras",
+                Descripcion = "Computadoras y notebooks",
+                Habilitado = true
+            };
+            ws.InsertarCategoria(new CategoriaVO());
 
             //UsuarioVO us = new UsuarioVO()
             //{
@@ -36,15 +36,15 @@ namespace ConsolaPrueba
 
             //UsuarioDAO usdao = new UsuarioDAO(); 
 
-            BackofficeInsVO bo = new BackofficeInsVO()
-            {
-                Activo=true,
-                Nombre="Juan Perez",
-                Email="juan@prueba.com",
-                Password="123456",
-                RolId=1,
-                TipoUsuario="backoffice"
-            };
+            //BackofficeInsVO bo = new BackofficeInsVO()
+            //{
+            //    Activo=true,
+            //    Nombre="Juan Perez",
+            //    Email="juan@prueba.com",
+            //    Password="123456",
+            //    RolId=1,
+            //    TipoUsuario="backoffice"
+            //};
 
             //UsuarioVO us = new UsuarioVO()
             //{
@@ -54,12 +54,12 @@ namespace ConsolaPrueba
             //    TipoUsuario = "backoffice"
             //};
 
-            UsuarioDAO usdao = new UsuarioDAO();
-            usdao.InsertarUsuario(bo);
-            //usdao.InsertarUsuario(new UsuarioVO(0, bo.Email, bo.Password, bo.Activo, bo.TipoUsuario));
+            //UsuarioDAO usdao = new UsuarioDAO();
+            //usdao.InsertarUsuario(bo);
+            ////usdao.InsertarUsuario(new UsuarioVO(0, bo.Email, bo.Password, bo.Activo, bo.TipoUsuario));
 
-            BackofficeDAO bacdao = new BackofficeDAO();
-            bacdao.InsertarBackoffice(bo);
+            //BackofficeDAO bacdao = new BackofficeDAO();
+            //bacdao.InsertarBackoffice(bo);
 
             //ws.InsertarBackoffice(bo);
 

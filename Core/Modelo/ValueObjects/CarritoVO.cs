@@ -5,26 +5,26 @@ namespace Modelo.ValueObjects
     public class CarritoVO
     {
         // Atributos
-        private int idCarrito;
-        private int idCliente;
-        private DateTime fechaCreacion;
-        private int idMoneda;
+        //private int idCarrito;
+        //private int idCliente;
+        //private DateTime fechaCreacion;
+        //private int idMoneda;
 
         // Properties
-        public int IdCarrito { get { return idCarrito; } }
-        public int IdCliente { get { return idCliente; } }
-        public DateTime FechaCreacion { get { return fechaCreacion; } }
-        public int IdMoneda { get { return idMoneda; } }
+        public int IdCarrito { get; set; }
+        public int IdCliente { get; set; }
+        public DateTime FechaCreacion { get; set; }
+        public int IdMoneda { get; set; }
 
         // Constructores
         public CarritoVO() { }
 
         public CarritoVO(int idcarro, int client, DateTime creacion, int idmon)
         {
-            idCarrito = idcarro;
-            idCliente = client;
-            fechaCreacion = creacion;
-            idMoneda = idmon;
+            IdCarrito = idcarro;
+            IdCliente = client;
+            FechaCreacion = creacion;
+            IdMoneda = idmon;
         }
     }
 }

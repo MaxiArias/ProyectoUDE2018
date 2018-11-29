@@ -37,7 +37,7 @@ namespace LogicaPersistencia.DAO
 
         public bool LoginUsuario(string mail, string pass)
         {
-
+            return true;
 
         }
     }

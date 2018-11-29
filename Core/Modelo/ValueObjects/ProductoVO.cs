@@ -5,9 +5,10 @@ namespace Modelo.ValueObjects
     public class ProductoVO
     {
         // Atributos
-        private int idProducto;
-        // Properties
-        public int IdProducto { get { return idProducto; } }
+        //private int idProducto;
+        
+            // Properties
+        public int IdProducto { get; set; }
         public string Nombre { get; set;}
         public string Descripcion { get; set;}
         public string Foto { get; set;}
@@ -22,7 +23,7 @@ namespace Modelo.ValueObjects
 
         public ProductoVO(int idp, string nom, string desc, string foto, decimal precio, int stk, DateTime alta, Boolean hab, int idCat)
         {
-            idProducto = idp;
+            IdProducto = idp;
             Nombre = nom;
             Descripcion = desc;
             Foto = foto;
