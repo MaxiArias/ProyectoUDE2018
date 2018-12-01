@@ -19,10 +19,11 @@ namespace Modelo.ValueObjects
         public int IdCliente { get; set; }
 
         // Constructores
-
         public ItemCarritoInsVO()
         {
+
         }
+
         public ItemCarritoInsVO(int idp, int cant, int idcliente)
         {
             IdProducto = idp;

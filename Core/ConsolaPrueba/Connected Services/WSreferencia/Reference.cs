@@ -109,6 +109,7 @@ namespace ConsolaPrueba.WSreferencia {
     [System.Runtime.Serialization.DataContractAttribute(Name="UsuarioVO", Namespace="http://TiendaVirtual.com/")]
     [System.SerializableAttribute()]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(ConsolaPrueba.WSreferencia.BackofficeVO))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(ConsolaPrueba.WSreferencia.ClienteVO))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(ConsolaPrueba.WSreferencia.BackofficeInsVO))]
     public partial class UsuarioVO : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
         
@@ -218,6 +219,109 @@ namespace ConsolaPrueba.WSreferencia {
     [System.Runtime.Serialization.DataContractAttribute(Name="BackofficeVO", Namespace="http://TiendaVirtual.com/")]
     [System.SerializableAttribute()]
     public partial class BackofficeVO : ConsolaPrueba.WSreferencia.UsuarioVO {
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string NombreField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string RolField;
+        
+        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false)]
+        public string Nombre {
+            get {
+                return this.NombreField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.NombreField, value) != true)) {
+                    this.NombreField = value;
+                    this.RaisePropertyChanged("Nombre");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false)]
+        public string Rol {
+            get {
+                return this.RolField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.RolField, value) != true)) {
+                    this.RolField = value;
+                    this.RaisePropertyChanged("Rol");
+                }
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="ClienteVO", Namespace="http://TiendaVirtual.com/")]
+    [System.SerializableAttribute()]
+    public partial class ClienteVO : ConsolaPrueba.WSreferencia.UsuarioVO {
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string DireccionField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string TelefonoField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string TipoClienteField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string NombreField;
+        
+        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false)]
+        public string Direccion {
+            get {
+                return this.DireccionField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.DireccionField, value) != true)) {
+                    this.DireccionField = value;
+                    this.RaisePropertyChanged("Direccion");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false)]
+        public string Telefono {
+            get {
+                return this.TelefonoField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.TelefonoField, value) != true)) {
+                    this.TelefonoField = value;
+                    this.RaisePropertyChanged("Telefono");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false)]
+        public string TipoCliente {
+            get {
+                return this.TipoClienteField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.TipoClienteField, value) != true)) {
+                    this.TipoClienteField = value;
+                    this.RaisePropertyChanged("TipoCliente");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=3)]
+        public string Nombre {
+            get {
+                return this.NombreField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.NombreField, value) != true)) {
+                    this.NombreField = value;
+                    this.RaisePropertyChanged("Nombre");
+                }
+            }
+        }
     }
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
@@ -267,13 +371,15 @@ namespace ConsolaPrueba.WSreferencia {
         [System.NonSerializedAttribute()]
         private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
         
+        private int IdMonedaField;
+        
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private string AbreviaturaField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private string DescripcionField;
         
-        private double CotizacionField;
+        private decimal CotizacionField;
         
         [global::System.ComponentModel.BrowsableAttribute(false)]
         public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
@@ -285,7 +391,20 @@ namespace ConsolaPrueba.WSreferencia {
             }
         }
         
-        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false)]
+        [System.Runtime.Serialization.DataMemberAttribute(IsRequired=true)]
+        public int IdMoneda {
+            get {
+                return this.IdMonedaField;
+            }
+            set {
+                if ((this.IdMonedaField.Equals(value) != true)) {
+                    this.IdMonedaField = value;
+                    this.RaisePropertyChanged("IdMoneda");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=1)]
         public string Abreviatura {
             get {
                 return this.AbreviaturaField;
@@ -298,7 +417,7 @@ namespace ConsolaPrueba.WSreferencia {
             }
         }
         
-        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false)]
+        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=2)]
         public string Descripcion {
             get {
                 return this.DescripcionField;
@@ -311,8 +430,8 @@ namespace ConsolaPrueba.WSreferencia {
             }
         }
         
-        [System.Runtime.Serialization.DataMemberAttribute(IsRequired=true, Order=2)]
-        public double Cotizacion {
+        [System.Runtime.Serialization.DataMemberAttribute(IsRequired=true, Order=3)]
+        public decimal Cotizacion {
             get {
                 return this.CotizacionField;
             }
@@ -343,6 +462,8 @@ namespace ConsolaPrueba.WSreferencia {
         [System.NonSerializedAttribute()]
         private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
         
+        private int IdProductoField;
+        
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private string NombreField;
         
@@ -372,6 +493,19 @@ namespace ConsolaPrueba.WSreferencia {
             }
         }
         
+        [System.Runtime.Serialization.DataMemberAttribute(IsRequired=true)]
+        public int IdProducto {
+            get {
+                return this.IdProductoField;
+            }
+            set {
+                if ((this.IdProductoField.Equals(value) != true)) {
+                    this.IdProductoField = value;
+                    this.RaisePropertyChanged("IdProducto");
+                }
+            }
+        }
+        
         [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false)]
         public string Nombre {
             get {
@@ -385,7 +519,7 @@ namespace ConsolaPrueba.WSreferencia {
             }
         }
         
-        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=1)]
+        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=2)]
         public string Descripcion {
             get {
                 return this.DescripcionField;
@@ -398,7 +532,7 @@ namespace ConsolaPrueba.WSreferencia {
             }
         }
         
-        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=2)]
+        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=3)]
         public string Foto {
             get {
                 return this.FotoField;
@@ -411,7 +545,7 @@ namespace ConsolaPrueba.WSreferencia {
             }
         }
         
-        [System.Runtime.Serialization.DataMemberAttribute(IsRequired=true, Order=3)]
+        [System.Runtime.Serialization.DataMemberAttribute(IsRequired=true, Order=4)]
         public decimal Precio {
             get {
                 return this.PrecioField;
@@ -424,7 +558,7 @@ namespace ConsolaPrueba.WSreferencia {
             }
         }
         
-        [System.Runtime.Serialization.DataMemberAttribute(IsRequired=true, Order=4)]
+        [System.Runtime.Serialization.DataMemberAttribute(IsRequired=true, Order=5)]
         public int Stock {
             get {
                 return this.StockField;
@@ -437,7 +571,7 @@ namespace ConsolaPrueba.WSreferencia {
             }
         }
         
-        [System.Runtime.Serialization.DataMemberAttribute(IsRequired=true, Order=5)]
+        [System.Runtime.Serialization.DataMemberAttribute(IsRequired=true, Order=6)]
         public System.DateTime FechaAlta {
             get {
                 return this.FechaAltaField;
@@ -450,7 +584,7 @@ namespace ConsolaPrueba.WSreferencia {
             }
         }
         
-        [System.Runtime.Serialization.DataMemberAttribute(IsRequired=true, Order=6)]
+        [System.Runtime.Serialization.DataMemberAttribute(IsRequired=true, Order=7)]
         public bool Habilitado {
             get {
                 return this.HabilitadoField;
@@ -463,7 +597,7 @@ namespace ConsolaPrueba.WSreferencia {
             }
         }
         
-        [System.Runtime.Serialization.DataMemberAttribute(IsRequired=true, Order=7)]
+        [System.Runtime.Serialization.DataMemberAttribute(IsRequired=true, Order=8)]
         public int IdCategoria {
             get {
                 return this.IdCategoriaField;
@@ -495,6 +629,11 @@ namespace ConsolaPrueba.WSreferencia {
         [System.NonSerializedAttribute()]
         private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
         
+        private int IdRolField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string NombreField;
+        
         [global::System.ComponentModel.BrowsableAttribute(false)]
         public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
             get {
@@ -502,6 +641,32 @@ namespace ConsolaPrueba.WSreferencia {
             }
             set {
                 this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute(IsRequired=true)]
+        public int IdRol {
+            get {
+                return this.IdRolField;
+            }
+            set {
+                if ((this.IdRolField.Equals(value) != true)) {
+                    this.IdRolField = value;
+                    this.RaisePropertyChanged("IdRol");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false)]
+        public string Nombre {
+            get {
+                return this.NombreField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.NombreField, value) != true)) {
+                    this.NombreField = value;
+                    this.RaisePropertyChanged("Nombre");
+                }
             }
         }
         
@@ -519,12 +684,12 @@ namespace ConsolaPrueba.WSreferencia {
     [System.ServiceModel.ServiceContractAttribute(Namespace="http://TiendaVirtual.com/", ConfigurationName="WSreferencia.WebServiceSoap")]
     public interface WebServiceSoap {
         
-        // CODEGEN: Se está generando un contrato de mensaje, ya que el nombre de elemento HelloWorldResult del espacio de nombres http://TiendaVirtual.com/ no está marcado para aceptar valores nil.
-        [System.ServiceModel.OperationContractAttribute(Action="http://TiendaVirtual.com/HelloWorld", ReplyAction="*")]
-        ConsolaPrueba.WSreferencia.HelloWorldResponse HelloWorld(ConsolaPrueba.WSreferencia.HelloWorldRequest request);
+        // CODEGEN: Se está generando un contrato de mensaje, ya que el nombre de elemento mail del espacio de nombres http://TiendaVirtual.com/ no está marcado para aceptar valores nil.
+        [System.ServiceModel.OperationContractAttribute(Action="http://TiendaVirtual.com/UsuarioLogin", ReplyAction="*")]
+        ConsolaPrueba.WSreferencia.UsuarioLoginResponse UsuarioLogin(ConsolaPrueba.WSreferencia.UsuarioLoginRequest request);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://TiendaVirtual.com/HelloWorld", ReplyAction="*")]
-        System.Threading.Tasks.Task<ConsolaPrueba.WSreferencia.HelloWorldResponse> HelloWorldAsync(ConsolaPrueba.WSreferencia.HelloWorldRequest request);
+        [System.ServiceModel.OperationContractAttribute(Action="http://TiendaVirtual.com/UsuarioLogin", ReplyAction="*")]
+        System.Threading.Tasks.Task<ConsolaPrueba.WSreferencia.UsuarioLoginResponse> UsuarioLoginAsync(ConsolaPrueba.WSreferencia.UsuarioLoginRequest request);
         
         // CODEGEN: Se está generando un contrato de mensaje, ya que el nombre de elemento catvo del espacio de nombres http://TiendaVirtual.com/ no está marcado para aceptar valores nil.
         [System.ServiceModel.OperationContractAttribute(Action="http://TiendaVirtual.com/InsertarCategoria", ReplyAction="*")]
@@ -533,12 +698,11 @@ namespace ConsolaPrueba.WSreferencia {
         [System.ServiceModel.OperationContractAttribute(Action="http://TiendaVirtual.com/InsertarCategoria", ReplyAction="*")]
         System.Threading.Tasks.Task<ConsolaPrueba.WSreferencia.InsertarCategoriaResponse> InsertarCategoriaAsync(ConsolaPrueba.WSreferencia.InsertarCategoriaRequest request);
         
-        // CODEGEN: Se está generando un contrato de mensaje, ya que el nombre de elemento catvo del espacio de nombres http://TiendaVirtual.com/ no está marcado para aceptar valores nil.
         [System.ServiceModel.OperationContractAttribute(Action="http://TiendaVirtual.com/BorrarCategoria", ReplyAction="*")]
-        ConsolaPrueba.WSreferencia.BorrarCategoriaResponse BorrarCategoria(ConsolaPrueba.WSreferencia.BorrarCategoriaRequest request);
+        void BorrarCategoria(int catid);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://TiendaVirtual.com/BorrarCategoria", ReplyAction="*")]
-        System.Threading.Tasks.Task<ConsolaPrueba.WSreferencia.BorrarCategoriaResponse> BorrarCategoriaAsync(ConsolaPrueba.WSreferencia.BorrarCategoriaRequest request);
+        System.Threading.Tasks.Task BorrarCategoriaAsync(int catid);
         
         // CODEGEN: Se está generando un contrato de mensaje, ya que el nombre de elemento catvo del espacio de nombres http://TiendaVirtual.com/ no está marcado para aceptar valores nil.
         [System.ServiceModel.OperationContractAttribute(Action="http://TiendaVirtual.com/ModificarCategoria", ReplyAction="*")]
@@ -561,19 +725,17 @@ namespace ConsolaPrueba.WSreferencia {
         [System.ServiceModel.OperationContractAttribute(Action="http://TiendaVirtual.com/InsertarBackoffice", ReplyAction="*")]
         System.Threading.Tasks.Task<ConsolaPrueba.WSreferencia.InsertarBackofficeResponse> InsertarBackofficeAsync(ConsolaPrueba.WSreferencia.InsertarBackofficeRequest request);
         
-        // CODEGEN: Se está generando un contrato de mensaje, ya que el nombre de elemento bacvo del espacio de nombres http://TiendaVirtual.com/ no está marcado para aceptar valores nil.
         [System.ServiceModel.OperationContractAttribute(Action="http://TiendaVirtual.com/BorrarBackoffice", ReplyAction="*")]
-        ConsolaPrueba.WSreferencia.BorrarBackofficeResponse BorrarBackoffice(ConsolaPrueba.WSreferencia.BorrarBackofficeRequest request);
+        void BorrarBackoffice(int bacid);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://TiendaVirtual.com/BorrarBackoffice", ReplyAction="*")]
-        System.Threading.Tasks.Task<ConsolaPrueba.WSreferencia.BorrarBackofficeResponse> BorrarBackofficeAsync(ConsolaPrueba.WSreferencia.BorrarBackofficeRequest request);
+        System.Threading.Tasks.Task BorrarBackofficeAsync(int bacid);
         
-        // CODEGEN: Se está generando un contrato de mensaje, ya que el nombre de elemento bacvo del espacio de nombres http://TiendaVirtual.com/ no está marcado para aceptar valores nil.
-        [System.ServiceModel.OperationContractAttribute(Action="http://TiendaVirtual.com/ModificarBackoffice", ReplyAction="*")]
-        ConsolaPrueba.WSreferencia.ModificarBackofficeResponse ModificarBackoffice(ConsolaPrueba.WSreferencia.ModificarBackofficeRequest request);
+        [System.ServiceModel.OperationContractAttribute(Action="http://TiendaVirtual.com/CambiarRolBackoffice", ReplyAction="*")]
+        void CambiarRolBackoffice(int bacid, int rolid);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://TiendaVirtual.com/ModificarBackoffice", ReplyAction="*")]
-        System.Threading.Tasks.Task<ConsolaPrueba.WSreferencia.ModificarBackofficeResponse> ModificarBackofficeAsync(ConsolaPrueba.WSreferencia.ModificarBackofficeRequest request);
+        [System.ServiceModel.OperationContractAttribute(Action="http://TiendaVirtual.com/CambiarRolBackoffice", ReplyAction="*")]
+        System.Threading.Tasks.Task CambiarRolBackofficeAsync(int bacid, int rolid);
         
         // CODEGEN: Se está generando un contrato de mensaje, ya que el nombre de elemento ListarBackofficeResult del espacio de nombres http://TiendaVirtual.com/ no está marcado para aceptar valores nil.
         [System.ServiceModel.OperationContractAttribute(Action="http://TiendaVirtual.com/ListarBackoffice", ReplyAction="*")]
@@ -589,12 +751,11 @@ namespace ConsolaPrueba.WSreferencia {
         [System.ServiceModel.OperationContractAttribute(Action="http://TiendaVirtual.com/InsertarMoneda", ReplyAction="*")]
         System.Threading.Tasks.Task<ConsolaPrueba.WSreferencia.InsertarMonedaResponse> InsertarMonedaAsync(ConsolaPrueba.WSreferencia.InsertarMonedaRequest request);
         
-        // CODEGEN: Se está generando un contrato de mensaje, ya que el nombre de elemento monvo del espacio de nombres http://TiendaVirtual.com/ no está marcado para aceptar valores nil.
         [System.ServiceModel.OperationContractAttribute(Action="http://TiendaVirtual.com/BorrarMoneda", ReplyAction="*")]
-        ConsolaPrueba.WSreferencia.BorrarMonedaResponse BorrarMoneda(ConsolaPrueba.WSreferencia.BorrarMonedaRequest request);
+        void BorrarMoneda(int monid);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://TiendaVirtual.com/BorrarMoneda", ReplyAction="*")]
-        System.Threading.Tasks.Task<ConsolaPrueba.WSreferencia.BorrarMonedaResponse> BorrarMonedaAsync(ConsolaPrueba.WSreferencia.BorrarMonedaRequest request);
+        System.Threading.Tasks.Task BorrarMonedaAsync(int monid);
         
         // CODEGEN: Se está generando un contrato de mensaje, ya que el nombre de elemento monvo del espacio de nombres http://TiendaVirtual.com/ no está marcado para aceptar valores nil.
         [System.ServiceModel.OperationContractAttribute(Action="http://TiendaVirtual.com/ModificarMoneda", ReplyAction="*")]
@@ -617,12 +778,11 @@ namespace ConsolaPrueba.WSreferencia {
         [System.ServiceModel.OperationContractAttribute(Action="http://TiendaVirtual.com/InsertarProducto", ReplyAction="*")]
         System.Threading.Tasks.Task<ConsolaPrueba.WSreferencia.InsertarProductoResponse> InsertarProductoAsync(ConsolaPrueba.WSreferencia.InsertarProductoRequest request);
         
-        // CODEGEN: Se está generando un contrato de mensaje, ya que el nombre de elemento provo del espacio de nombres http://TiendaVirtual.com/ no está marcado para aceptar valores nil.
         [System.ServiceModel.OperationContractAttribute(Action="http://TiendaVirtual.com/BorrarProducto", ReplyAction="*")]
-        ConsolaPrueba.WSreferencia.BorrarProductoResponse BorrarProducto(ConsolaPrueba.WSreferencia.BorrarProductoRequest request);
+        void BorrarProducto(int proid);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://TiendaVirtual.com/BorrarProducto", ReplyAction="*")]
-        System.Threading.Tasks.Task<ConsolaPrueba.WSreferencia.BorrarProductoResponse> BorrarProductoAsync(ConsolaPrueba.WSreferencia.BorrarProductoRequest request);
+        System.Threading.Tasks.Task BorrarProductoAsync(int proid);
         
         // CODEGEN: Se está generando un contrato de mensaje, ya que el nombre de elemento provo del espacio de nombres http://TiendaVirtual.com/ no está marcado para aceptar valores nil.
         [System.ServiceModel.OperationContractAttribute(Action="http://TiendaVirtual.com/ModificarProducto", ReplyAction="*")]
@@ -630,6 +790,18 @@ namespace ConsolaPrueba.WSreferencia {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://TiendaVirtual.com/ModificarProducto", ReplyAction="*")]
         System.Threading.Tasks.Task<ConsolaPrueba.WSreferencia.ModificarProductoResponse> ModificarProductoAsync(ConsolaPrueba.WSreferencia.ModificarProductoRequest request);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://TiendaVirtual.com/ModificarStockProducto", ReplyAction="*")]
+        void ModificarStockProducto(int proid, int stock);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://TiendaVirtual.com/ModificarStockProducto", ReplyAction="*")]
+        System.Threading.Tasks.Task ModificarStockProductoAsync(int proid, int stock);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://TiendaVirtual.com/HabilitarProducto", ReplyAction="*")]
+        void HabilitarProducto(int proid, bool habilito);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://TiendaVirtual.com/HabilitarProducto", ReplyAction="*")]
+        System.Threading.Tasks.Task HabilitarProductoAsync(int proid, bool habilito);
         
         // CODEGEN: Se está generando un contrato de mensaje, ya que el nombre de elemento ListarProductosResult del espacio de nombres http://TiendaVirtual.com/ no está marcado para aceptar valores nil.
         [System.ServiceModel.OperationContractAttribute(Action="http://TiendaVirtual.com/ListarProductos", ReplyAction="*")]
@@ -645,12 +817,11 @@ namespace ConsolaPrueba.WSreferencia {
         [System.ServiceModel.OperationContractAttribute(Action="http://TiendaVirtual.com/InsertarRol", ReplyAction="*")]
         System.Threading.Tasks.Task<ConsolaPrueba.WSreferencia.InsertarRolResponse> InsertarRolAsync(ConsolaPrueba.WSreferencia.InsertarRolRequest request);
         
-        // CODEGEN: Se está generando un contrato de mensaje, ya que el nombre de elemento rolvo del espacio de nombres http://TiendaVirtual.com/ no está marcado para aceptar valores nil.
         [System.ServiceModel.OperationContractAttribute(Action="http://TiendaVirtual.com/BorrarRol", ReplyAction="*")]
-        ConsolaPrueba.WSreferencia.BorrarRolResponse BorrarRol(ConsolaPrueba.WSreferencia.BorrarRolRequest request);
+        void BorrarRol(int rolid);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://TiendaVirtual.com/BorrarRol", ReplyAction="*")]
-        System.Threading.Tasks.Task<ConsolaPrueba.WSreferencia.BorrarRolResponse> BorrarRolAsync(ConsolaPrueba.WSreferencia.BorrarRolRequest request);
+        System.Threading.Tasks.Task BorrarRolAsync(int rolid);
         
         // CODEGEN: Se está generando un contrato de mensaje, ya que el nombre de elemento rolvo del espacio de nombres http://TiendaVirtual.com/ no está marcado para aceptar valores nil.
         [System.ServiceModel.OperationContractAttribute(Action="http://TiendaVirtual.com/ModificarRol", ReplyAction="*")]
@@ -665,48 +836,34 @@ namespace ConsolaPrueba.WSreferencia {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://TiendaVirtual.com/ListarRoles", ReplyAction="*")]
         System.Threading.Tasks.Task<ConsolaPrueba.WSreferencia.ListarRolesResponse> ListarRolesAsync(ConsolaPrueba.WSreferencia.ListarRolesRequest request);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://TiendaVirtual.com/BorrarCliente", ReplyAction="*")]
+        void BorrarCliente(int cliid);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://TiendaVirtual.com/BorrarCliente", ReplyAction="*")]
+        System.Threading.Tasks.Task BorrarClienteAsync(int cliid);
+        
+        // CODEGEN: Se está generando un contrato de mensaje, ya que el nombre de elemento ListarClientesResult del espacio de nombres http://TiendaVirtual.com/ no está marcado para aceptar valores nil.
+        [System.ServiceModel.OperationContractAttribute(Action="http://TiendaVirtual.com/ListarClientes", ReplyAction="*")]
+        ConsolaPrueba.WSreferencia.ListarClientesResponse ListarClientes(ConsolaPrueba.WSreferencia.ListarClientesRequest request);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://TiendaVirtual.com/ListarClientes", ReplyAction="*")]
+        System.Threading.Tasks.Task<ConsolaPrueba.WSreferencia.ListarClientesResponse> ListarClientesAsync(ConsolaPrueba.WSreferencia.ListarClientesRequest request);
     }
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
     [System.ServiceModel.MessageContractAttribute(IsWrapped=false)]
-    public partial class HelloWorldRequest {
+    public partial class UsuarioLoginRequest {
         
-        [System.ServiceModel.MessageBodyMemberAttribute(Name="HelloWorld", Namespace="http://TiendaVirtual.com/", Order=0)]
-        public ConsolaPrueba.WSreferencia.HelloWorldRequestBody Body;
+        [System.ServiceModel.MessageBodyMemberAttribute(Name="UsuarioLogin", Namespace="http://TiendaVirtual.com/", Order=0)]
+        public ConsolaPrueba.WSreferencia.UsuarioLoginRequestBody Body;
         
-        public HelloWorldRequest() {
+        public UsuarioLoginRequest() {
         }
         
-        public HelloWorldRequest(ConsolaPrueba.WSreferencia.HelloWorldRequestBody Body) {
-            this.Body = Body;
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-    [System.Runtime.Serialization.DataContractAttribute()]
-    public partial class HelloWorldRequestBody {
-        
-        public HelloWorldRequestBody() {
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-    [System.ServiceModel.MessageContractAttribute(IsWrapped=false)]
-    public partial class HelloWorldResponse {
-        
-        [System.ServiceModel.MessageBodyMemberAttribute(Name="HelloWorldResponse", Namespace="http://TiendaVirtual.com/", Order=0)]
-        public ConsolaPrueba.WSreferencia.HelloWorldResponseBody Body;
-        
-        public HelloWorldResponse() {
-        }
-        
-        public HelloWorldResponse(ConsolaPrueba.WSreferencia.HelloWorldResponseBody Body) {
+        public UsuarioLoginRequest(ConsolaPrueba.WSreferencia.UsuarioLoginRequestBody Body) {
             this.Body = Body;
         }
     }
@@ -715,16 +872,54 @@ namespace ConsolaPrueba.WSreferencia {
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
     [System.Runtime.Serialization.DataContractAttribute(Namespace="http://TiendaVirtual.com/")]
-    public partial class HelloWorldResponseBody {
+    public partial class UsuarioLoginRequestBody {
         
         [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=0)]
-        public string HelloWorldResult;
+        public string mail;
         
-        public HelloWorldResponseBody() {
+        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=1)]
+        public string password;
+        
+        public UsuarioLoginRequestBody() {
         }
         
-        public HelloWorldResponseBody(string HelloWorldResult) {
-            this.HelloWorldResult = HelloWorldResult;
+        public UsuarioLoginRequestBody(string mail, string password) {
+            this.mail = mail;
+            this.password = password;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.ServiceModel.MessageContractAttribute(IsWrapped=false)]
+    public partial class UsuarioLoginResponse {
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Name="UsuarioLoginResponse", Namespace="http://TiendaVirtual.com/", Order=0)]
+        public ConsolaPrueba.WSreferencia.UsuarioLoginResponseBody Body;
+        
+        public UsuarioLoginResponse() {
+        }
+        
+        public UsuarioLoginResponse(ConsolaPrueba.WSreferencia.UsuarioLoginResponseBody Body) {
+            this.Body = Body;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.Runtime.Serialization.DataContractAttribute(Namespace="http://TiendaVirtual.com/")]
+    public partial class UsuarioLoginResponseBody {
+        
+        [System.Runtime.Serialization.DataMemberAttribute(Order=0)]
+        public bool UsuarioLoginResult;
+        
+        public UsuarioLoginResponseBody() {
+        }
+        
+        public UsuarioLoginResponseBody(bool UsuarioLoginResult) {
+            this.UsuarioLoginResult = UsuarioLoginResult;
         }
     }
     
@@ -786,67 +981,6 @@ namespace ConsolaPrueba.WSreferencia {
     public partial class InsertarCategoriaResponseBody {
         
         public InsertarCategoriaResponseBody() {
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-    [System.ServiceModel.MessageContractAttribute(IsWrapped=false)]
-    public partial class BorrarCategoriaRequest {
-        
-        [System.ServiceModel.MessageBodyMemberAttribute(Name="BorrarCategoria", Namespace="http://TiendaVirtual.com/", Order=0)]
-        public ConsolaPrueba.WSreferencia.BorrarCategoriaRequestBody Body;
-        
-        public BorrarCategoriaRequest() {
-        }
-        
-        public BorrarCategoriaRequest(ConsolaPrueba.WSreferencia.BorrarCategoriaRequestBody Body) {
-            this.Body = Body;
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-    [System.Runtime.Serialization.DataContractAttribute(Namespace="http://TiendaVirtual.com/")]
-    public partial class BorrarCategoriaRequestBody {
-        
-        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=0)]
-        public ConsolaPrueba.WSreferencia.CategoriaVO catvo;
-        
-        public BorrarCategoriaRequestBody() {
-        }
-        
-        public BorrarCategoriaRequestBody(ConsolaPrueba.WSreferencia.CategoriaVO catvo) {
-            this.catvo = catvo;
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-    [System.ServiceModel.MessageContractAttribute(IsWrapped=false)]
-    public partial class BorrarCategoriaResponse {
-        
-        [System.ServiceModel.MessageBodyMemberAttribute(Name="BorrarCategoriaResponse", Namespace="http://TiendaVirtual.com/", Order=0)]
-        public ConsolaPrueba.WSreferencia.BorrarCategoriaResponseBody Body;
-        
-        public BorrarCategoriaResponse() {
-        }
-        
-        public BorrarCategoriaResponse(ConsolaPrueba.WSreferencia.BorrarCategoriaResponseBody Body) {
-            this.Body = Body;
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-    [System.Runtime.Serialization.DataContractAttribute()]
-    public partial class BorrarCategoriaResponseBody {
-        
-        public BorrarCategoriaResponseBody() {
         }
     }
     
@@ -1037,128 +1171,6 @@ namespace ConsolaPrueba.WSreferencia {
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
     [System.ServiceModel.MessageContractAttribute(IsWrapped=false)]
-    public partial class BorrarBackofficeRequest {
-        
-        [System.ServiceModel.MessageBodyMemberAttribute(Name="BorrarBackoffice", Namespace="http://TiendaVirtual.com/", Order=0)]
-        public ConsolaPrueba.WSreferencia.BorrarBackofficeRequestBody Body;
-        
-        public BorrarBackofficeRequest() {
-        }
-        
-        public BorrarBackofficeRequest(ConsolaPrueba.WSreferencia.BorrarBackofficeRequestBody Body) {
-            this.Body = Body;
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-    [System.Runtime.Serialization.DataContractAttribute(Namespace="http://TiendaVirtual.com/")]
-    public partial class BorrarBackofficeRequestBody {
-        
-        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=0)]
-        public ConsolaPrueba.WSreferencia.BackofficeVO bacvo;
-        
-        public BorrarBackofficeRequestBody() {
-        }
-        
-        public BorrarBackofficeRequestBody(ConsolaPrueba.WSreferencia.BackofficeVO bacvo) {
-            this.bacvo = bacvo;
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-    [System.ServiceModel.MessageContractAttribute(IsWrapped=false)]
-    public partial class BorrarBackofficeResponse {
-        
-        [System.ServiceModel.MessageBodyMemberAttribute(Name="BorrarBackofficeResponse", Namespace="http://TiendaVirtual.com/", Order=0)]
-        public ConsolaPrueba.WSreferencia.BorrarBackofficeResponseBody Body;
-        
-        public BorrarBackofficeResponse() {
-        }
-        
-        public BorrarBackofficeResponse(ConsolaPrueba.WSreferencia.BorrarBackofficeResponseBody Body) {
-            this.Body = Body;
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-    [System.Runtime.Serialization.DataContractAttribute()]
-    public partial class BorrarBackofficeResponseBody {
-        
-        public BorrarBackofficeResponseBody() {
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-    [System.ServiceModel.MessageContractAttribute(IsWrapped=false)]
-    public partial class ModificarBackofficeRequest {
-        
-        [System.ServiceModel.MessageBodyMemberAttribute(Name="ModificarBackoffice", Namespace="http://TiendaVirtual.com/", Order=0)]
-        public ConsolaPrueba.WSreferencia.ModificarBackofficeRequestBody Body;
-        
-        public ModificarBackofficeRequest() {
-        }
-        
-        public ModificarBackofficeRequest(ConsolaPrueba.WSreferencia.ModificarBackofficeRequestBody Body) {
-            this.Body = Body;
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-    [System.Runtime.Serialization.DataContractAttribute(Namespace="http://TiendaVirtual.com/")]
-    public partial class ModificarBackofficeRequestBody {
-        
-        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=0)]
-        public ConsolaPrueba.WSreferencia.BackofficeVO bacvo;
-        
-        public ModificarBackofficeRequestBody() {
-        }
-        
-        public ModificarBackofficeRequestBody(ConsolaPrueba.WSreferencia.BackofficeVO bacvo) {
-            this.bacvo = bacvo;
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-    [System.ServiceModel.MessageContractAttribute(IsWrapped=false)]
-    public partial class ModificarBackofficeResponse {
-        
-        [System.ServiceModel.MessageBodyMemberAttribute(Name="ModificarBackofficeResponse", Namespace="http://TiendaVirtual.com/", Order=0)]
-        public ConsolaPrueba.WSreferencia.ModificarBackofficeResponseBody Body;
-        
-        public ModificarBackofficeResponse() {
-        }
-        
-        public ModificarBackofficeResponse(ConsolaPrueba.WSreferencia.ModificarBackofficeResponseBody Body) {
-            this.Body = Body;
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-    [System.Runtime.Serialization.DataContractAttribute()]
-    public partial class ModificarBackofficeResponseBody {
-        
-        public ModificarBackofficeResponseBody() {
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-    [System.ServiceModel.MessageContractAttribute(IsWrapped=false)]
     public partial class ListarBackofficeRequest {
         
         [System.ServiceModel.MessageBodyMemberAttribute(Name="ListarBackoffice", Namespace="http://TiendaVirtual.com/", Order=0)]
@@ -1274,67 +1286,6 @@ namespace ConsolaPrueba.WSreferencia {
     public partial class InsertarMonedaResponseBody {
         
         public InsertarMonedaResponseBody() {
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-    [System.ServiceModel.MessageContractAttribute(IsWrapped=false)]
-    public partial class BorrarMonedaRequest {
-        
-        [System.ServiceModel.MessageBodyMemberAttribute(Name="BorrarMoneda", Namespace="http://TiendaVirtual.com/", Order=0)]
-        public ConsolaPrueba.WSreferencia.BorrarMonedaRequestBody Body;
-        
-        public BorrarMonedaRequest() {
-        }
-        
-        public BorrarMonedaRequest(ConsolaPrueba.WSreferencia.BorrarMonedaRequestBody Body) {
-            this.Body = Body;
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-    [System.Runtime.Serialization.DataContractAttribute(Namespace="http://TiendaVirtual.com/")]
-    public partial class BorrarMonedaRequestBody {
-        
-        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=0)]
-        public ConsolaPrueba.WSreferencia.MonedaVO monvo;
-        
-        public BorrarMonedaRequestBody() {
-        }
-        
-        public BorrarMonedaRequestBody(ConsolaPrueba.WSreferencia.MonedaVO monvo) {
-            this.monvo = monvo;
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-    [System.ServiceModel.MessageContractAttribute(IsWrapped=false)]
-    public partial class BorrarMonedaResponse {
-        
-        [System.ServiceModel.MessageBodyMemberAttribute(Name="BorrarMonedaResponse", Namespace="http://TiendaVirtual.com/", Order=0)]
-        public ConsolaPrueba.WSreferencia.BorrarMonedaResponseBody Body;
-        
-        public BorrarMonedaResponse() {
-        }
-        
-        public BorrarMonedaResponse(ConsolaPrueba.WSreferencia.BorrarMonedaResponseBody Body) {
-            this.Body = Body;
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-    [System.Runtime.Serialization.DataContractAttribute()]
-    public partial class BorrarMonedaResponseBody {
-        
-        public BorrarMonedaResponseBody() {
         }
     }
     
@@ -1525,67 +1476,6 @@ namespace ConsolaPrueba.WSreferencia {
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
     [System.ServiceModel.MessageContractAttribute(IsWrapped=false)]
-    public partial class BorrarProductoRequest {
-        
-        [System.ServiceModel.MessageBodyMemberAttribute(Name="BorrarProducto", Namespace="http://TiendaVirtual.com/", Order=0)]
-        public ConsolaPrueba.WSreferencia.BorrarProductoRequestBody Body;
-        
-        public BorrarProductoRequest() {
-        }
-        
-        public BorrarProductoRequest(ConsolaPrueba.WSreferencia.BorrarProductoRequestBody Body) {
-            this.Body = Body;
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-    [System.Runtime.Serialization.DataContractAttribute(Namespace="http://TiendaVirtual.com/")]
-    public partial class BorrarProductoRequestBody {
-        
-        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=0)]
-        public ConsolaPrueba.WSreferencia.ProductoVO provo;
-        
-        public BorrarProductoRequestBody() {
-        }
-        
-        public BorrarProductoRequestBody(ConsolaPrueba.WSreferencia.ProductoVO provo) {
-            this.provo = provo;
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-    [System.ServiceModel.MessageContractAttribute(IsWrapped=false)]
-    public partial class BorrarProductoResponse {
-        
-        [System.ServiceModel.MessageBodyMemberAttribute(Name="BorrarProductoResponse", Namespace="http://TiendaVirtual.com/", Order=0)]
-        public ConsolaPrueba.WSreferencia.BorrarProductoResponseBody Body;
-        
-        public BorrarProductoResponse() {
-        }
-        
-        public BorrarProductoResponse(ConsolaPrueba.WSreferencia.BorrarProductoResponseBody Body) {
-            this.Body = Body;
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-    [System.Runtime.Serialization.DataContractAttribute()]
-    public partial class BorrarProductoResponseBody {
-        
-        public BorrarProductoResponseBody() {
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-    [System.ServiceModel.MessageContractAttribute(IsWrapped=false)]
     public partial class ModificarProductoRequest {
         
         [System.ServiceModel.MessageBodyMemberAttribute(Name="ModificarProducto", Namespace="http://TiendaVirtual.com/", Order=0)]
@@ -1769,67 +1659,6 @@ namespace ConsolaPrueba.WSreferencia {
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
     [System.ServiceModel.MessageContractAttribute(IsWrapped=false)]
-    public partial class BorrarRolRequest {
-        
-        [System.ServiceModel.MessageBodyMemberAttribute(Name="BorrarRol", Namespace="http://TiendaVirtual.com/", Order=0)]
-        public ConsolaPrueba.WSreferencia.BorrarRolRequestBody Body;
-        
-        public BorrarRolRequest() {
-        }
-        
-        public BorrarRolRequest(ConsolaPrueba.WSreferencia.BorrarRolRequestBody Body) {
-            this.Body = Body;
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-    [System.Runtime.Serialization.DataContractAttribute(Namespace="http://TiendaVirtual.com/")]
-    public partial class BorrarRolRequestBody {
-        
-        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=0)]
-        public ConsolaPrueba.WSreferencia.RolVO rolvo;
-        
-        public BorrarRolRequestBody() {
-        }
-        
-        public BorrarRolRequestBody(ConsolaPrueba.WSreferencia.RolVO rolvo) {
-            this.rolvo = rolvo;
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-    [System.ServiceModel.MessageContractAttribute(IsWrapped=false)]
-    public partial class BorrarRolResponse {
-        
-        [System.ServiceModel.MessageBodyMemberAttribute(Name="BorrarRolResponse", Namespace="http://TiendaVirtual.com/", Order=0)]
-        public ConsolaPrueba.WSreferencia.BorrarRolResponseBody Body;
-        
-        public BorrarRolResponse() {
-        }
-        
-        public BorrarRolResponse(ConsolaPrueba.WSreferencia.BorrarRolResponseBody Body) {
-            this.Body = Body;
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-    [System.Runtime.Serialization.DataContractAttribute()]
-    public partial class BorrarRolResponseBody {
-        
-        public BorrarRolResponseBody() {
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-    [System.ServiceModel.MessageContractAttribute(IsWrapped=false)]
     public partial class ModificarRolRequest {
         
         [System.ServiceModel.MessageBodyMemberAttribute(Name="ModificarRol", Namespace="http://TiendaVirtual.com/", Order=0)]
@@ -1948,6 +1777,67 @@ namespace ConsolaPrueba.WSreferencia {
         }
     }
     
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.ServiceModel.MessageContractAttribute(IsWrapped=false)]
+    public partial class ListarClientesRequest {
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Name="ListarClientes", Namespace="http://TiendaVirtual.com/", Order=0)]
+        public ConsolaPrueba.WSreferencia.ListarClientesRequestBody Body;
+        
+        public ListarClientesRequest() {
+        }
+        
+        public ListarClientesRequest(ConsolaPrueba.WSreferencia.ListarClientesRequestBody Body) {
+            this.Body = Body;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.Runtime.Serialization.DataContractAttribute()]
+    public partial class ListarClientesRequestBody {
+        
+        public ListarClientesRequestBody() {
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.ServiceModel.MessageContractAttribute(IsWrapped=false)]
+    public partial class ListarClientesResponse {
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Name="ListarClientesResponse", Namespace="http://TiendaVirtual.com/", Order=0)]
+        public ConsolaPrueba.WSreferencia.ListarClientesResponseBody Body;
+        
+        public ListarClientesResponse() {
+        }
+        
+        public ListarClientesResponse(ConsolaPrueba.WSreferencia.ListarClientesResponseBody Body) {
+            this.Body = Body;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.Runtime.Serialization.DataContractAttribute(Namespace="http://TiendaVirtual.com/")]
+    public partial class ListarClientesResponseBody {
+        
+        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=0)]
+        public ConsolaPrueba.WSreferencia.ClienteVO[] ListarClientesResult;
+        
+        public ListarClientesResponseBody() {
+        }
+        
+        public ListarClientesResponseBody(ConsolaPrueba.WSreferencia.ClienteVO[] ListarClientesResult) {
+            this.ListarClientesResult = ListarClientesResult;
+        }
+    }
+    
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     public interface WebServiceSoapChannel : ConsolaPrueba.WSreferencia.WebServiceSoap, System.ServiceModel.IClientChannel {
     }
@@ -1976,26 +1866,30 @@ namespace ConsolaPrueba.WSreferencia {
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        ConsolaPrueba.WSreferencia.HelloWorldResponse ConsolaPrueba.WSreferencia.WebServiceSoap.HelloWorld(ConsolaPrueba.WSreferencia.HelloWorldRequest request) {
-            return base.Channel.HelloWorld(request);
+        ConsolaPrueba.WSreferencia.UsuarioLoginResponse ConsolaPrueba.WSreferencia.WebServiceSoap.UsuarioLogin(ConsolaPrueba.WSreferencia.UsuarioLoginRequest request) {
+            return base.Channel.UsuarioLogin(request);
         }
         
-        public string HelloWorld() {
-            ConsolaPrueba.WSreferencia.HelloWorldRequest inValue = new ConsolaPrueba.WSreferencia.HelloWorldRequest();
-            inValue.Body = new ConsolaPrueba.WSreferencia.HelloWorldRequestBody();
-            ConsolaPrueba.WSreferencia.HelloWorldResponse retVal = ((ConsolaPrueba.WSreferencia.WebServiceSoap)(this)).HelloWorld(inValue);
-            return retVal.Body.HelloWorldResult;
+        public bool UsuarioLogin(string mail, string password) {
+            ConsolaPrueba.WSreferencia.UsuarioLoginRequest inValue = new ConsolaPrueba.WSreferencia.UsuarioLoginRequest();
+            inValue.Body = new ConsolaPrueba.WSreferencia.UsuarioLoginRequestBody();
+            inValue.Body.mail = mail;
+            inValue.Body.password = password;
+            ConsolaPrueba.WSreferencia.UsuarioLoginResponse retVal = ((ConsolaPrueba.WSreferencia.WebServiceSoap)(this)).UsuarioLogin(inValue);
+            return retVal.Body.UsuarioLoginResult;
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        System.Threading.Tasks.Task<ConsolaPrueba.WSreferencia.HelloWorldResponse> ConsolaPrueba.WSreferencia.WebServiceSoap.HelloWorldAsync(ConsolaPrueba.WSreferencia.HelloWorldRequest request) {
-            return base.Channel.HelloWorldAsync(request);
+        System.Threading.Tasks.Task<ConsolaPrueba.WSreferencia.UsuarioLoginResponse> ConsolaPrueba.WSreferencia.WebServiceSoap.UsuarioLoginAsync(ConsolaPrueba.WSreferencia.UsuarioLoginRequest request) {
+            return base.Channel.UsuarioLoginAsync(request);
         }
         
-        public System.Threading.Tasks.Task<ConsolaPrueba.WSreferencia.HelloWorldResponse> HelloWorldAsync() {
-            ConsolaPrueba.WSreferencia.HelloWorldRequest inValue = new ConsolaPrueba.WSreferencia.HelloWorldRequest();
-            inValue.Body = new ConsolaPrueba.WSreferencia.HelloWorldRequestBody();
-            return ((ConsolaPrueba.WSreferencia.WebServiceSoap)(this)).HelloWorldAsync(inValue);
+        public System.Threading.Tasks.Task<ConsolaPrueba.WSreferencia.UsuarioLoginResponse> UsuarioLoginAsync(string mail, string password) {
+            ConsolaPrueba.WSreferencia.UsuarioLoginRequest inValue = new ConsolaPrueba.WSreferencia.UsuarioLoginRequest();
+            inValue.Body = new ConsolaPrueba.WSreferencia.UsuarioLoginRequestBody();
+            inValue.Body.mail = mail;
+            inValue.Body.password = password;
+            return ((ConsolaPrueba.WSreferencia.WebServiceSoap)(this)).UsuarioLoginAsync(inValue);
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
@@ -2022,28 +1916,12 @@ namespace ConsolaPrueba.WSreferencia {
             return ((ConsolaPrueba.WSreferencia.WebServiceSoap)(this)).InsertarCategoriaAsync(inValue);
         }
         
-        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        ConsolaPrueba.WSreferencia.BorrarCategoriaResponse ConsolaPrueba.WSreferencia.WebServiceSoap.BorrarCategoria(ConsolaPrueba.WSreferencia.BorrarCategoriaRequest request) {
-            return base.Channel.BorrarCategoria(request);
+        public void BorrarCategoria(int catid) {
+            base.Channel.BorrarCategoria(catid);
         }
         
-        public void BorrarCategoria(ConsolaPrueba.WSreferencia.CategoriaVO catvo) {
-            ConsolaPrueba.WSreferencia.BorrarCategoriaRequest inValue = new ConsolaPrueba.WSreferencia.BorrarCategoriaRequest();
-            inValue.Body = new ConsolaPrueba.WSreferencia.BorrarCategoriaRequestBody();
-            inValue.Body.catvo = catvo;
-            ConsolaPrueba.WSreferencia.BorrarCategoriaResponse retVal = ((ConsolaPrueba.WSreferencia.WebServiceSoap)(this)).BorrarCategoria(inValue);
-        }
-        
-        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        System.Threading.Tasks.Task<ConsolaPrueba.WSreferencia.BorrarCategoriaResponse> ConsolaPrueba.WSreferencia.WebServiceSoap.BorrarCategoriaAsync(ConsolaPrueba.WSreferencia.BorrarCategoriaRequest request) {
-            return base.Channel.BorrarCategoriaAsync(request);
-        }
-        
-        public System.Threading.Tasks.Task<ConsolaPrueba.WSreferencia.BorrarCategoriaResponse> BorrarCategoriaAsync(ConsolaPrueba.WSreferencia.CategoriaVO catvo) {
-            ConsolaPrueba.WSreferencia.BorrarCategoriaRequest inValue = new ConsolaPrueba.WSreferencia.BorrarCategoriaRequest();
-            inValue.Body = new ConsolaPrueba.WSreferencia.BorrarCategoriaRequestBody();
-            inValue.Body.catvo = catvo;
-            return ((ConsolaPrueba.WSreferencia.WebServiceSoap)(this)).BorrarCategoriaAsync(inValue);
+        public System.Threading.Tasks.Task BorrarCategoriaAsync(int catid) {
+            return base.Channel.BorrarCategoriaAsync(catid);
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
@@ -2117,52 +1995,20 @@ namespace ConsolaPrueba.WSreferencia {
             return ((ConsolaPrueba.WSreferencia.WebServiceSoap)(this)).InsertarBackofficeAsync(inValue);
         }
         
-        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        ConsolaPrueba.WSreferencia.BorrarBackofficeResponse ConsolaPrueba.WSreferencia.WebServiceSoap.BorrarBackoffice(ConsolaPrueba.WSreferencia.BorrarBackofficeRequest request) {
-            return base.Channel.BorrarBackoffice(request);
+        public void BorrarBackoffice(int bacid) {
+            base.Channel.BorrarBackoffice(bacid);
         }
         
-        public void BorrarBackoffice(ConsolaPrueba.WSreferencia.BackofficeVO bacvo) {
-            ConsolaPrueba.WSreferencia.BorrarBackofficeRequest inValue = new ConsolaPrueba.WSreferencia.BorrarBackofficeRequest();
-            inValue.Body = new ConsolaPrueba.WSreferencia.BorrarBackofficeRequestBody();
-            inValue.Body.bacvo = bacvo;
-            ConsolaPrueba.WSreferencia.BorrarBackofficeResponse retVal = ((ConsolaPrueba.WSreferencia.WebServiceSoap)(this)).BorrarBackoffice(inValue);
+        public System.Threading.Tasks.Task BorrarBackofficeAsync(int bacid) {
+            return base.Channel.BorrarBackofficeAsync(bacid);
         }
         
-        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        System.Threading.Tasks.Task<ConsolaPrueba.WSreferencia.BorrarBackofficeResponse> ConsolaPrueba.WSreferencia.WebServiceSoap.BorrarBackofficeAsync(ConsolaPrueba.WSreferencia.BorrarBackofficeRequest request) {
-            return base.Channel.BorrarBackofficeAsync(request);
+        public void CambiarRolBackoffice(int bacid, int rolid) {
+            base.Channel.CambiarRolBackoffice(bacid, rolid);
         }
         
-        public System.Threading.Tasks.Task<ConsolaPrueba.WSreferencia.BorrarBackofficeResponse> BorrarBackofficeAsync(ConsolaPrueba.WSreferencia.BackofficeVO bacvo) {
-            ConsolaPrueba.WSreferencia.BorrarBackofficeRequest inValue = new ConsolaPrueba.WSreferencia.BorrarBackofficeRequest();
-            inValue.Body = new ConsolaPrueba.WSreferencia.BorrarBackofficeRequestBody();
-            inValue.Body.bacvo = bacvo;
-            return ((ConsolaPrueba.WSreferencia.WebServiceSoap)(this)).BorrarBackofficeAsync(inValue);
-        }
-        
-        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        ConsolaPrueba.WSreferencia.ModificarBackofficeResponse ConsolaPrueba.WSreferencia.WebServiceSoap.ModificarBackoffice(ConsolaPrueba.WSreferencia.ModificarBackofficeRequest request) {
-            return base.Channel.ModificarBackoffice(request);
-        }
-        
-        public void ModificarBackoffice(ConsolaPrueba.WSreferencia.BackofficeVO bacvo) {
-            ConsolaPrueba.WSreferencia.ModificarBackofficeRequest inValue = new ConsolaPrueba.WSreferencia.ModificarBackofficeRequest();
-            inValue.Body = new ConsolaPrueba.WSreferencia.ModificarBackofficeRequestBody();
-            inValue.Body.bacvo = bacvo;
-            ConsolaPrueba.WSreferencia.ModificarBackofficeResponse retVal = ((ConsolaPrueba.WSreferencia.WebServiceSoap)(this)).ModificarBackoffice(inValue);
-        }
-        
-        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        System.Threading.Tasks.Task<ConsolaPrueba.WSreferencia.ModificarBackofficeResponse> ConsolaPrueba.WSreferencia.WebServiceSoap.ModificarBackofficeAsync(ConsolaPrueba.WSreferencia.ModificarBackofficeRequest request) {
-            return base.Channel.ModificarBackofficeAsync(request);
-        }
-        
-        public System.Threading.Tasks.Task<ConsolaPrueba.WSreferencia.ModificarBackofficeResponse> ModificarBackofficeAsync(ConsolaPrueba.WSreferencia.BackofficeVO bacvo) {
-            ConsolaPrueba.WSreferencia.ModificarBackofficeRequest inValue = new ConsolaPrueba.WSreferencia.ModificarBackofficeRequest();
-            inValue.Body = new ConsolaPrueba.WSreferencia.ModificarBackofficeRequestBody();
-            inValue.Body.bacvo = bacvo;
-            return ((ConsolaPrueba.WSreferencia.WebServiceSoap)(this)).ModificarBackofficeAsync(inValue);
+        public System.Threading.Tasks.Task CambiarRolBackofficeAsync(int bacid, int rolid) {
+            return base.Channel.CambiarRolBackofficeAsync(bacid, rolid);
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
@@ -2212,28 +2058,12 @@ namespace ConsolaPrueba.WSreferencia {
             return ((ConsolaPrueba.WSreferencia.WebServiceSoap)(this)).InsertarMonedaAsync(inValue);
         }
         
-        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        ConsolaPrueba.WSreferencia.BorrarMonedaResponse ConsolaPrueba.WSreferencia.WebServiceSoap.BorrarMoneda(ConsolaPrueba.WSreferencia.BorrarMonedaRequest request) {
-            return base.Channel.BorrarMoneda(request);
+        public void BorrarMoneda(int monid) {
+            base.Channel.BorrarMoneda(monid);
         }
         
-        public void BorrarMoneda(ConsolaPrueba.WSreferencia.MonedaVO monvo) {
-            ConsolaPrueba.WSreferencia.BorrarMonedaRequest inValue = new ConsolaPrueba.WSreferencia.BorrarMonedaRequest();
-            inValue.Body = new ConsolaPrueba.WSreferencia.BorrarMonedaRequestBody();
-            inValue.Body.monvo = monvo;
-            ConsolaPrueba.WSreferencia.BorrarMonedaResponse retVal = ((ConsolaPrueba.WSreferencia.WebServiceSoap)(this)).BorrarMoneda(inValue);
-        }
-        
-        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        System.Threading.Tasks.Task<ConsolaPrueba.WSreferencia.BorrarMonedaResponse> ConsolaPrueba.WSreferencia.WebServiceSoap.BorrarMonedaAsync(ConsolaPrueba.WSreferencia.BorrarMonedaRequest request) {
-            return base.Channel.BorrarMonedaAsync(request);
-        }
-        
-        public System.Threading.Tasks.Task<ConsolaPrueba.WSreferencia.BorrarMonedaResponse> BorrarMonedaAsync(ConsolaPrueba.WSreferencia.MonedaVO monvo) {
-            ConsolaPrueba.WSreferencia.BorrarMonedaRequest inValue = new ConsolaPrueba.WSreferencia.BorrarMonedaRequest();
-            inValue.Body = new ConsolaPrueba.WSreferencia.BorrarMonedaRequestBody();
-            inValue.Body.monvo = monvo;
-            return ((ConsolaPrueba.WSreferencia.WebServiceSoap)(this)).BorrarMonedaAsync(inValue);
+        public System.Threading.Tasks.Task BorrarMonedaAsync(int monid) {
+            return base.Channel.BorrarMonedaAsync(monid);
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
@@ -2307,28 +2137,12 @@ namespace ConsolaPrueba.WSreferencia {
             return ((ConsolaPrueba.WSreferencia.WebServiceSoap)(this)).InsertarProductoAsync(inValue);
         }
         
-        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        ConsolaPrueba.WSreferencia.BorrarProductoResponse ConsolaPrueba.WSreferencia.WebServiceSoap.BorrarProducto(ConsolaPrueba.WSreferencia.BorrarProductoRequest request) {
-            return base.Channel.BorrarProducto(request);
+        public void BorrarProducto(int proid) {
+            base.Channel.BorrarProducto(proid);
         }
         
-        public void BorrarProducto(ConsolaPrueba.WSreferencia.ProductoVO provo) {
-            ConsolaPrueba.WSreferencia.BorrarProductoRequest inValue = new ConsolaPrueba.WSreferencia.BorrarProductoRequest();
-            inValue.Body = new ConsolaPrueba.WSreferencia.BorrarProductoRequestBody();
-            inValue.Body.provo = provo;
-            ConsolaPrueba.WSreferencia.BorrarProductoResponse retVal = ((ConsolaPrueba.WSreferencia.WebServiceSoap)(this)).BorrarProducto(inValue);
-        }
-        
-        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        System.Threading.Tasks.Task<ConsolaPrueba.WSreferencia.BorrarProductoResponse> ConsolaPrueba.WSreferencia.WebServiceSoap.BorrarProductoAsync(ConsolaPrueba.WSreferencia.BorrarProductoRequest request) {
-            return base.Channel.BorrarProductoAsync(request);
-        }
-        
-        public System.Threading.Tasks.Task<ConsolaPrueba.WSreferencia.BorrarProductoResponse> BorrarProductoAsync(ConsolaPrueba.WSreferencia.ProductoVO provo) {
-            ConsolaPrueba.WSreferencia.BorrarProductoRequest inValue = new ConsolaPrueba.WSreferencia.BorrarProductoRequest();
-            inValue.Body = new ConsolaPrueba.WSreferencia.BorrarProductoRequestBody();
-            inValue.Body.provo = provo;
-            return ((ConsolaPrueba.WSreferencia.WebServiceSoap)(this)).BorrarProductoAsync(inValue);
+        public System.Threading.Tasks.Task BorrarProductoAsync(int proid) {
+            return base.Channel.BorrarProductoAsync(proid);
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
@@ -2353,6 +2167,22 @@ namespace ConsolaPrueba.WSreferencia {
             inValue.Body = new ConsolaPrueba.WSreferencia.ModificarProductoRequestBody();
             inValue.Body.provo = provo;
             return ((ConsolaPrueba.WSreferencia.WebServiceSoap)(this)).ModificarProductoAsync(inValue);
+        }
+        
+        public void ModificarStockProducto(int proid, int stock) {
+            base.Channel.ModificarStockProducto(proid, stock);
+        }
+        
+        public System.Threading.Tasks.Task ModificarStockProductoAsync(int proid, int stock) {
+            return base.Channel.ModificarStockProductoAsync(proid, stock);
+        }
+        
+        public void HabilitarProducto(int proid, bool habilito) {
+            base.Channel.HabilitarProducto(proid, habilito);
+        }
+        
+        public System.Threading.Tasks.Task HabilitarProductoAsync(int proid, bool habilito) {
+            return base.Channel.HabilitarProductoAsync(proid, habilito);
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
@@ -2402,28 +2232,12 @@ namespace ConsolaPrueba.WSreferencia {
             return ((ConsolaPrueba.WSreferencia.WebServiceSoap)(this)).InsertarRolAsync(inValue);
         }
         
-        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        ConsolaPrueba.WSreferencia.BorrarRolResponse ConsolaPrueba.WSreferencia.WebServiceSoap.BorrarRol(ConsolaPrueba.WSreferencia.BorrarRolRequest request) {
-            return base.Channel.BorrarRol(request);
+        public void BorrarRol(int rolid) {
+            base.Channel.BorrarRol(rolid);
         }
         
-        public void BorrarRol(ConsolaPrueba.WSreferencia.RolVO rolvo) {
-            ConsolaPrueba.WSreferencia.BorrarRolRequest inValue = new ConsolaPrueba.WSreferencia.BorrarRolRequest();
-            inValue.Body = new ConsolaPrueba.WSreferencia.BorrarRolRequestBody();
-            inValue.Body.rolvo = rolvo;
-            ConsolaPrueba.WSreferencia.BorrarRolResponse retVal = ((ConsolaPrueba.WSreferencia.WebServiceSoap)(this)).BorrarRol(inValue);
-        }
-        
-        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        System.Threading.Tasks.Task<ConsolaPrueba.WSreferencia.BorrarRolResponse> ConsolaPrueba.WSreferencia.WebServiceSoap.BorrarRolAsync(ConsolaPrueba.WSreferencia.BorrarRolRequest request) {
-            return base.Channel.BorrarRolAsync(request);
-        }
-        
-        public System.Threading.Tasks.Task<ConsolaPrueba.WSreferencia.BorrarRolResponse> BorrarRolAsync(ConsolaPrueba.WSreferencia.RolVO rolvo) {
-            ConsolaPrueba.WSreferencia.BorrarRolRequest inValue = new ConsolaPrueba.WSreferencia.BorrarRolRequest();
-            inValue.Body = new ConsolaPrueba.WSreferencia.BorrarRolRequestBody();
-            inValue.Body.rolvo = rolvo;
-            return ((ConsolaPrueba.WSreferencia.WebServiceSoap)(this)).BorrarRolAsync(inValue);
+        public System.Threading.Tasks.Task BorrarRolAsync(int rolid) {
+            return base.Channel.BorrarRolAsync(rolid);
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
@@ -2471,6 +2285,37 @@ namespace ConsolaPrueba.WSreferencia {
             ConsolaPrueba.WSreferencia.ListarRolesRequest inValue = new ConsolaPrueba.WSreferencia.ListarRolesRequest();
             inValue.Body = new ConsolaPrueba.WSreferencia.ListarRolesRequestBody();
             return ((ConsolaPrueba.WSreferencia.WebServiceSoap)(this)).ListarRolesAsync(inValue);
+        }
+        
+        public void BorrarCliente(int cliid) {
+            base.Channel.BorrarCliente(cliid);
+        }
+        
+        public System.Threading.Tasks.Task BorrarClienteAsync(int cliid) {
+            return base.Channel.BorrarClienteAsync(cliid);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        ConsolaPrueba.WSreferencia.ListarClientesResponse ConsolaPrueba.WSreferencia.WebServiceSoap.ListarClientes(ConsolaPrueba.WSreferencia.ListarClientesRequest request) {
+            return base.Channel.ListarClientes(request);
+        }
+        
+        public ConsolaPrueba.WSreferencia.ClienteVO[] ListarClientes() {
+            ConsolaPrueba.WSreferencia.ListarClientesRequest inValue = new ConsolaPrueba.WSreferencia.ListarClientesRequest();
+            inValue.Body = new ConsolaPrueba.WSreferencia.ListarClientesRequestBody();
+            ConsolaPrueba.WSreferencia.ListarClientesResponse retVal = ((ConsolaPrueba.WSreferencia.WebServiceSoap)(this)).ListarClientes(inValue);
+            return retVal.Body.ListarClientesResult;
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        System.Threading.Tasks.Task<ConsolaPrueba.WSreferencia.ListarClientesResponse> ConsolaPrueba.WSreferencia.WebServiceSoap.ListarClientesAsync(ConsolaPrueba.WSreferencia.ListarClientesRequest request) {
+            return base.Channel.ListarClientesAsync(request);
+        }
+        
+        public System.Threading.Tasks.Task<ConsolaPrueba.WSreferencia.ListarClientesResponse> ListarClientesAsync() {
+            ConsolaPrueba.WSreferencia.ListarClientesRequest inValue = new ConsolaPrueba.WSreferencia.ListarClientesRequest();
+            inValue.Body = new ConsolaPrueba.WSreferencia.ListarClientesRequestBody();
+            return ((ConsolaPrueba.WSreferencia.WebServiceSoap)(this)).ListarClientesAsync(inValue);
         }
     }
 }

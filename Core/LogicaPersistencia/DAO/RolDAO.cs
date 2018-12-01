@@ -17,12 +17,12 @@ namespace LogicaPersistencia.DAO
             }
         }
 
-        public void BorrarRol (RolVO rolvo)
+        public void BorrarRol (int rolid)
         {
             using (TiendaVirtualEntities db = new TiendaVirtualEntities())
             {
-                db.Entry(rolvo).State = System.Data.Entity.EntityState.Deleted;
-                db.SaveChanges();
+                //db.Entry(rolvo).State = System.Data.Entity.EntityState.Deleted;
+                //db.SaveChanges();
             }
 
 

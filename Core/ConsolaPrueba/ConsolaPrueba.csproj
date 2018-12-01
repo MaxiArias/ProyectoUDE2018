@@ -57,25 +57,10 @@
     <None Include="Connected Services\WSreferencia\ConsolaPrueba.WSreferencia.BackofficeVO.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
-    <None Include="Connected Services\WSreferencia\ConsolaPrueba.WSreferencia.BorrarBackofficeResponse.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
-    <None Include="Connected Services\WSreferencia\ConsolaPrueba.WSreferencia.BorrarCategoriaResponse.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
-    <None Include="Connected Services\WSreferencia\ConsolaPrueba.WSreferencia.BorrarMonedaResponse.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
-    <None Include="Connected Services\WSreferencia\ConsolaPrueba.WSreferencia.BorrarProductoResponse.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
-    <None Include="Connected Services\WSreferencia\ConsolaPrueba.WSreferencia.BorrarRolResponse.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
     <None Include="Connected Services\WSreferencia\ConsolaPrueba.WSreferencia.CategoriaVO.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
-    <None Include="Connected Services\WSreferencia\ConsolaPrueba.WSreferencia.HelloWorldResponse.datasource">
+    <None Include="Connected Services\WSreferencia\ConsolaPrueba.WSreferencia.ClienteVO.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
     <None Include="Connected Services\WSreferencia\ConsolaPrueba.WSreferencia.InsertarBackofficeResponse.datasource">
@@ -99,6 +84,9 @@
     <None Include="Connected Services\WSreferencia\ConsolaPrueba.WSreferencia.ListarCategoriasResponse.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
+    <None Include="Connected Services\WSreferencia\ConsolaPrueba.WSreferencia.ListarClientesResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
     <None Include="Connected Services\WSreferencia\ConsolaPrueba.WSreferencia.ListarMonedasResponse.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
@@ -106,9 +94,6 @@
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
     <None Include="Connected Services\WSreferencia\ConsolaPrueba.WSreferencia.ListarRolesResponse.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
-    <None Include="Connected Services\WSreferencia\ConsolaPrueba.WSreferencia.ModificarBackofficeResponse.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
     <None Include="Connected Services\WSreferencia\ConsolaPrueba.WSreferencia.ModificarCategoriaResponse.datasource">
@@ -132,10 +117,23 @@
     <None Include="Connected Services\WSreferencia\ConsolaPrueba.WSreferencia.RolVO.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
+    <None Include="Connected Services\WSreferencia\ConsolaPrueba.WSreferencia.UsuarioLoginResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
     <None Include="Connected Services\WSreferencia\WebService.wsdl" />
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Connected Services\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\LogicaPersistencia\LogicaPersistencia.csproj">
+      <Project>{a50b3a11-32e0-4251-9797-cdb8edd5b951}</Project>
+      <Name>LogicaPersistencia</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Modelo\Modelo.csproj">
+      <Project>{58fd2f58-0da4-4c3f-ac90-8d6cab950e0e}</Project>
+      <Name>Modelo</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <WCFMetadataStorage Include="Connected Services\WSreferencia\" />

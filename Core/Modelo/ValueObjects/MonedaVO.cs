@@ -11,12 +11,12 @@ namespace Modelo.ValueObjects
         public int IdMoneda { get; set; }
         public string Abreviatura { get; set;}
         public string Descripcion { get; set;}
-        public double Cotizacion { get; set;}
+        public decimal Cotizacion { get; set;}
 
         // Constructores
         public MonedaVO() { }
 
-        public MonedaVO(int idm, string abrev, string desc, double cotiza)
+        public MonedaVO(int idm, string abrev, string desc, decimal cotiza)
         {
             IdMoneda = idm;
             Abreviatura = abrev;

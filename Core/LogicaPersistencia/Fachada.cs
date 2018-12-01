@@ -10,8 +10,7 @@ namespace LogicaPersistencia
         public bool UsuarioLogin(string mail,string password)
         {
             UsuarioDAO usudao = new UsuarioDAO();
-            //return usudao.UsuarioLogin(mail, password);
-            return true;
+            return usudao.LoginUsuario(mail, password);
         }
 
         //metodos de categoria
@@ -24,7 +23,7 @@ namespace LogicaPersistencia
         public void BorrarCategoria(int catid)
         {
             CategoriaDAO catdao = new CategoriaDAO();
-            //catdao.BorrarCategoria(catid);
+            catdao.BorrarCategoria(catid);
         }
 
         public void ModificarCategoria(CategoriaVO catvo)
@@ -42,6 +41,9 @@ namespace LogicaPersistencia
         //metodos de backoffice
         public void InsertarBackoffice(BackofficeInsVO bacvo)
         {
+            UsuarioDAO usudao = new UsuarioDAO();
+            usudao.InsertarUsuario(bacvo);
+
             BackofficeDAO bacdao = new BackofficeDAO();
             bacdao.InsertarBackoffice(bacvo);
         }
@@ -74,7 +76,7 @@ namespace LogicaPersistencia
         public void BorrarMoneda(int monid)
         {
             MonedaDAO mondao = new MonedaDAO();
-            //mondao.BorrarMoneda(monid);
+            mondao.BorrarMoneda(monid);
         }
 
         public void ModificarMoneda(MonedaVO monvo)
@@ -148,7 +150,7 @@ namespace LogicaPersistencia
         public void BorrarRol(int rolid)
         {
             RolDAO roldao = new RolDAO();
-            //roldao.BorrarRol(rolid);
+            roldao.BorrarRol(rolid);
         }
 
         public void ModificarRol(RolVO rolvo)
@@ -166,6 +168,9 @@ namespace LogicaPersistencia
         //metodos de cliente
         public void InsertarCliente(ClienteVO clivo)
         {
+            UsuarioDAO usudao = new UsuarioDAO();
+            usudao.InsertarUsuario(clivo);
+
             ClienteDAO clidao = new ClienteDAO();
             clidao.InsertarCliente(clivo);
         }

@@ -22,12 +22,12 @@ namespace LogicaPersistencia.DAO
 
         }
 
-        public void BorrarCategoria(CategoriaVO catvo)
+        public void BorrarCategoria(int catid)
         {
             using (TiendaVirtualEntities db = new TiendaVirtualEntities())
             {
-                db.Entry(catvo).State = System.Data.Entity.EntityState.Deleted;
-                db.SaveChanges();
+                //db.Entry(catvo).State = System.Data.Entity.EntityState.Deleted;
+                //db.SaveChanges();
             }
         }
 
