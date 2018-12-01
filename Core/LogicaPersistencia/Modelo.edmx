@@ -314,7 +314,7 @@
           <Property Name="MonedaId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="MonedaAbreviatura" Type="String" MaxLength="5" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="MonedaDescripción" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="MonedaCotizacion" Type="Double" Nullable="false" />
+          <Property Name="MonedaCotizacion" Type="Decimal" Nullable="false" />
           <NavigationProperty Name="Carrito" Relationship="Self.FK_Carrito_Moneda" FromRole="Moneda" ToRole="Carrito" />
         </EntityType>
         <EntityType Name="Producto">

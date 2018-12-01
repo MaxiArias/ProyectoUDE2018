@@ -33,7 +33,7 @@ public partial class Moneda
 
     public string MonedaDescripción { get; set; }
 
-    public double MonedaCotizacion { get; set; }
+    public decimal MonedaCotizacion { get; set; }
 
 
 

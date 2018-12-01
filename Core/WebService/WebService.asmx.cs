@@ -18,6 +18,7 @@ namespace WebService
     // [System.Web.Script.Services.ScriptService]
     public class WebService : System.Web.Services.WebService
     {
+        //metodos de usuario
         [WebMethod]
         public bool UsuarioLogin(String mail,String password)
         {
@@ -25,6 +26,7 @@ namespace WebService
             return fac.UsuarioLogin(mail, password);
         }
 
+        //metodos de categoria
         [WebMethod]
         public void InsertarCategoria(CategoriaVO catvo)
         {
@@ -33,10 +35,10 @@ namespace WebService
         }
 
         [WebMethod]
-        public void BorrarCategoria(CategoriaVO catvo)
+        public void BorrarCategoria(int catid)
         {
             IFachadaWin fac = new FabricaFachadas().CrearFachadaWin;
-            fac.BorrarCategoria(catvo);
+            fac.BorrarCategoria(catid);
         }
 
         [WebMethod]
@@ -53,6 +55,7 @@ namespace WebService
             return fac.ListarCategorias();
         }
 
+        //metodos backoffice
         [WebMethod]
         public void InsertarBackoffice(BackofficeInsVO bacvo)
         {
@@ -61,17 +64,17 @@ namespace WebService
         }
 
         [WebMethod]
-        public void BorrarBackoffice(BackofficeVO bacvo)
+        public void BorrarBackoffice(int bacid)
         {
             IFachadaWin fac = new FabricaFachadas().CrearFachadaWin;
-            fac.BorrarBackoffice(bacvo);
+            fac.BorrarBackoffice(bacid);
         }
 
         [WebMethod]
-        public void ModificarBackoffice(BackofficeVO bacvo)
+        public void CambiarRolBackoffice(int bacid, int rolid)
         {
             IFachadaWin fac = new FabricaFachadas().CrearFachadaWin;
-            fac.ModificarBackoffice(bacvo);
+            fac.CambiarRolBackoffice(bacid, rolid);
         }
 
         [WebMethod]
@@ -81,6 +84,7 @@ namespace WebService
             return fac.ListarBackoffice();
         }
 
+        //metodos de moneda
         [WebMethod]
         public void InsertarMoneda(MonedaVO monvo)
         {
@@ -89,10 +93,10 @@ namespace WebService
         }
 
         [WebMethod]
-        public void BorrarMoneda(MonedaVO monvo)
+        public void BorrarMoneda(int monid)
         {
             IFachadaWin fac = new FabricaFachadas().CrearFachadaWin;
-            fac.BorrarMoneda(monvo);
+            fac.BorrarMoneda(monid);
         }
 
         [WebMethod]
@@ -109,6 +113,7 @@ namespace WebService
             return fac.ListarMonedas();
         }
 
+        //metodos de producto
         [WebMethod]
         public void InsertarProducto(ProductoVO provo)
         {
@@ -117,10 +122,10 @@ namespace WebService
         }
 
         [WebMethod]
-        public void BorrarProducto(ProductoVO provo)
+        public void BorrarProducto(int proid)
         {
             IFachadaWin fac = new FabricaFachadas().CrearFachadaWin;
-            fac.BorrarProducto(provo);
+            fac.BorrarProducto(proid);
         }
 
         [WebMethod]
@@ -131,12 +136,27 @@ namespace WebService
         }
 
         [WebMethod]
+        public void ModificarStockProducto(int proid, int stock)
+        {
+            IFachadaWin fac = new FabricaFachadas().CrearFachadaWin;
+            fac.ModificarStockProducto(proid, stock);
+        }
+
+        [WebMethod]
+        public void HabilitarProducto(int proid, Boolean habilito)
+        {
+            IFachadaWin fac = new FabricaFachadas().CrearFachadaWin;
+            fac.HabilitarProducto(proid, habilito);
+        }
+
+        [WebMethod]
         public List<ProductoVO> ListarProductos()
         {
             IFachadaWin fac = new FabricaFachadas().CrearFachadaWin;
             return fac.ListarProductos();
         }
 
+        //metodos de rol
         [WebMethod]
         public void InsertarRol(RolVO rolvo)
         {
@@ -145,10 +165,10 @@ namespace WebService
         }
 
         [WebMethod]
-        public void BorrarRol(RolVO rolvo)
+        public void BorrarRol(int rolid)
         {
             IFachadaWin fac = new FabricaFachadas().CrearFachadaWin;
-            fac.BorrarRol(rolvo);
+            fac.BorrarRol(rolid);
         }
 
         [WebMethod]
@@ -163,6 +183,21 @@ namespace WebService
         {
             IFachadaWin fac = new FabricaFachadas().CrearFachadaWin;
             return fac.ListarRoles();
+        }
+
+        //metodos de cliente
+        [WebMethod]
+        public void BorrarCliente(int cliid)
+        {
+            IFachadaWin fac = new FabricaFachadas().CrearFachadaWin;
+            fac.BorrarCliente(cliid);
+        }
+
+        [WebMethod]
+        public List<ClienteVO> ListarClientes()
+        {
+            IFachadaWin fac = new FabricaFachadas().CrearFachadaWin;
+            return fac.ListarClientes();
         }
     }
 }

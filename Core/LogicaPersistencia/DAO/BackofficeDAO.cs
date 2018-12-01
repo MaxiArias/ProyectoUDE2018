@@ -24,8 +24,6 @@ namespace LogicaPersistencia.DAO
                            where user.UsuarioEmail == bkvo.Email
                            select user).First().UsuarioId;
                 be.UsuarioId = uid;
-                System.Console.WriteLine(uid);
-                System.Console.Read();
                 be.RolId = bkvo.RolId;
                 be.BackOfficeNombre = bkvo.Nombre;
                 db.BackOffice.Add(be);

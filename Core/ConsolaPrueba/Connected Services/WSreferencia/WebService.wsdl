@@ -2,13 +2,18 @@
 <wsdl:definitions xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://TiendaVirtual.com/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" targetNamespace="http://TiendaVirtual.com/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
   <wsdl:types>
     <s:schema elementFormDefault="qualified" targetNamespace="http://TiendaVirtual.com/">
-      <s:element name="HelloWorld">
-        <s:complexType />
-      </s:element>
-      <s:element name="HelloWorldResponse">
+      <s:element name="UsuarioLogin">
         <s:complexType>
           <s:sequence>
-            <s:element minOccurs="0" maxOccurs="1" name="HelloWorldResult" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="mail" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="password" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="UsuarioLoginResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="UsuarioLoginResult" type="s:boolean" />
           </s:sequence>
         </s:complexType>
       </s:element>
@@ -33,7 +38,7 @@
       <s:element name="BorrarCategoria">
         <s:complexType>
           <s:sequence>
-            <s:element minOccurs="0" maxOccurs="1" name="catvo" type="tns:CategoriaVO" />
+            <s:element minOccurs="1" maxOccurs="1" name="catid" type="s:int" />
           </s:sequence>
         </s:complexType>
       </s:element>
@@ -97,26 +102,22 @@
       <s:element name="BorrarBackoffice">
         <s:complexType>
           <s:sequence>
-            <s:element minOccurs="0" maxOccurs="1" name="bacvo" type="tns:BackofficeVO" />
+            <s:element minOccurs="1" maxOccurs="1" name="bacid" type="s:int" />
           </s:sequence>
         </s:complexType>
       </s:element>
-      <s:complexType name="BackofficeVO">
-        <s:complexContent mixed="false">
-          <s:extension base="tns:UsuarioVO" />
-        </s:complexContent>
-      </s:complexType>
       <s:element name="BorrarBackofficeResponse">
         <s:complexType />
       </s:element>
-      <s:element name="ModificarBackoffice">
+      <s:element name="CambiarRolBackoffice">
         <s:complexType>
           <s:sequence>
-            <s:element minOccurs="0" maxOccurs="1" name="bacvo" type="tns:BackofficeVO" />
+            <s:element minOccurs="1" maxOccurs="1" name="bacid" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="rolid" type="s:int" />
           </s:sequence>
         </s:complexType>
       </s:element>
-      <s:element name="ModificarBackofficeResponse">
+      <s:element name="CambiarRolBackofficeResponse">
         <s:complexType />
       </s:element>
       <s:element name="ListarBackoffice">
@@ -134,6 +135,16 @@
           <s:element minOccurs="0" maxOccurs="unbounded" name="BackofficeVO" nillable="true" type="tns:BackofficeVO" />
         </s:sequence>
       </s:complexType>
+      <s:complexType name="BackofficeVO">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:UsuarioVO">
+            <s:sequence>
+              <s:element minOccurs="0" maxOccurs="1" name="Nombre" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="Rol" type="s:string" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
       <s:element name="InsertarMoneda">
         <s:complexType>
           <s:sequence>
@@ -143,9 +154,10 @@
       </s:element>
       <s:complexType name="MonedaVO">
         <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="IdMoneda" type="s:int" />
           <s:element minOccurs="0" maxOccurs="1" name="Abreviatura" type="s:string" />
           <s:element minOccurs="0" maxOccurs="1" name="Descripcion" type="s:string" />
-          <s:element minOccurs="1" maxOccurs="1" name="Cotizacion" type="s:double" />
+          <s:element minOccurs="1" maxOccurs="1" name="Cotizacion" type="s:decimal" />
         </s:sequence>
       </s:complexType>
       <s:element name="InsertarMonedaResponse">
@@ -154,7 +166,7 @@
       <s:element name="BorrarMoneda">
         <s:complexType>
           <s:sequence>
-            <s:element minOccurs="0" maxOccurs="1" name="monvo" type="tns:MonedaVO" />
+            <s:element minOccurs="1" maxOccurs="1" name="monid" type="s:int" />
           </s:sequence>
         </s:complexType>
       </s:element>
@@ -195,6 +207,7 @@
       </s:element>
       <s:complexType name="ProductoVO">
         <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="IdProducto" type="s:int" />
           <s:element minOccurs="0" maxOccurs="1" name="Nombre" type="s:string" />
           <s:element minOccurs="0" maxOccurs="1" name="Descripcion" type="s:string" />
           <s:element minOccurs="0" maxOccurs="1" name="Foto" type="s:string" />
@@ -211,7 +224,7 @@
       <s:element name="BorrarProducto">
         <s:complexType>
           <s:sequence>
-            <s:element minOccurs="0" maxOccurs="1" name="provo" type="tns:ProductoVO" />
+            <s:element minOccurs="1" maxOccurs="1" name="proid" type="s:int" />
           </s:sequence>
         </s:complexType>
       </s:element>
@@ -226,6 +239,28 @@
         </s:complexType>
       </s:element>
       <s:element name="ModificarProductoResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="ModificarStockProducto">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="proid" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="stock" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ModificarStockProductoResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="HabilitarProducto">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="proid" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="habilito" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="HabilitarProductoResponse">
         <s:complexType />
       </s:element>
       <s:element name="ListarProductos">
@@ -250,14 +285,19 @@
           </s:sequence>
         </s:complexType>
       </s:element>
-      <s:complexType name="RolVO" />
+      <s:complexType name="RolVO">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="IdRol" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="Nombre" type="s:string" />
+        </s:sequence>
+      </s:complexType>
       <s:element name="InsertarRolResponse">
         <s:complexType />
       </s:element>
       <s:element name="BorrarRol">
         <s:complexType>
           <s:sequence>
-            <s:element minOccurs="0" maxOccurs="1" name="rolvo" type="tns:RolVO" />
+            <s:element minOccurs="1" maxOccurs="1" name="rolid" type="s:int" />
           </s:sequence>
         </s:complexType>
       </s:element>
@@ -289,13 +329,50 @@
           <s:element minOccurs="0" maxOccurs="unbounded" name="RolVO" nillable="true" type="tns:RolVO" />
         </s:sequence>
       </s:complexType>
+      <s:element name="BorrarCliente">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="cliid" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="BorrarClienteResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="ListarClientes">
+        <s:complexType />
+      </s:element>
+      <s:element name="ListarClientesResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ListarClientesResult" type="tns:ArrayOfClienteVO" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfClienteVO">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="ClienteVO" nillable="true" type="tns:ClienteVO" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ClienteVO">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:UsuarioVO">
+            <s:sequence>
+              <s:element minOccurs="0" maxOccurs="1" name="Direccion" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="Telefono" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="TipoCliente" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="Nombre" type="s:string" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
     </s:schema>
   </wsdl:types>
-  <wsdl:message name="HelloWorldSoapIn">
-    <wsdl:part name="parameters" element="tns:HelloWorld" />
+  <wsdl:message name="UsuarioLoginSoapIn">
+    <wsdl:part name="parameters" element="tns:UsuarioLogin" />
   </wsdl:message>
-  <wsdl:message name="HelloWorldSoapOut">
-    <wsdl:part name="parameters" element="tns:HelloWorldResponse" />
+  <wsdl:message name="UsuarioLoginSoapOut">
+    <wsdl:part name="parameters" element="tns:UsuarioLoginResponse" />
   </wsdl:message>
   <wsdl:message name="InsertarCategoriaSoapIn">
     <wsdl:part name="parameters" element="tns:InsertarCategoria" />
@@ -333,11 +410,11 @@
   <wsdl:message name="BorrarBackofficeSoapOut">
     <wsdl:part name="parameters" element="tns:BorrarBackofficeResponse" />
   </wsdl:message>
-  <wsdl:message name="ModificarBackofficeSoapIn">
-    <wsdl:part name="parameters" element="tns:ModificarBackoffice" />
+  <wsdl:message name="CambiarRolBackofficeSoapIn">
+    <wsdl:part name="parameters" element="tns:CambiarRolBackoffice" />
   </wsdl:message>
-  <wsdl:message name="ModificarBackofficeSoapOut">
-    <wsdl:part name="parameters" element="tns:ModificarBackofficeResponse" />
+  <wsdl:message name="CambiarRolBackofficeSoapOut">
+    <wsdl:part name="parameters" element="tns:CambiarRolBackofficeResponse" />
   </wsdl:message>
   <wsdl:message name="ListarBackofficeSoapIn">
     <wsdl:part name="parameters" element="tns:ListarBackoffice" />
@@ -387,6 +464,18 @@
   <wsdl:message name="ModificarProductoSoapOut">
     <wsdl:part name="parameters" element="tns:ModificarProductoResponse" />
   </wsdl:message>
+  <wsdl:message name="ModificarStockProductoSoapIn">
+    <wsdl:part name="parameters" element="tns:ModificarStockProducto" />
+  </wsdl:message>
+  <wsdl:message name="ModificarStockProductoSoapOut">
+    <wsdl:part name="parameters" element="tns:ModificarStockProductoResponse" />
+  </wsdl:message>
+  <wsdl:message name="HabilitarProductoSoapIn">
+    <wsdl:part name="parameters" element="tns:HabilitarProducto" />
+  </wsdl:message>
+  <wsdl:message name="HabilitarProductoSoapOut">
+    <wsdl:part name="parameters" element="tns:HabilitarProductoResponse" />
+  </wsdl:message>
   <wsdl:message name="ListarProductosSoapIn">
     <wsdl:part name="parameters" element="tns:ListarProductos" />
   </wsdl:message>
@@ -417,10 +506,22 @@
   <wsdl:message name="ListarRolesSoapOut">
     <wsdl:part name="parameters" element="tns:ListarRolesResponse" />
   </wsdl:message>
+  <wsdl:message name="BorrarClienteSoapIn">
+    <wsdl:part name="parameters" element="tns:BorrarCliente" />
+  </wsdl:message>
+  <wsdl:message name="BorrarClienteSoapOut">
+    <wsdl:part name="parameters" element="tns:BorrarClienteResponse" />
+  </wsdl:message>
+  <wsdl:message name="ListarClientesSoapIn">
+    <wsdl:part name="parameters" element="tns:ListarClientes" />
+  </wsdl:message>
+  <wsdl:message name="ListarClientesSoapOut">
+    <wsdl:part name="parameters" element="tns:ListarClientesResponse" />
+  </wsdl:message>
   <wsdl:portType name="WebServiceSoap">
-    <wsdl:operation name="HelloWorld">
-      <wsdl:input message="tns:HelloWorldSoapIn" />
-      <wsdl:output message="tns:HelloWorldSoapOut" />
+    <wsdl:operation name="UsuarioLogin">
+      <wsdl:input message="tns:UsuarioLoginSoapIn" />
+      <wsdl:output message="tns:UsuarioLoginSoapOut" />
     </wsdl:operation>
     <wsdl:operation name="InsertarCategoria">
       <wsdl:input message="tns:InsertarCategoriaSoapIn" />
@@ -446,9 +547,9 @@
       <wsdl:input message="tns:BorrarBackofficeSoapIn" />
       <wsdl:output message="tns:BorrarBackofficeSoapOut" />
     </wsdl:operation>
-    <wsdl:operation name="ModificarBackoffice">
-      <wsdl:input message="tns:ModificarBackofficeSoapIn" />
-      <wsdl:output message="tns:ModificarBackofficeSoapOut" />
+    <wsdl:operation name="CambiarRolBackoffice">
+      <wsdl:input message="tns:CambiarRolBackofficeSoapIn" />
+      <wsdl:output message="tns:CambiarRolBackofficeSoapOut" />
     </wsdl:operation>
     <wsdl:operation name="ListarBackoffice">
       <wsdl:input message="tns:ListarBackofficeSoapIn" />
@@ -482,6 +583,14 @@
       <wsdl:input message="tns:ModificarProductoSoapIn" />
       <wsdl:output message="tns:ModificarProductoSoapOut" />
     </wsdl:operation>
+    <wsdl:operation name="ModificarStockProducto">
+      <wsdl:input message="tns:ModificarStockProductoSoapIn" />
+      <wsdl:output message="tns:ModificarStockProductoSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="HabilitarProducto">
+      <wsdl:input message="tns:HabilitarProductoSoapIn" />
+      <wsdl:output message="tns:HabilitarProductoSoapOut" />
+    </wsdl:operation>
     <wsdl:operation name="ListarProductos">
       <wsdl:input message="tns:ListarProductosSoapIn" />
       <wsdl:output message="tns:ListarProductosSoapOut" />
@@ -502,11 +611,19 @@
       <wsdl:input message="tns:ListarRolesSoapIn" />
       <wsdl:output message="tns:ListarRolesSoapOut" />
     </wsdl:operation>
+    <wsdl:operation name="BorrarCliente">
+      <wsdl:input message="tns:BorrarClienteSoapIn" />
+      <wsdl:output message="tns:BorrarClienteSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ListarClientes">
+      <wsdl:input message="tns:ListarClientesSoapIn" />
+      <wsdl:output message="tns:ListarClientesSoapOut" />
+    </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="WebServiceSoap" type="tns:WebServiceSoap">
     <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
-    <wsdl:operation name="HelloWorld">
-      <soap:operation soapAction="http://TiendaVirtual.com/HelloWorld" style="document" />
+    <wsdl:operation name="UsuarioLogin">
+      <soap:operation soapAction="http://TiendaVirtual.com/UsuarioLogin" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -568,8 +685,8 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="ModificarBackoffice">
-      <soap:operation soapAction="http://TiendaVirtual.com/ModificarBackoffice" style="document" />
+    <wsdl:operation name="CambiarRolBackoffice">
+      <soap:operation soapAction="http://TiendaVirtual.com/CambiarRolBackoffice" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -649,6 +766,24 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="ModificarStockProducto">
+      <soap:operation soapAction="http://TiendaVirtual.com/ModificarStockProducto" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="HabilitarProducto">
+      <soap:operation soapAction="http://TiendaVirtual.com/HabilitarProducto" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="ListarProductos">
       <soap:operation soapAction="http://TiendaVirtual.com/ListarProductos" style="document" />
       <wsdl:input>
@@ -694,11 +829,29 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="BorrarCliente">
+      <soap:operation soapAction="http://TiendaVirtual.com/BorrarCliente" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ListarClientes">
+      <soap:operation soapAction="http://TiendaVirtual.com/ListarClientes" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
   </wsdl:binding>
   <wsdl:binding name="WebServiceSoap12" type="tns:WebServiceSoap">
     <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
-    <wsdl:operation name="HelloWorld">
-      <soap12:operation soapAction="http://TiendaVirtual.com/HelloWorld" style="document" />
+    <wsdl:operation name="UsuarioLogin">
+      <soap12:operation soapAction="http://TiendaVirtual.com/UsuarioLogin" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
@@ -760,8 +913,8 @@
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="ModificarBackoffice">
-      <soap12:operation soapAction="http://TiendaVirtual.com/ModificarBackoffice" style="document" />
+    <wsdl:operation name="CambiarRolBackoffice">
+      <soap12:operation soapAction="http://TiendaVirtual.com/CambiarRolBackoffice" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
@@ -841,6 +994,24 @@
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="ModificarStockProducto">
+      <soap12:operation soapAction="http://TiendaVirtual.com/ModificarStockProducto" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="HabilitarProducto">
+      <soap12:operation soapAction="http://TiendaVirtual.com/HabilitarProducto" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="ListarProductos">
       <soap12:operation soapAction="http://TiendaVirtual.com/ListarProductos" style="document" />
       <wsdl:input>
@@ -879,6 +1050,24 @@
     </wsdl:operation>
     <wsdl:operation name="ListarRoles">
       <soap12:operation soapAction="http://TiendaVirtual.com/ListarRoles" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="BorrarCliente">
+      <soap12:operation soapAction="http://TiendaVirtual.com/BorrarCliente" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ListarClientes">
+      <soap12:operation soapAction="http://TiendaVirtual.com/ListarClientes" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
