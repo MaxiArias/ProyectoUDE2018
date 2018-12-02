@@ -11,9 +11,9 @@ namespace LogicaPersistencia
     {
         //metodos de usuario
         void UsuarioLogin(string mail, string password, out bool existeusr, out bool loginok);
-        
+
         //metodos de categoria
-        List<CategoriaVO> ListarCategorias();
+        List<CategoriaVO> ListarCategoriasActivas();
 
         //metodos de producto
         void ModificarStockProducto(int proid, int stock);

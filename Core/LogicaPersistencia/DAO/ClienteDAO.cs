@@ -51,7 +51,7 @@ namespace LogicaPersistencia.DAO
 
         public void ModificarCliente(ClienteVO clivo)
         {
-
+            //permite modificar telefono y direccion
         }
 
         public ClienteVO DarCliente(int cliid)
