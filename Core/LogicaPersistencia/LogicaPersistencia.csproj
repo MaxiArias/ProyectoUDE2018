@@ -68,6 +68,7 @@
       <DependentUpon>Modelo.tt</DependentUpon>
     </Compile>
     <Compile Include="Enumerados.cs" />
+    <Compile Include="Excepciones\MailNoExisteExcepction.cs" />
     <Compile Include="FabricaFachadas.cs" />
     <Compile Include="Fachada.cs" />
     <Compile Include="DAO\BackOfficeDAO.cs" />
