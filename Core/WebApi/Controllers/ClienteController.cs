@@ -10,13 +10,13 @@ namespace WebApi.Controllers
 {
     public class ClienteController : ApiController
     {
-        public void InsertarCliente(ClienteVO cvo)
+       /* public void InsertarCliente(ClienteVO cvo)
         {
             IFachadaWeb fac = new FabricaFachadas().CrearFachadaWeb;
 
 
         }
         
-
+    */
     }
 }

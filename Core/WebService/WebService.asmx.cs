@@ -42,10 +42,10 @@ namespace WebService
         }
 
         [WebMethod]
-        public void ModificarCategoria(CategoriaVO catvo)
+        public void ModificarDescripcionCategoria(int cateid, string desc)
         {
             IFachadaWin fac = new FabricaFachadas().CrearFachadaWin;
-            fac.ModificarCategoria(catvo);
+            fac.ModificarDescripcionCategoria(cateid,desc);
         }
 
         [WebMethod]
@@ -100,10 +100,10 @@ namespace WebService
         }
 
         [WebMethod]
-        public void ModificarMoneda(MonedaVO monvo)
+        public void ModificarMonedaCotizacion(int monedaid , decimal cotiza)
         {
             IFachadaWin fac = new FabricaFachadas().CrearFachadaWin;
-            fac.ModificarMoneda(monvo);
+            fac.ModificarMonedaCotizacion(monedaid, cotiza);
         }
 
         [WebMethod]
@@ -172,10 +172,10 @@ namespace WebService
         }
 
         [WebMethod]
-        public void ModificarRol(RolVO rolvo)
+        public void ModificarRol(int rolid, string nomb)
         {
             IFachadaWin fac = new FabricaFachadas().CrearFachadaWin;
-            fac.ModificarRol(rolvo);
+            fac.ModificarRol(rolid, nomb);
         }
 
         [WebMethod]
