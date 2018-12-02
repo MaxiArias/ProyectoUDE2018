@@ -15,7 +15,7 @@ namespace LogicaPersistencia
         //metodos de categoria
         void InsertarCategoria(CategoriaVO catvo);
         void BorrarCategoria(int catid);
-        void ModificarCategoria(CategoriaVO catvo);
+        void ModificarDescripcionCategoria(int catid, string descr);
         List<CategoriaVO> ListarCategorias();
 
         //metodos de backoffice
@@ -27,7 +27,7 @@ namespace LogicaPersistencia
         //metodos de moneda
         void InsertarMoneda(MonedaVO monvo);
         void BorrarMoneda(int monid);
-        void ModificarMoneda(MonedaVO monvo);
+        void ModificarMonedaCotizacion(int monedaid, decimal cotiza);
         List<MonedaVO> ListarMonedas();
 
         //metodos de producto
@@ -41,7 +41,7 @@ namespace LogicaPersistencia
         //metodos de rol
         void InsertarRol(RolVO rolvo);
         void BorrarRol(int rolid);
-        void ModificarRol(RolVO rolvo);
+        void ModificarRol(int rolid, string nom);
         List<RolVO> ListarRoles();
 
         //metodos de cliente

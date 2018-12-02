@@ -28,7 +28,7 @@ namespace LogicaPersistencia.DAO
             }
         }
 
-        public void ModificarMonedaCotizacion(int monedaid, double cotiza)
+        public void ModificarMonedaCotizacion(int monedaid, decimal cotiza)
         {
             using (TiendaVirtualEntities db = new TiendaVirtualEntities())
             {

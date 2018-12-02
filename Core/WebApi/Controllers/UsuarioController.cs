@@ -6,16 +6,17 @@ using System.Net;
 using System.Net.Http;
 using System.Web.Http;
 
-namespace WebApi.Models
+namespace WebApi.Controllers
 {
     public class UsuarioController : ApiController
     {
 
-        public bool GetUsuarioLogin(String mail, String password)
+        public void GetUsuarioLogin(String mail, String password, out bool existeusr, out bool loginok)
         {
             IFachadaWeb fac = new FabricaFachadas().CrearFachadaWeb;
-            return fac.UsuarioLogin(mail, password);
+            fac.UsuarioLogin(mail, password, out existeusr, out loginok);
         }
-    }
 
+
+    }
 }

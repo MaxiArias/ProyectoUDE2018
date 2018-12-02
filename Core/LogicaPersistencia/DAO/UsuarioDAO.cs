@@ -50,13 +50,26 @@ namespace LogicaPersistencia.DAO
         {
             using (TiendaVirtualEntities db = new TiendaVirtualEntities())
             {
-                var login= (from usuario in db.Usuario
-                            where usuario.UsuarioEmail == mail && usuario.UsuarioContrasenia==pass
-                            select usuario).FirstOrDefault();
+                var login = (from usuario in db.Usuario
+                             where usuario.UsuarioEmail == mail && usuario.UsuarioContrasenia == pass
+                             select usuario).FirstOrDefault();
 
                 return login != null;
             }
 
+        }
+        public bool ExisteUsuario(string mail)
+        {
+
+            using (TiendaVirtualEntities db = new TiendaVirtualEntities())
+            {
+                var login = (from usuario in db.Usuario
+                             where usuario.UsuarioEmail == mail
+                             select usuario).FirstOrDefault();
+
+                return login != null;
+
+            }
         }
     }
 }

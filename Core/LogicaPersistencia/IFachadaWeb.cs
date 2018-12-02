@@ -10,8 +10,8 @@ namespace LogicaPersistencia
     public interface IFachadaWeb
     {
         //metodos de usuario
-        bool UsuarioLogin(string mail, string password);
-
+        void UsuarioLogin(string mail, string password, out bool existeusr, out bool loginok);
+        
         //metodos de categoria
         List<CategoriaVO> ListarCategorias();
 
@@ -22,6 +22,7 @@ namespace LogicaPersistencia
         List<ProductoVO> ListarProductos();
 
         //metodos de carrito
+        //CarritoVO DarCarritoCliente(int usrid) 
         void InsertarCarrito(CarritoVO carvo);
         void BorrarCarrito(int carid);
         void ModificarMonedaCarrito(int carid, int monid);

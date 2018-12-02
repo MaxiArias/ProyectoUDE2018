@@ -7,12 +7,32 @@ namespace LogicaPersistencia
     public class Fachada : IFachadaWin, IFachadaWeb
     {
         //metodos de usuario
-        public bool UsuarioLogin(string mail,string password)
+        public void UsuarioLogin(string mail, string password, out bool existeusr, out bool loginok)
         {
             UsuarioDAO usudao = new UsuarioDAO();
-            return usudao.LoginUsuario(mail, password);
+            if (usudao.ExisteUsuario(mail))
+            {
+                existeusr = true;
+                loginok = usudao.LoginUsuario(mail, password);
+            }
+            else
+            {
+                existeusr = false;
+                loginok = false;
+            }
         }
 
+        public void ActivaUsuario(int usrid, bool activo)
+        {
+
+            //falta implementar
+        }
+
+        public void ModificarTipoUsuario (int usrid, string tipo)
+        {
+
+            // falta implementar
+        }
         //metodos de categoria
         public void InsertarCategoria (CategoriaVO catvo)
         {
@@ -26,10 +46,10 @@ namespace LogicaPersistencia
             catdao.BorrarCategoria(catid);
         }
 
-        public void ModificarCategoria(CategoriaVO catvo)
+        public void ModificarDescripcionCategoria(int catid, string desc)
         {
             CategoriaDAO catdao = new CategoriaDAO();
-            catdao.ModificarCategoria(catvo);
+            catdao.ModificarDescripcionCategoria(catid, desc);
         }
 
         public List<CategoriaVO> ListarCategorias()
@@ -79,10 +99,10 @@ namespace LogicaPersistencia
             mondao.BorrarMoneda(monid);
         }
 
-        public void ModificarMoneda(MonedaVO monvo)
+        public void ModificarMonedaCotizacion(int monedaid, decimal cotiza)
         {
             MonedaDAO mondao = new MonedaDAO();
-            mondao.ModificarMoneda(monvo);
+            mondao.ModificarMonedaCotizacion(monedaid, cotiza);
         }
 
         public List<MonedaVO> ListarMonedas()
@@ -153,10 +173,10 @@ namespace LogicaPersistencia
             roldao.BorrarRol(rolid);
         }
 
-        public void ModificarRol(RolVO rolvo)
+        public void ModificarRol(int rolid, string nom)
         {
             RolDAO roldao = new RolDAO();
-            roldao.ModificarRol(rolvo);
+            roldao.ModificarRol(rolid,nom);
         }
 
         public List<RolVO> ListarRoles()
@@ -193,6 +213,8 @@ namespace LogicaPersistencia
             return clidao.ListarClientes();
         }
 
+        //public CarritoVO DarCarritoCliente(int usrid)
+        //Aca habria que llamar a ExisteCarritoUsuario
         public void InsertarCarrito(CarritoVO carvo)
         {
             CarritoDAO cardao = new CarritoDAO();
@@ -209,6 +231,11 @@ namespace LogicaPersistencia
         {
             CarritoDAO cardao = new CarritoDAO();
             cardao.ModificarMonedaCarrito(carid, monid);
+        }
+
+        public bool UsuarioLogin(string mail, string password)
+        {
+            throw new System.NotImplementedException();
         }
     }
 }
