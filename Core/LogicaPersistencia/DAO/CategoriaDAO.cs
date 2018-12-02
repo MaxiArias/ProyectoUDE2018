@@ -44,6 +44,16 @@ namespace LogicaPersistencia.DAO
 
         }
 
+        public void ModificarNombreCategoria(int catid, string nom)
+        {
+            using (TiendaVirtualEntities db = new TiendaVirtualEntities())
+            {
+                var cate = db.Categoria.Where(s => s.CategoriaId == catid).FirstOrDefault();
+                cate.CategoriaNombre = nom;
+                db.SaveChanges();
+            }
+
+        }
         public List<CategoriaVO> ListarCategorias()
         {
             using (TiendaVirtualEntities db = new TiendaVirtualEntities())
@@ -62,5 +72,26 @@ namespace LogicaPersistencia.DAO
             }
 
         }
+
+
+        public void ActivarCategoria(int catid, bool activa)
+        {
+            using (TiendaVirtualEntities db = new TiendaVirtualEntities())
+            {
+                var cate = db.Categoria.Where(s => s.CategoriaId == catid).FirstOrDefault();
+                cate.CategoriaHabilitado= activa;
+                db.SaveChanges();
+            }
+
+        }
+
+        public bool EstadoCategoria(int catid)
+        {
+            using (TiendaVirtualEntities db = new TiendaVirtualEntities())
+            {
+                var cate = db.Categoria.Where(s => s.CategoriaId == catid).FirstOrDefault();
+                return cate.CategoriaHabilitado;
+            }
+        }    
     }
 }

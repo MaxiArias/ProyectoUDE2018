@@ -42,6 +42,7 @@ namespace LogicaPersistencia
 
         public void BorrarCategoria(int catid)
         {
+            //validar antes que exista la categoria y que no haya productos asociados a la misma, si hay no se puede borrar.
             CategoriaDAO catdao = new CategoriaDAO();
             catdao.BorrarCategoria(catid);
         }
@@ -62,6 +63,27 @@ namespace LogicaPersistencia
         {
             CategoriaDAO catdao = new CategoriaDAO();
             return catdao.DarCategoria(catid);
+
+        }
+
+        public void ActivarCategoria(int catid, bool activa)
+        {
+            CategoriaDAO catdao = new CategoriaDAO();
+            catdao.ActivarCategoria(catid, activa);
+
+        }
+
+        public bool EstadoCategoria(int catid)
+        {
+            CategoriaDAO catdao = new CategoriaDAO();
+            return catdao.EstadoCategoria(catid);
+
+        }
+
+        public void ModificarNombreCategoria(int catid, string nom)
+        {
+            CategoriaDAO catdao = new CategoriaDAO();
+            catdao.ModificarNombreCategoria(catid,nom);
 
         }
 
