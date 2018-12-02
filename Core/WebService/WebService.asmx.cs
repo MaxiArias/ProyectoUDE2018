@@ -55,6 +55,13 @@ namespace WebService
             return fac.ListarCategorias();
         }
 
+        [WebMethod]
+        public CategoriaVO DarCategoria(int catid)
+        {
+            IFachadaWin fac = new FabricaFachadas().CrearFachadaWin;
+            return fac.DarCategoria(catid);
+        }
+
         //metodos backoffice
         [WebMethod]
         public void InsertarBackoffice(BackofficeInsVO bacvo)
