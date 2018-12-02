@@ -58,6 +58,13 @@ namespace LogicaPersistencia
             return catdao.ListarCategorias();
         }
 
+        public CategoriaVO DarCategoria(int catid)
+        {
+            CategoriaDAO catdao = new CategoriaDAO();
+            return catdao.DarCategoria(catid);
+
+        }
+
         //metodos de backoffice
         public void InsertarBackoffice(BackofficeInsVO bacvo)
         {

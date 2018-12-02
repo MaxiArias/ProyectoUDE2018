@@ -1,4 +1,6 @@
 ﻿using LogicaPersistencia;
+using Modelo;
+using Modelo.ValueObjects;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,13 +12,12 @@ namespace WebApi.Controllers
 {
     public class ClienteController : ApiController
     {
-       /* public void InsertarCliente(ClienteVO cvo)
+       public void InsertarCliente(ClienteVO cvo)
         {
             IFachadaWeb fac = new FabricaFachadas().CrearFachadaWeb;
 
-
         }
         
-    */
+   
     }
 }

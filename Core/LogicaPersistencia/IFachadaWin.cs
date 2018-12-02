@@ -17,6 +17,7 @@ namespace LogicaPersistencia
         void BorrarCategoria(int catid);
         void ModificarDescripcionCategoria(int catid, string descr);
         List<CategoriaVO> ListarCategorias();
+        CategoriaVO DarCategoria(int catid);
 
         //metodos de backoffice
         void InsertarBackoffice(BackofficeInsVO bacvo);

@@ -52,5 +52,15 @@ namespace LogicaPersistencia.DAO
             }
         }
 
+        public CategoriaVO DarCategoria(int catid)
+        {
+
+            using (TiendaVirtualEntities db = new TiendaVirtualEntities())
+            {
+                var cate = db.Categoria.Where(s => s.CategoriaId == catid).FirstOrDefault();
+                return cate.DarCategoriaVO();
+            }
+
+        }
     }
 }
