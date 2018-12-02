@@ -59,6 +59,12 @@ namespace LogicaPersistencia
             return catdao.ListarCategorias();
         }
 
+        public List<CategoriaVO> ListarCategoriasActivas()
+        {
+            CategoriaDAO catdao = new CategoriaDAO();
+            return catdao.ListarCategoriasActivas();
+        }
+
         public CategoriaVO DarCategoria(int catid)
         {
             CategoriaDAO catdao = new CategoriaDAO();

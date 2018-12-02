@@ -62,6 +62,17 @@ namespace LogicaPersistencia.DAO
             }
         }
 
+        public List<CategoriaVO> ListarCategoriasActivas()
+        {
+            using (TiendaVirtualEntities db = new TiendaVirtualEntities())
+            {
+
+                var producto = db.Categoria.Where(s => s.CategoriaHabilitado == true).ToList();
+
+                return producto.Select(back => back.DarCategoriaVO()).ToList();
+            }
+        }
+
         public CategoriaVO DarCategoria(int catid)
         {
 
