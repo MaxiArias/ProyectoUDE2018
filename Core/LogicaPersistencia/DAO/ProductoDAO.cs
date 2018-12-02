@@ -89,6 +89,18 @@ namespace LogicaPersistencia.DAO
             }
         }
 
+        public List<ProductoVO> ListarProductoPorCategoriaHabilitado(int idcatego)
+        {
+            using (TiendaVirtualEntities db = new TiendaVirtualEntities())
+            {
+
+                var producto = db.Producto.Where(s => s.CategoriaId == idcatego && s.ProductoHabilitado==true).ToList();
+
+                return producto.Select(back => back.DarProductoVO()).ToList();
+            }
+        }
+
+
         public List<ProductoVO> ListarProductos()
         {
             using (TiendaVirtualEntities db = new TiendaVirtualEntities())
@@ -96,6 +108,18 @@ namespace LogicaPersistencia.DAO
                 return db.Producto.ToList().Select(back => back.DarProductoVO()).ToList();
             }
         }
+
+        public List<ProductoVO> ListarProductosHabilitados()
+        {
+            using (TiendaVirtualEntities db = new TiendaVirtualEntities())
+            {
+
+                var producto = db.Producto.Where(s => s.ProductoHabilitado == true).ToList();
+
+                return producto.Select(back => back.DarProductoVO()).ToList();
+            }
+        }
+
 
     }
 

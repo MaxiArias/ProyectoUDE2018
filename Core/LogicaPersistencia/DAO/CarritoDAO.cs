@@ -52,12 +52,12 @@ namespace LogicaPersistencia.DAO
 
         }
 
-        public CarritoVO DarCarrito(int idcarro)
+        public CarritoVO DarCarrito(int idcli)
         {
             using (TiendaVirtualEntities db = new TiendaVirtualEntities())
             {
 
-                var carro = db.Carrito.Where(s => s.CarritoId == idcarro).FirstOrDefault();
+                var carro = db.Carrito.Where(s => s.Cliente.UsuarioId == idcli).FirstOrDefault();
 
                 return carro.DarCarritoVO();
             }

@@ -28,11 +28,6 @@ namespace LogicaPersistencia
             //falta implementar
         }
 
-        public void ModificarTipoUsuario (int usrid, string tipo)
-        {
-
-            // falta implementar
-        }
         //metodos de categoria
         public void InsertarCategoria (CategoriaVO catvo)
         {
@@ -88,6 +83,7 @@ namespace LogicaPersistencia
 
         public void ModificarNombreCategoria(int catid, string nom)
         {
+            //validar previamente que exista la categoria
             CategoriaDAO catdao = new CategoriaDAO();
             catdao.ModificarNombreCategoria(catid,nom);
 
@@ -96,6 +92,7 @@ namespace LogicaPersistencia
         //metodos de backoffice
         public void InsertarBackoffice(BackofficeInsVO bacvo)
         {
+            //validar que no exista antes el usuario
             UsuarioDAO usudao = new UsuarioDAO();
             usudao.InsertarUsuario(bacvo);
 
@@ -105,12 +102,14 @@ namespace LogicaPersistencia
 
         public void BorrarBackoffice(int bacid)
         {
+            //validar antes que exista
             BackofficeDAO bacdao = new BackofficeDAO();
             bacdao.BorrarBackoffice(bacid);
         }
 
         public void CambiarRolBackoffice(int bacid, int rolid)
         {
+            //validar que exista
             BackofficeDAO bacdao = new BackofficeDAO();
             bacdao.CambiarRolBackoffice(bacid, rolid);
         }
@@ -136,6 +135,7 @@ namespace LogicaPersistencia
 
         public void ModificarMonedaCotizacion(int monedaid, decimal cotiza)
         {
+            //que exista
             MonedaDAO mondao = new MonedaDAO();
             mondao.ModificarMonedaCotizacion(monedaid, cotiza);
         }
@@ -171,6 +171,11 @@ namespace LogicaPersistencia
             return prodao.ListarProductos();
         }
 
+        public List<ProductoVO> ListarProductosHabilitados()
+        {
+            ProductoDAO prodao = new ProductoDAO();
+            return prodao.ListarProductosHabilitados();
+        }
         public void ModificarStockProducto(int proid, int stock)
         {
             ProductoDAO prodao = new ProductoDAO();
@@ -195,6 +200,12 @@ namespace LogicaPersistencia
             return prodao.ListarProductoPorCategoria(catid);
         }
 
+        public List<ProductoVO> ListarProductosPorCategoriaHabilitados(int catid)
+        {
+            //validar antes que la categoria exista
+            ProductoDAO prodao = new ProductoDAO();
+            return prodao.ListarProductoPorCategoriaHabilitado(catid);
+        }
         //metodos de rol
         public void InsertarRol(RolVO rolvo)
         {
@@ -232,6 +243,7 @@ namespace LogicaPersistencia
 
         public void BorrarCliente(int cliid)
         {
+            //verificar que exista
             ClienteDAO clidao = new ClienteDAO();
             clidao.BorrarCliente(cliid);
         }
@@ -250,11 +262,11 @@ namespace LogicaPersistencia
 
         //public CarritoVO DarCarritoCliente(int usrid)
         //Aca habria que llamar a ExisteCarritoUsuario
-        public void InsertarCarrito(CarritoVO carvo)
-        {
-            CarritoDAO cardao = new CarritoDAO();
-            cardao.InsertarCarrito(carvo);
-        }
+        //public void InsertarCarrito(CarritoVO carvo)
+        //{
+        //    CarritoDAO cardao = new CarritoDAO();
+        //    cardao.InsertarCarrito(carvo);
+        //}
 
         public void BorrarCarrito(int carid)
         {
@@ -268,9 +280,12 @@ namespace LogicaPersistencia
             cardao.ModificarMonedaCarrito(carid, monid);
         }
 
-        public bool UsuarioLogin(string mail, string password)
-        {
-            throw new System.NotImplementedException();
-        }
+        //AgregarItemCarrito
+
+        //BorrarItemCarrito
+
+        //DarCarrito
+
+        
     }
 }
