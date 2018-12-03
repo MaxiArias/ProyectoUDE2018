@@ -120,7 +120,42 @@ namespace LogicaPersistencia.DAO
             }
         }
 
+        public bool ExisteProducto(int proid)
+        {
+            using (TiendaVirtualEntities db = new TiendaVirtualEntities())
+            {
+                var existe = (from pro in db.Producto
+                              where pro.ProductoId == proid
+                              select pro).FirstOrDefault();
 
+                return existe != null;
+            }
+        }
+
+        public bool ExisteProducto(string nombre)
+        {
+            using (TiendaVirtualEntities db = new TiendaVirtualEntities())
+            {
+                var existe = (from pro in db.Producto
+                              where pro.ProductoNombre == nombre
+                              select pro).FirstOrDefault();
+
+                return existe != null;
+            }
+        }
+
+        //busca si existe otro producto con ese nombre pero con distinto id
+        public bool ExisteProducto(int proid, string nombre)
+        {
+            using (TiendaVirtualEntities db = new TiendaVirtualEntities())
+            {
+                var existe = (from pro in db.Producto
+                              where pro.ProductoNombre == nombre && pro.ProductoId != proid
+                              select pro).FirstOrDefault();
+
+                return existe != null;
+            }
+        }
     }
 
 }

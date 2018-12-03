@@ -45,5 +45,29 @@ namespace LogicaPersistencia.DAO
                 return db.Moneda.ToList().Select(back => back.DarMonedaVO()).ToList();
             }
         }
+
+        public bool ExisteMoneda(String nombre)
+        {
+            using (TiendaVirtualEntities db = new TiendaVirtualEntities())
+            {
+                var existe = (from mon in db.Moneda
+                              where mon.MonedaDescripción == nombre
+                              select mon).FirstOrDefault();
+
+                return existe != null;
+            }
+        }
+
+        public bool ExisteMoneda(int monid)
+        {
+            using (TiendaVirtualEntities db = new TiendaVirtualEntities())
+            {
+                var existe = (from mon in db.Moneda
+                              where mon.MonedaId == monid
+                              select mon).FirstOrDefault();
+
+                return existe != null;
+            }
+        }
     }
 }

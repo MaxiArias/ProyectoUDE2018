@@ -10,7 +10,7 @@ namespace LogicaPersistencia
     public interface IFachadaWin
     {
         //metodos de usuario
-        bool UsuarioLogin(string mail, string password);
+        bool UsuarioLoginWIN(string mail, string password);
 
         //metodos de categoria
         void InsertarCategoria(CategoriaVO catvo);

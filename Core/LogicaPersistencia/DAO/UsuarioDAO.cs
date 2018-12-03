@@ -71,5 +71,16 @@ namespace LogicaPersistencia.DAO
 
             }
         }
+        public bool ExisteUsuario(int usrid)
+        {
+            using (TiendaVirtualEntities db = new TiendaVirtualEntities())
+            {
+                var existe = (from usuario in db.Usuario
+                             where usuario.UsuarioId == usrid
+                             select usuario).FirstOrDefault();
+
+                return existe != null;
+            }
+        }
     }
 }

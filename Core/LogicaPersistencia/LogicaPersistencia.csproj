@@ -68,7 +68,24 @@
       <DependentUpon>Modelo.tt</DependentUpon>
     </Compile>
     <Compile Include="Enumerados.cs" />
-    <Compile Include="Excepciones\MailNoExisteExcepction.cs" />
+    <Compile Include="Excepciones\BackofficeNoExisteException.cs" />
+    <Compile Include="Excepciones\CategoriaConProductosAsociadosException.cs" />
+    <Compile Include="Excepciones\CategoriaNoExisteException.cs" />
+    <Compile Include="Excepciones\CategoriaNoHabilitadaException.cs" />
+    <Compile Include="Excepciones\CategoriaYaExisteException.cs" />
+    <Compile Include="Excepciones\ClienteNoExisteException.cs" />
+    <Compile Include="Excepciones\LoginIncorrectoException.cs" />
+    <Compile Include="Excepciones\MonedaNoExisteException.cs" />
+    <Compile Include="Excepciones\MonedaYaExisteException.cs" />
+    <Compile Include="Excepciones\PersonaYaExisteException.cs" />
+    <Compile Include="Excepciones\ProductoNoExisteException.cs" />
+    <Compile Include="Excepciones\ProductoYaExisteException.cs" />
+    <Compile Include="Excepciones\RolNoExisteException.cs" />
+    <Compile Include="Excepciones\RolYaExisteException.cs" />
+    <Compile Include="Excepciones\StockNegativoException.cs" />
+    <Compile Include="Excepciones\UsuarioNoExisteException.cs" />
+    <Compile Include="Excepciones\UsuarioNoHabilitadoException.cs" />
+    <Compile Include="Excepciones\UsuarioYaExisteException.cs" />
     <Compile Include="FabricaFachadas.cs" />
     <Compile Include="Fachada.cs" />
     <Compile Include="DAO\BackOfficeDAO.cs" />

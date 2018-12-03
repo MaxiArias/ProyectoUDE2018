@@ -10,7 +10,7 @@ namespace LogicaPersistencia
     public interface IFachadaWeb
     {
         //metodos de usuario
-        void UsuarioLogin(string mail, string password, out bool existeusr, out bool loginok);
+        void UsuarioLoginWEB(string mail, string password, out bool existeusr, out bool loginok);
 
         //metodos de categoria
         List<CategoriaVO> ListarCategoriasActivas();

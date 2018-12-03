@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Services;
+using LogicaPersistencia.Excepciones;
 
 namespace WebService
 {
@@ -20,10 +21,30 @@ namespace WebService
     {
         //metodos de usuario
         [WebMethod]
-        public bool UsuarioLogin(String mail,String password)
+        public Enumerados.TipoError UsuarioLoginWIN(String mail, String password)
         {
             IFachadaWin fac = new FabricaFachadas().CrearFachadaWin;
-            return fac.UsuarioLogin(mail, password);
+            try
+            {
+                fac.UsuarioLoginWIN(mail, password);
+                return Enumerados.TipoError.Ok;
+            }
+            catch (UsuarioNoExisteException)
+            {
+                return Enumerados.TipoError.
+            }
+            catch (LoginIncorrectoException)
+            {
+
+            }
+            catch (UsuarioNoHabilitadoException)
+            {
+
+            }
+            catch (Exception)
+            {
+
+            }
         }
 
         //metodos de categoria
