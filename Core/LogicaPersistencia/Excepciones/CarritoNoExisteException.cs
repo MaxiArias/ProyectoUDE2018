@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace LogicaPersistencia.Excepciones
 {
-    public class CategoriaConProductosAsociadosException : ApplicationException
+    public class CarritoNoExisteException : ApplicationException
     {
-        public CategoriaConProductosAsociadosException(String msg) : base(msg)
+        public CarritoNoExisteException(String msg) : base(msg)
         {
 
         }

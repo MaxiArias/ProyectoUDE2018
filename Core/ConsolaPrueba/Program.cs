@@ -31,8 +31,7 @@ namespace ConsolaPrueba
                 RolId = 1,
                 TipoUsuario = "backoffice"
             };
-            ws.InsertarBackoffice(bo);
-
+            Console.WriteLine(ws.InsertarBackoffice(bo));
 
             //IFachadaWin fac = new FabricaFachadas().CrearFachadaWin;
             //fac.InsertarBackoffice(bo);

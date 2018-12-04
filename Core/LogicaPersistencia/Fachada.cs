@@ -347,7 +347,7 @@ namespace LogicaPersistencia
             }
             else
             {
-                throw new ProductoYaExisteException("No existe un producto con ese id");
+                throw new ProductoNoExisteException("No existe un producto con ese id");
             }
         }
 
@@ -552,32 +552,89 @@ namespace LogicaPersistencia
             return clidao.ListarClientes();
         }
 
-        //public CarritoVO DarCarritoCliente(int usrid)
-        //Aca habria que llamar a ExisteCarritoUsuario
-        //public void InsertarCarrito(CarritoVO carvo)
-        //{
-        //    CarritoDAO cardao = new CarritoDAO();
-        //    cardao.InsertarCarrito(carvo);
-        //}
-
-        public void BorrarCarrito(int carid)
+        //metodos de carrito
+        public CarritoVO DarCarritoCliente(int usrid)
         {
-            CarritoDAO cardao = new CarritoDAO();
-            cardao.BorrarCarrito(carid);
+            ClienteDAO clidao = new ClienteDAO();
+            if (clidao.ExisteCliente(usrid))
+            {
+                CarritoDAO cardao = new CarritoDAO();
+                if (!cardao.ExisteCarrito(usrid))
+                {
+                    MonedaDAO mondao = new MonedaDAO();
+                    int monedaPorDefecto = mondao.ListarMonedas()[0].IdMoneda;
+                    CarritoVO carvo = new CarritoVO()
+                    {
+                        IdCliente = usrid,
+                        FechaCreacion = System.DateTime.Today,
+                        IdMoneda = monedaPorDefecto
+                    };
+                    cardao.InsertarCarrito(carvo);
+                }  
+                return cardao.DarCarrito(usrid);
+            }
+            else
+            {
+                throw new ClienteNoExisteException("No existe un cliente con ese id");
+            }
         }
 
-        public void ModificarMonedaCarrito(int carid, int monid)
+        public void BorrarCarrito(int cliid)
         {
-            CarritoDAO cardao = new CarritoDAO();
-            cardao.ModificarMonedaCarrito(carid, monid);
+            ClienteDAO clidao=new ClienteDAO();
+            if (clidao.ExisteCliente(cliid))
+            {
+                CarritoDAO cardao = new CarritoDAO();
+                if (cardao.ExisteCarrito(cliid))
+                {
+                    CarritoVO carvo = cardao.DarCarrito(cliid);
+                    cardao.BorrarCarrito(carvo.IdCarrito);
+                }
+                else
+                {
+                    throw new CarritoNoExisteException("El cliente no tiene carrito asociado");
+                }
+            }
+            throw new ClienteNoExisteException("No existe un cliente con ese id");
         }
 
-        //AgregarItemCarrito
+        public void ModificarMonedaCarrito(int cliid, int monid)
+        {
+            ClienteDAO clidao = new ClienteDAO();
+            if (clidao.ExisteCliente(cliid))
+            {
+                CarritoDAO cardao = new CarritoDAO();
+                if (cardao.ExisteCarrito(cliid))
+                {
+                    MonedaDAO mondao = new MonedaDAO();
+                    if (mondao.ExisteMoneda(monid))
+                    {
+                        CarritoVO carvo = cardao.DarCarrito(cliid);
+                        cardao.ModificarMonedaCarrito(carvo.IdCarrito, monid);
+                    }
+                    else
+                    {
+                        throw new MonedaNoExisteException("No existe una moneda con ese id");
+                    }
+                }
+                else
+                {
+                    throw new CarritoNoExisteException("El cliente no tiene carrito asociado");
+                }
+            }
+            throw new ClienteNoExisteException("No existe un cliente con ese id");
+        }
 
-        //BorrarItemCarrito
+        //metodos de item carrito
+        public void AgregarItemCarrito(int cliid, ItemCarritoVO item)
+        {
+            
+        }
 
-        //DarCarrito
+        public void BorrarItemCarrito(int cliid, int itcid)
+        {
 
+        }
         
     }
 }

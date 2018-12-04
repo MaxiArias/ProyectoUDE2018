@@ -69,6 +69,7 @@
     </Compile>
     <Compile Include="Enumerados.cs" />
     <Compile Include="Excepciones\BackofficeNoExisteException.cs" />
+    <Compile Include="Excepciones\CarritoNoExisteException.cs" />
     <Compile Include="Excepciones\CategoriaConProductosAsociadosException.cs" />
     <Compile Include="Excepciones\CategoriaNoExisteException.cs" />
     <Compile Include="Excepciones\CategoriaNoHabilitadaException.cs" />

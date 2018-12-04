@@ -22,24 +22,27 @@
 
         public enum TipoError
         {
-            Ok = 0,
-            UsuarioYaExiste = 1,
-            UsuarioNoExiste = 2,
-            LoginIncorrecto = 3,
-            UsuarioNoHabilitado = 4,
-            CategoriaYaExiste = 5,
-            CategoriaNoExiste = 6,
-            BackofficeNoExiste = 7,
-            MonedaYaExiste = 8,
-            MonedaNoExiste = 9,
-            ProductoYaExiste = 10,
-            ProductoNoExiste = 11,
-            StockInsuficiente = 12,
-            RolYaExiste = 13,
-            RolNoExiste = 14,
-            CedulaYaExiste = 15,
-            CarritoYaExiste = 16,
-            CarritoNoExiste = 17
+            Ok,
+            BackofficeNoExiste,
+            CarritoNoExiste,
+            CategoriaConProductosAsociados,
+            CategoriaNoExiste,
+            CategoriaNoHabilitada,
+            CategoriaYaExiste,
+            ClienteNoExiste,
+            LoginIncorrecto,
+            MonedaNoExiste,
+            MonedaYaExiste,
+            PersonaYaExiste,
+            ProductoNoExiste,
+            ProductoYaExiste,
+            RolNoExiste,
+            RolYaExiste,
+            StockNegativo,
+            UsuarioNoExiste,
+            UsuarioNoHabilitado,
+            UsuarioYaExiste,
+            ErrorDesconocido
         }
     }
 }
