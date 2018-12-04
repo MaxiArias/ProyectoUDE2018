@@ -103,6 +103,30 @@ namespace LogicaPersistencia.DAO
                 var cate = db.Categoria.Where(s => s.CategoriaId == catid).FirstOrDefault();
                 return cate.CategoriaHabilitado;
             }
-        }    
+        }  
+        
+        public bool ExisteCategoria(String nombre)
+        {
+            using (TiendaVirtualEntities db = new TiendaVirtualEntities())
+            {
+                var existe = (from cat in db.Categoria
+                              where cat.CategoriaNombre == nombre
+                              select cat).FirstOrDefault();
+
+                return existe != null;
+            }
+        }
+
+        public bool ExisteCategoria(int catid)
+        {
+            using (TiendaVirtualEntities db = new TiendaVirtualEntities())
+            {
+                var existe = (from cat in db.Categoria
+                              where cat.CategoriaId == catid
+                              select cat).FirstOrDefault();
+
+                return existe != null;
+            }
+        }
     }
 }

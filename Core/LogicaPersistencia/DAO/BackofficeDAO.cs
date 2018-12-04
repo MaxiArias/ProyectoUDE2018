@@ -77,5 +77,31 @@ namespace LogicaPersistencia.DAO
             }
         }
 
+        public bool ExisteBackoffice(int bacid)
+        {
+            using (TiendaVirtualEntities db = new TiendaVirtualEntities())
+            {
+
+                var existe = (from back in db.BackOffice
+                              where back.UsuarioId == bacid
+                              select back).FirstOrDefault();
+
+                return existe != null;
+            }
+        }
+
+        public BackofficeVO DarBackofficePorEmail(string email)
+        {
+            using (TiendaVirtualEntities db = new TiendaVirtualEntities())
+            {
+
+                var bo = (from back in db.BackOffice
+                          where back.Usuario.UsuarioEmail == email
+                          select back).First();
+
+                return bo.DarBackofficeVO();
+            }
+        }
+
     }
 }

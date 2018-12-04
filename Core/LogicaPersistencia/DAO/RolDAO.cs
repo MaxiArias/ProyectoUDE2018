@@ -49,5 +49,29 @@ namespace LogicaPersistencia.DAO
 
         }
 
+        public bool ExisteRol(int rolid)
+        {
+            using (TiendaVirtualEntities db = new TiendaVirtualEntities())
+            {
+                var existe = (from rol in db.Rol
+                              where rol.RolId == rolid
+                              select rol).FirstOrDefault();
+
+                return existe != null;
+            }
+        }
+
+        public bool ExisteRol(string nombre)
+        {
+            using (TiendaVirtualEntities db = new TiendaVirtualEntities())
+            {
+                var existe = (from rol in db.Rol
+                              where rol.RolNombre == nombre
+                              select rol).FirstOrDefault();
+
+                return existe != null;
+            }
+        }
+
     }
 }

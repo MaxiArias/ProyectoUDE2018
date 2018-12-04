@@ -63,6 +63,12 @@
     <None Include="Connected Services\WSreferencia\ConsolaPrueba.WSreferencia.ClienteVO.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
+    <None Include="Connected Services\WSreferencia\ConsolaPrueba.WSreferencia.DarCategoriaResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\WSreferencia\ConsolaPrueba.WSreferencia.EstadoCategoriaResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
     <None Include="Connected Services\WSreferencia\ConsolaPrueba.WSreferencia.InsertarBackofficeResponse.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
@@ -96,10 +102,10 @@
     <None Include="Connected Services\WSreferencia\ConsolaPrueba.WSreferencia.ListarRolesResponse.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
-    <None Include="Connected Services\WSreferencia\ConsolaPrueba.WSreferencia.ModificarCategoriaResponse.datasource">
+    <None Include="Connected Services\WSreferencia\ConsolaPrueba.WSreferencia.ModificarDescripcionCategoriaResponse.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
-    <None Include="Connected Services\WSreferencia\ConsolaPrueba.WSreferencia.ModificarMonedaResponse.datasource">
+    <None Include="Connected Services\WSreferencia\ConsolaPrueba.WSreferencia.ModificarNombreCategoriaResponse.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
     <None Include="Connected Services\WSreferencia\ConsolaPrueba.WSreferencia.ModificarProductoResponse.datasource">
@@ -117,7 +123,10 @@
     <None Include="Connected Services\WSreferencia\ConsolaPrueba.WSreferencia.RolVO.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
-    <None Include="Connected Services\WSreferencia\ConsolaPrueba.WSreferencia.UsuarioLoginResponse.datasource">
+    <None Include="Connected Services\WSreferencia\ConsolaPrueba.WSreferencia.TipoError.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\WSreferencia\ConsolaPrueba.WSreferencia.UsuarioLoginWINResponse.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
     <None Include="Connected Services\WSreferencia\WebService.wsdl" />

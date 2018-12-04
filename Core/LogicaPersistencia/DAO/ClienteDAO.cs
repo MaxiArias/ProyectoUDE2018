@@ -65,5 +65,70 @@ namespace LogicaPersistencia.DAO
             return null;
         }
 
+        public bool ExisteCliente(string mail)
+        {
+            using (TiendaVirtualEntities db = new TiendaVirtualEntities())
+            {
+
+                var primerClienteEseMail = (from clie in db.Cliente
+                                            where clie.Usuario.UsuarioEmail == mail
+                                            select clie).FirstOrDefault();
+
+                return primerClienteEseMail != null;
+            }
+        }
+
+        public bool ExisteCliente(int cliid)
+        {
+            using (TiendaVirtualEntities db = new TiendaVirtualEntities())
+            {
+
+                var primerClienteEseMail = (from clie in db.Cliente
+                                            where clie.UsuarioId == cliid
+                                            select clie).FirstOrDefault();
+
+                return primerClienteEseMail != null;
+            }
+        }
+
+        public bool ExistePersona(int? cedula)
+        {
+            if (cedula.HasValue)
+            {
+                using (TiendaVirtualEntities db = new TiendaVirtualEntities())
+                {
+                    var existe = (from clie in db.Cliente
+                                  where clie.ClienteCI == cedula
+                                  select clie).FirstOrDefault();
+
+                    return existe != null;
+                }
+            }
+            else
+            {
+                return true;
+            }
+        }
+
+        public ClienteVO DarClientePorEmail(string email)
+        {
+            using (TiendaVirtualEntities db = new TiendaVirtualEntities())
+            {
+
+                var cl = (from clie in db.Cliente
+                          where clie.Usuario.UsuarioEmail == email
+                          select clie).First();
+
+                if (cl.TipoCliente == Enumerados.TipoCliente.Persona.ToString())
+                {
+                    return cl.DarPersona();
+                }
+                else
+                {
+                    return cl.DarEmpresa();
+                }
+            }
+        }
+
     }
 }

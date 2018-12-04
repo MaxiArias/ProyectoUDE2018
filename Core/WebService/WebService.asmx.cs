@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Services;
+using LogicaPersistencia.Excepciones;
 
 namespace WebService
 {
@@ -20,184 +21,625 @@ namespace WebService
     {
         //metodos de usuario
         [WebMethod]
-        public bool UsuarioLogin(String mail,String password)
+        public Enumerados.TipoError UsuarioLoginWIN(String mail, String password)
         {
-            IFachadaWin fac = new FabricaFachadas().CrearFachadaWin;
-            return fac.UsuarioLogin(mail, password);
+            try
+            {
+                IFachadaWin fac = new FabricaFachadas().CrearFachadaWin;
+                fac.UsuarioLoginWIN(mail, password);
+                return Enumerados.TipoError.Ok;
+            }
+            catch (UsuarioNoExisteException)
+            {
+                return Enumerados.TipoError.UsuarioNoExiste;
+            }
+            catch (LoginIncorrectoException)
+            {
+                return Enumerados.TipoError.LoginIncorrecto;
+            }
+            catch (UsuarioNoHabilitadoException)
+            {
+                return Enumerados.TipoError.UsuarioNoHabilitado;
+            }
+            catch (Exception)
+            {
+                return Enumerados.TipoError.ErrorDesconocido;
+            }
+        }
+
+        [WebMethod]
+        public Enumerados.TipoError ActivaUsuario(int usrid, bool activo)
+        { 
+            try
+            {
+                IFachadaWin fac = new FabricaFachadas().CrearFachadaWin;
+                fac.ActivaUsuario(usrid, activo);
+                return Enumerados.TipoError.Ok;
+            }
+            catch (UsuarioNoExisteException)
+            {
+                return Enumerados.TipoError.UsuarioNoExiste;
+            }
+            catch (Exception)
+            {
+                return Enumerados.TipoError.ErrorDesconocido;
+            }
         }
 
         //metodos de categoria
         [WebMethod]
-        public void InsertarCategoria(CategoriaVO catvo)
+        public Enumerados.TipoError InsertarCategoria(CategoriaVO catvo)
         {
-            IFachadaWin fac = new FabricaFachadas().CrearFachadaWin;
-            fac.InsertarCategoria(catvo);
+            try
+            {
+                IFachadaWin fac = new FabricaFachadas().CrearFachadaWin;
+                fac.InsertarCategoria(catvo);
+                return Enumerados.TipoError.Ok;
+            }
+            catch (CategoriaYaExisteException)
+            {
+                return Enumerados.TipoError.CategoriaYaExiste;
+            }
+            catch (Exception)
+            {
+                return Enumerados.TipoError.ErrorDesconocido;
+            }
         }
 
         [WebMethod]
-        public void BorrarCategoria(int catid)
+        public Enumerados.TipoError BorrarCategoria(int catid)
         {
-            IFachadaWin fac = new FabricaFachadas().CrearFachadaWin;
-            fac.BorrarCategoria(catid);
+            try
+            {
+                IFachadaWin fac = new FabricaFachadas().CrearFachadaWin;
+                fac.BorrarCategoria(catid);
+                return Enumerados.TipoError.Ok;
+            }
+            catch (CategoriaNoExisteException)
+            {
+                return Enumerados.TipoError.CategoriaNoExiste;
+            }
+            catch (CategoriaConProductosAsociadosException)
+            {
+                return Enumerados.TipoError.CategoriaConProductosAsociados;
+            }
+            catch (Exception)
+            {
+                return Enumerados.TipoError.ErrorDesconocido;
+            }
         }
 
         [WebMethod]
-        public void ModificarDescripcionCategoria(int cateid, string desc)
+        public Enumerados.TipoError ModificarDescripcionCategoria(int cateid, string desc)
         {
-            IFachadaWin fac = new FabricaFachadas().CrearFachadaWin;
-            fac.ModificarDescripcionCategoria(cateid,desc);
+            try
+            {
+                IFachadaWin fac = new FabricaFachadas().CrearFachadaWin;
+                fac.ModificarDescripcionCategoria(cateid, desc);
+                return Enumerados.TipoError.Ok;
+            }
+            catch (CategoriaNoExisteException)
+            {
+                return Enumerados.TipoError.CategoriaNoExiste;
+            }
+            catch (Exception)
+            {
+                return Enumerados.TipoError.ErrorDesconocido;
+            }
         }
 
         [WebMethod]
-        public List<CategoriaVO> ListarCategorias()
+        public Enumerados.TipoError ListarCategorias(out List<CategoriaVO> lista)
         {
-            IFachadaWin fac = new FabricaFachadas().CrearFachadaWin;
-            return fac.ListarCategorias();
+            lista = null;
+            try
+            {
+                IFachadaWin fac = new FabricaFachadas().CrearFachadaWin;
+                lista = fac.ListarCategorias();
+                return Enumerados.TipoError.Ok;
+            }
+            catch (Exception)
+            {
+                return Enumerados.TipoError.ErrorDesconocido;
+            }
+        }
+
+        [WebMethod]
+        public Enumerados.TipoError DarCategoria(int catid, out CategoriaVO catvo)
+        {
+            catvo = null;
+            try
+            {
+                IFachadaWin fac = new FabricaFachadas().CrearFachadaWin;
+                catvo = fac.DarCategoria(catid);
+                return Enumerados.TipoError.Ok;
+            }
+            catch (CategoriaNoExisteException)
+            {
+                return Enumerados.TipoError.CategoriaNoExiste;
+            }
+        }
+
+        [WebMethod]
+        public Enumerados.TipoError EstadoCategoria(int catid, out bool activo)
+        {
+            activo = false;
+            try
+            {
+                IFachadaWin fac = new FabricaFachadas().CrearFachadaWin;
+                activo = fac.EstadoCategoria(catid);
+                return Enumerados.TipoError.Ok;
+            }
+            catch(CategoriaNoExisteException)
+            {
+                return Enumerados.TipoError.CategoriaNoExiste;
+            }
+            catch (Exception)
+            {
+                return Enumerados.TipoError.ErrorDesconocido;
+            }
+        }
+
+        [WebMethod]
+        public Enumerados.TipoError ActivarCategoria(int catid, bool activa)
+        {
+            try
+            {
+                IFachadaWin fac = new FabricaFachadas().CrearFachadaWin;
+                fac.ActivarCategoria(catid, activa);
+                return Enumerados.TipoError.Ok;
+            }
+            catch (CategoriaNoExisteException)
+            {
+                return Enumerados.TipoError.CategoriaNoExiste;
+            }
+            catch (Exception)
+            {
+                return Enumerados.TipoError.ErrorDesconocido;
+            }
+        }
+
+        [WebMethod]
+        public Enumerados.TipoError ModificarNombreCategoria(int catid, string nom)
+        {
+            try
+            {
+                IFachadaWin fac = new FabricaFachadas().CrearFachadaWin;
+                fac.ModificarNombreCategoria(catid, nom);
+                return Enumerados.TipoError.Ok;
+    }
+            catch (CategoriaNoExisteException)
+            {
+                return Enumerados.TipoError.CategoriaNoExiste;
+            }
+            catch (Exception)
+            {
+                return Enumerados.TipoError.ErrorDesconocido;
+            }
         }
 
         //metodos backoffice
         [WebMethod]
-        public void InsertarBackoffice(BackofficeInsVO bacvo)
+        public Enumerados.TipoError InsertarBackoffice(BackofficeInsVO bacvo)
         {
-            IFachadaWin fac = new FabricaFachadas().CrearFachadaWin;
-            fac.InsertarBackoffice(bacvo);
+            try
+            {
+                IFachadaWin fac = new FabricaFachadas().CrearFachadaWin;
+                fac.InsertarBackoffice(bacvo);
+                return Enumerados.TipoError.Ok;
+            }
+            catch (UsuarioYaExisteException)
+            {
+                return Enumerados.TipoError.UsuarioYaExiste;
+            }
+            catch (Exception)
+            {
+                return Enumerados.TipoError.ErrorDesconocido;
+            }
         }
 
         [WebMethod]
-        public void BorrarBackoffice(int bacid)
+        public Enumerados.TipoError BorrarBackoffice(int bacid)
         {
-            IFachadaWin fac = new FabricaFachadas().CrearFachadaWin;
-            fac.BorrarBackoffice(bacid);
+            try
+            {
+                IFachadaWin fac = new FabricaFachadas().CrearFachadaWin;
+                fac.BorrarBackoffice(bacid);
+                return Enumerados.TipoError.Ok;
+            }
+            catch (BackofficeNoExisteException)
+            {
+                return Enumerados.TipoError.BackofficeNoExiste;
+            }
+            catch (Exception)
+            {
+                return Enumerados.TipoError.ErrorDesconocido;
+            }
         }
 
         [WebMethod]
-        public void CambiarRolBackoffice(int bacid, int rolid)
+        public Enumerados.TipoError CambiarRolBackoffice(int bacid, int rolid)
         {
-            IFachadaWin fac = new FabricaFachadas().CrearFachadaWin;
-            fac.CambiarRolBackoffice(bacid, rolid);
+            try
+            {
+                IFachadaWin fac = new FabricaFachadas().CrearFachadaWin;
+                fac.CambiarRolBackoffice(bacid, rolid);
+                return Enumerados.TipoError.Ok;
+            }
+            catch (BackofficeNoExisteException)
+            {
+                return Enumerados.TipoError.BackofficeNoExiste;
+            }
+            catch (RolNoExisteException)
+            {
+                return Enumerados.TipoError.RolNoExiste;
+            }
+            catch (Exception)
+            {
+                return Enumerados.TipoError.ErrorDesconocido;
+            }
         }
 
         [WebMethod]
-        public List<BackofficeVO> ListarBackoffice()
+        public Enumerados.TipoError ListarBackoffice(out List<BackofficeVO> lista)
         {
-            IFachadaWin fac = new FabricaFachadas().CrearFachadaWin;
-            return fac.ListarBackoffice();
+            lista = null;
+            try
+            {
+                IFachadaWin fac = new FabricaFachadas().CrearFachadaWin;
+                lista = fac.ListarBackoffice();
+                return Enumerados.TipoError.Ok;
+            }
+            catch (Exception)
+            {
+                return Enumerados.TipoError.ErrorDesconocido;
+            }
         }
 
         //metodos de moneda
         [WebMethod]
-        public void InsertarMoneda(MonedaVO monvo)
+        public Enumerados.TipoError InsertarMoneda(MonedaVO monvo)
         {
-            IFachadaWin fac = new FabricaFachadas().CrearFachadaWin;
-            fac.InsertarMoneda(monvo);
+            try
+            {
+                IFachadaWin fac = new FabricaFachadas().CrearFachadaWin;
+                fac.InsertarMoneda(monvo);
+                return Enumerados.TipoError.Ok;
+            }
+            catch (MonedaYaExisteException)
+            {
+                return Enumerados.TipoError.MonedaYaExiste;
+            }
+            catch (Exception)
+            {
+                return Enumerados.TipoError.ErrorDesconocido;
+            }
         }
 
         [WebMethod]
-        public void BorrarMoneda(int monid)
+        public Enumerados.TipoError BorrarMoneda(int monid)
         {
-            IFachadaWin fac = new FabricaFachadas().CrearFachadaWin;
-            fac.BorrarMoneda(monid);
+            try
+            {
+                IFachadaWin fac = new FabricaFachadas().CrearFachadaWin;
+                fac.BorrarMoneda(monid);
+                return Enumerados.TipoError.Ok;
+            }
+            catch (MonedaNoExisteException)
+            {
+                return Enumerados.TipoError.MonedaNoExiste;
+            }
+            catch (Exception)
+            {
+                return Enumerados.TipoError.ErrorDesconocido;
+            }
         }
 
         [WebMethod]
-        public void ModificarMonedaCotizacion(int monedaid , decimal cotiza)
+        public Enumerados.TipoError ModificarMonedaCotizacion(int monedaid , decimal cotiza)
         {
-            IFachadaWin fac = new FabricaFachadas().CrearFachadaWin;
-            fac.ModificarMonedaCotizacion(monedaid, cotiza);
+            try
+            {
+                IFachadaWin fac = new FabricaFachadas().CrearFachadaWin;
+                fac.ModificarMonedaCotizacion(monedaid, cotiza);
+                return Enumerados.TipoError.Ok;
+            }
+            catch (MonedaNoExisteException)
+            {
+                return Enumerados.TipoError.MonedaNoExiste;
+            }
+            catch (Exception)
+            {
+                return Enumerados.TipoError.ErrorDesconocido;
+            }
         }
 
         [WebMethod]
-        public List<MonedaVO> ListarMonedas()
+        public Enumerados.TipoError ListarMonedas(out List<MonedaVO> lista)
         {
-            IFachadaWin fac = new FabricaFachadas().CrearFachadaWin;
-            return fac.ListarMonedas();
+            lista = null;
+            try
+            {
+                IFachadaWin fac = new FabricaFachadas().CrearFachadaWin;
+                lista = fac.ListarMonedas();
+                return Enumerados.TipoError.Ok;
+            }
+            catch (Exception)
+            {
+                return Enumerados.TipoError.ErrorDesconocido;
+            }
         }
 
         //metodos de producto
         [WebMethod]
-        public void InsertarProducto(ProductoVO provo)
+        public Enumerados.TipoError InsertarProducto(ProductoVO provo)
         {
-            IFachadaWin fac = new FabricaFachadas().CrearFachadaWin;
-            fac.InsertarProducto(provo);
+            try
+            {
+                IFachadaWin fac = new FabricaFachadas().CrearFachadaWin;
+                fac.InsertarProducto(provo);
+                return Enumerados.TipoError.Ok;
+            }
+            catch (ProductoYaExisteException)
+            {
+                return Enumerados.TipoError.ProductoYaExiste;
+            }
+            catch (Exception)
+            {
+                return Enumerados.TipoError.ErrorDesconocido;
+            }
         }
 
         [WebMethod]
-        public void BorrarProducto(int proid)
+        public Enumerados.TipoError BorrarProducto(int proid)
         {
-            IFachadaWin fac = new FabricaFachadas().CrearFachadaWin;
-            fac.BorrarProducto(proid);
+            try
+            {
+                IFachadaWin fac = new FabricaFachadas().CrearFachadaWin;
+                fac.BorrarProducto(proid);
+                return Enumerados.TipoError.Ok;
+            }
+            catch (ProductoNoExisteException)
+            {
+                return Enumerados.TipoError.ProductoNoExiste;
+            }
+            catch (Exception)
+            {
+                return Enumerados.TipoError.ErrorDesconocido;
+            }
         }
 
         [WebMethod]
-        public void ModificarProducto(ProductoVO provo)
+        public Enumerados.TipoError ModificarProducto(ProductoVO provo)
         {
-            IFachadaWin fac = new FabricaFachadas().CrearFachadaWin;
-            fac.ModificarProducto(provo);
+            try
+            {
+                IFachadaWin fac = new FabricaFachadas().CrearFachadaWin;
+                fac.ModificarProducto(provo);
+                return Enumerados.TipoError.Ok;
+            }
+            catch (ProductoNoExisteException)
+            {
+                return Enumerados.TipoError.ProductoNoExiste;
+            }
+            catch (ProductoYaExisteException)
+            {
+                return Enumerados.TipoError.ProductoYaExiste;
+            }
+            catch (Exception)
+            {
+                return Enumerados.TipoError.ErrorDesconocido;
+            }
         }
 
         [WebMethod]
-        public void ModificarStockProducto(int proid, int stock)
+        public Enumerados.TipoError ModificarStockProducto(int proid, int stock)
         {
-            IFachadaWin fac = new FabricaFachadas().CrearFachadaWin;
-            fac.ModificarStockProducto(proid, stock);
+            try
+            {
+                IFachadaWin fac = new FabricaFachadas().CrearFachadaWin;
+                fac.ModificarStockProducto(proid, stock);
+                return Enumerados.TipoError.Ok;
+            }
+            catch (ProductoNoExisteException)
+            {
+                return Enumerados.TipoError.ProductoNoExiste;
+            }
+            catch (StockNegativoException)
+            {
+                return Enumerados.TipoError.StockNegativo;
+            }
+            catch (Exception)
+            {
+                return Enumerados.TipoError.ErrorDesconocido;
+            }
         }
 
         [WebMethod]
-        public void HabilitarProducto(int proid, Boolean habilito)
+        public Enumerados.TipoError HabilitarProducto(int proid, Boolean habilito)
         {
-            IFachadaWin fac = new FabricaFachadas().CrearFachadaWin;
-            fac.HabilitarProducto(proid, habilito);
+            try
+            {
+                IFachadaWin fac = new FabricaFachadas().CrearFachadaWin;
+                fac.HabilitarProducto(proid, habilito);
+                return Enumerados.TipoError.Ok;
+            }
+            catch (ProductoNoExisteException)
+            {
+                return Enumerados.TipoError.ProductoNoExiste;
+            }
+            catch (Exception)
+            {
+                return Enumerados.TipoError.ErrorDesconocido;
+            }
         }
 
         [WebMethod]
-        public List<ProductoVO> ListarProductos()
+        public Enumerados.TipoError ListarProductos(out List<ProductoVO> lista)
         {
-            IFachadaWin fac = new FabricaFachadas().CrearFachadaWin;
-            return fac.ListarProductos();
+            lista = null;
+            try
+            {
+                IFachadaWin fac = new FabricaFachadas().CrearFachadaWin;
+                lista = fac.ListarProductos();
+                return Enumerados.TipoError.Ok;
+            }
+            catch (Exception)
+            {
+                return Enumerados.TipoError.ErrorDesconocido;
+            }
+        }
+
+        public Enumerados.TipoError DarProductoPorId(int proid, out ProductoVO provo)
+        {
+            provo = null;
+            try
+            {
+                IFachadaWin fac = new FabricaFachadas().CrearFachadaWin;
+                provo = fac.DarProductoPorId(proid);
+                return Enumerados.TipoError.Ok;
+            }
+            catch (ProductoNoExisteException)
+            {
+                return Enumerados.TipoError.ProductoNoExiste;
+            }
+            catch (Exception)
+            {
+                return Enumerados.TipoError.ErrorDesconocido;
+            }
+        }
+
+        public Enumerados.TipoError ListarProductosPorCategoria(int catid, out List<ProductoVO> lista)
+        {
+            lista = null;
+            try
+            {
+                IFachadaWin fac = new FabricaFachadas().CrearFachadaWin;
+                lista = fac.ListarProductosPorCategoria(catid);
+                return Enumerados.TipoError.Ok;
+            }
+            catch (CategoriaNoExisteException)
+            {
+                return Enumerados.TipoError.CarritoNoExiste;
+            }
+            catch (Exception)
+            {
+                return Enumerados.TipoError.ErrorDesconocido;
+            }
         }
 
         //metodos de rol
         [WebMethod]
-        public void InsertarRol(RolVO rolvo)
+        public Enumerados.TipoError InsertarRol(RolVO rolvo)
         {
-            IFachadaWin fac = new FabricaFachadas().CrearFachadaWin;
-            fac.InsertarRol(rolvo);
+            try
+            {
+                IFachadaWin fac = new FabricaFachadas().CrearFachadaWin;
+                fac.InsertarRol(rolvo);
+                return Enumerados.TipoError.Ok;
+            }
+            catch (RolYaExisteException)
+            {
+                return Enumerados.TipoError.RolYaExiste;
+            }
+            catch (Exception)
+            {
+                return Enumerados.TipoError.ErrorDesconocido;
+            }
         }
 
         [WebMethod]
-        public void BorrarRol(int rolid)
+        public Enumerados.TipoError BorrarRol(int rolid)
         {
-            IFachadaWin fac = new FabricaFachadas().CrearFachadaWin;
-            fac.BorrarRol(rolid);
+            try
+            {
+                IFachadaWin fac = new FabricaFachadas().CrearFachadaWin;
+                fac.BorrarRol(rolid);
+                return Enumerados.TipoError.Ok;
+            }
+            catch (RolNoExisteException)
+            {
+                return Enumerados.TipoError.RolNoExiste;
+            }
+            catch (Exception)
+            {
+                return Enumerados.TipoError.ErrorDesconocido;
+            }
         }
 
         [WebMethod]
-        public void ModificarRol(int rolid, string nomb)
+        public Enumerados.TipoError ModificarRol(int rolid, string nomb)
         {
-            IFachadaWin fac = new FabricaFachadas().CrearFachadaWin;
-            fac.ModificarRol(rolid, nomb);
+            try
+            {
+                IFachadaWin fac = new FabricaFachadas().CrearFachadaWin;
+                fac.ModificarRol(rolid, nomb);
+                return Enumerados.TipoError.Ok;
+            }
+            catch (RolNoExisteException)
+            {
+                return Enumerados.TipoError.RolNoExiste;
+            }
+            catch (RolYaExisteException)
+            {
+                return Enumerados.TipoError.RolYaExiste;
+            }
+            catch (Exception)
+            {
+                return Enumerados.TipoError.ErrorDesconocido;
+            }
         }
 
         [WebMethod]
-        public List<RolVO> ListarRoles()
+        public Enumerados.TipoError ListarRoles(out List<RolVO> lista)
         {
-            IFachadaWin fac = new FabricaFachadas().CrearFachadaWin;
-            return fac.ListarRoles();
+            lista = null;
+            try
+            {
+                IFachadaWin fac = new FabricaFachadas().CrearFachadaWin;
+                lista = fac.ListarRoles();
+                return Enumerados.TipoError.Ok;
+            }
+            catch (Exception)
+            {
+                return Enumerados.TipoError.ErrorDesconocido;
+            }
         }
 
         //metodos de cliente
         [WebMethod]
-        public void BorrarCliente(int cliid)
+        public Enumerados.TipoError BorrarCliente(int cliid)
         {
-            IFachadaWin fac = new FabricaFachadas().CrearFachadaWin;
-            fac.BorrarCliente(cliid);
+            try
+            {
+                IFachadaWin fac = new FabricaFachadas().CrearFachadaWin;
+                fac.BorrarCliente(cliid);
+                return Enumerados.TipoError.Ok;
+            }
+            catch (ClienteNoExisteException)
+            {
+                return Enumerados.TipoError.ClienteNoExiste;
+            }
+            catch (Exception)
+            {
+                return Enumerados.TipoError.ErrorDesconocido;
+            }
         }
 
         [WebMethod]
-        public List<ClienteVO> ListarClientes()
+        public Enumerados.TipoError ListarClientes(out List<ClienteVO> lista)
         {
-            IFachadaWin fac = new FabricaFachadas().CrearFachadaWin;
-            return fac.ListarClientes();
+            lista = null;
+            try
+            {
+                IFachadaWin fac = new FabricaFachadas().CrearFachadaWin;
+                lista = fac.ListarClientes();
+                return Enumerados.TipoError.Ok;
+            }
+            catch (Exception)
+            {
+                return Enumerados.TipoError.ErrorDesconocido;
+            }
         }
     }
 }

@@ -10,7 +10,8 @@ namespace LogicaPersistencia
     public interface IFachadaWin
     {
         //metodos de usuario
-        bool UsuarioLogin(string mail, string password);
+        void UsuarioLoginWIN(string mail, string password);
+        void ActivaUsuario(int usrid, bool activo);
 
         //metodos de categoria
         void InsertarCategoria(CategoriaVO catvo);
@@ -40,7 +41,9 @@ namespace LogicaPersistencia
         void ModificarProducto(ProductoVO provo);
         void ModificarStockProducto(int prodid, int stock);
         void HabilitarProducto(int proid, Boolean habilito);
+        ProductoVO DarProductoPorId(int proid);
         List<ProductoVO> ListarProductos();
+        List<ProductoVO> ListarProductosPorCategoria(int catid);
 
         //metodos de rol
         void InsertarRol(RolVO rolvo);
