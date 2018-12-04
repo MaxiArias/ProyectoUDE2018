@@ -67,6 +67,7 @@
     <Compile Include="Cliente.cs">
       <DependentUpon>Modelo.tt</DependentUpon>
     </Compile>
+    <Compile Include="DAO\ItemCarritoDAO.cs" />
     <Compile Include="Enumerados.cs" />
     <Compile Include="Excepciones\MailNoExisteExcepction.cs" />
     <Compile Include="FabricaFachadas.cs" />
