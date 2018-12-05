@@ -1,7 +1,5 @@
 ﻿using LogicaPersistencia;
 using LogicaPersistencia.Excepciones;
-using Modelo;
-using Modelo.ValueObjects;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,25 +9,23 @@ using System.Web.Http;
 
 namespace WebApi.Controllers
 {
-    public class ClienteController : ApiController
+    public class CategoriaController : ApiController
     {
-        [Route("api/NewUser")]
-        [HttpPost]
-        public IHttpActionResult InsertarCliente(ClienteVO cvo)
+        [Route("api/Categorias")]
+        [HttpGet]
+        public IHttpActionResult ListarCategorias()
         {
             try
             {
                 IFachadaWeb fac = new FabricaFachadas().CrearFachadaWeb;
-                fac.InsertarCliente(cvo);
-                return Ok();
+                var categorias = fac.ListarCategoriasActivas();
+                return Ok(categorias);
             }
-            catch (UsuarioYaExisteException)
+            catch (Exception)
             {
-                return Conflict();
+                return InternalServerError();
             }
-
         }
-        
-   
     }
 }
+

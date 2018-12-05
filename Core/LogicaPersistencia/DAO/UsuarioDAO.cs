@@ -71,6 +71,19 @@ namespace LogicaPersistencia.DAO
 
             }
         }
+
+        public int DarIdUsuario(string mail)
+        {
+
+            using (TiendaVirtualEntities db = new TiendaVirtualEntities())
+            {
+                var login = (from usuario in db.Usuario
+                             where usuario.UsuarioEmail == mail
+                             select usuario).FirstOrDefault();
+
+                return login.UsuarioId;
+            }
+        }
         public bool ExisteUsuario(int usrid)
         {
             using (TiendaVirtualEntities db = new TiendaVirtualEntities())

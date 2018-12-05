@@ -83,6 +83,13 @@ namespace LogicaPersistencia
             }   
         }
 
+        public int DarIdUsuario(string mail)
+        {
+            UsuarioDAO usudao = new UsuarioDAO();
+            return usudao.DarIdUsuario(mail);
+        }
+
+        
         //metodos de categoria
         public void InsertarCategoria (CategoriaVO catvo)
         {

@@ -19,7 +19,7 @@ namespace LogicaPersistencia
 
         }
 
-        public EmpresaVO DarEmpresa()
+        public EmpresaVO DarEmpresaVO()
         {
 
             return new EmpresaVO(this.EmpresaRUT,EmpresaNombreContacto,ClienteDireccion,ClienteTelefono,this.TipoCliente, this.ClienteNombre, this.UsuarioId, this.Usuario.UsuarioEmail,this.Usuario.UsuarioContrasenia, this.Usuario.UsuarioActivo, this.Usuario.TipoUsuario );
@@ -35,7 +35,7 @@ namespace LogicaPersistencia
             this.UsuarioId = vo.IdUsuario;
         }
 
-        public PersonaVO DarPersona()
+        public PersonaVO DarPersonaVO()
         {
 
             return new PersonaVO(this.ClienteCI, this.ClienteNombre, this.ClienteDireccion, this.ClienteTelefono, this.TipoCliente, this.UsuarioId,this.Usuario.UsuarioEmail, this.Usuario.UsuarioContrasenia, this.Usuario.UsuarioActivo, this.Usuario.TipoUsuario);

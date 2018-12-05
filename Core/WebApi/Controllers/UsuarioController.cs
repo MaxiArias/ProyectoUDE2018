@@ -1,4 +1,5 @@
 ﻿using LogicaPersistencia;
+using LogicaPersistencia.Excepciones;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,13 +11,34 @@ namespace WebApi.Controllers
 {
     public class UsuarioController : ApiController
     {
-
-        public void GetUsuarioLogin(String mail, String password, out bool existeusr, out bool loginok)
+        [Route("api/Login")]
+        [HttpPost]
+        public IHttpActionResult GetUsuarioLogin(String mail, String password)
         {
-            IFachadaWeb fac = new FabricaFachadas().CrearFachadaWeb;
-            fac.UsuarioLogin(mail, password, out existeusr, out loginok);
-        }
+            try
+            {
+                IFachadaWeb fac = new FabricaFachadas().CrearFachadaWeb;
+                fac.UsuarioLoginWEB(mail, password);
+                return Ok(fac.DarIdUsuario(mail));
+            }
+            catch (UsuarioNoHabilitadoException)
 
+            {
+                return Unauthorized();
+            }
+            catch(LoginIncorrectoException)
+            {
+                return Unauthorized();
+            }
+            catch (UsuarioNoExisteException)
+            {
+                return Unauthorized();
+            }
+            catch (Exception)
+            {
+                return InternalServerError();
+            }
+        }
 
     }
 }

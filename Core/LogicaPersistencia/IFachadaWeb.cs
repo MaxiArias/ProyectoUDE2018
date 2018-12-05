@@ -11,6 +11,7 @@ namespace LogicaPersistencia
     {
         //metodos de usuario
         void UsuarioLoginWEB(string mail, string password);
+        int DarIdUsuario(string mail);
 
         //metodos de categoria
         List<CategoriaVO> ListarCategoriasActivas();
@@ -24,12 +25,13 @@ namespace LogicaPersistencia
 
         //metodos de cliente
         void InsertarCliente(ClienteVO clivo);
-        void BorrarCliente(int cliid);
-        void ModificarCliente(ClienteVO clivo);
 
         //metodos de carrito
         CarritoVO DarCarritoCliente(int usrid);
         void BorrarCarrito(int carid);
         void ModificarMonedaCarrito(int carid, int monid);
+
+        //metodos monedas
+        List<MonedaVO> ListarMonedas();
     }
 }

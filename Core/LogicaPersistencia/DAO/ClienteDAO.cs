@@ -59,11 +59,32 @@ namespace LogicaPersistencia.DAO
             return null;
         }
 
-        public List<ClienteVO> ListarClientes()
+        public List<EmpresaVO> ListarEmpresa()
 
         {
-            return null;
+            using (TiendaVirtualEntities db = new TiendaVirtualEntities())
+            {
+
+                var empresa = db.Cliente.Where(s => s.TipoCliente == Enumerados.TipoCliente.Empresa.ToString()).ToList();
+
+                return empresa.Select(back => back.DarEmpresaVO()).ToList();
+
+            }
         }
+
+        public List<PersonaVO> ListarPersona()
+
+        {
+            using (TiendaVirtualEntities db = new TiendaVirtualEntities())
+            {
+
+                var persona = db.Cliente.Where(s => s.TipoCliente == Enumerados.TipoCliente.Persona.ToString()).ToList();
+
+                return persona.Select(back => back.DarPersonaVO()).ToList();
+
+            }
+        }
+
 
         public bool ExisteCliente(string mail)
         {
@@ -121,11 +142,11 @@ namespace LogicaPersistencia.DAO
 
                 if (cl.TipoCliente == Enumerados.TipoCliente.Persona.ToString())
                 {
-                    return cl.DarPersona();
+                    return cl.DarPersonaVO();
                 }
                 else
                 {
-                    return cl.DarEmpresa();
+                    return cl.DarEmpresaVO();
                 }
             }
         }
