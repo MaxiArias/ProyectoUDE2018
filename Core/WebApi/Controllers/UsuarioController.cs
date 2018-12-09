@@ -7,13 +7,14 @@ using System.Net;
 using System.Net.Http;
 using System.Web.Http;
 
+
 namespace WebApi.Controllers
 {
     public class UsuarioController : ApiController
     {
-        
+       [System.Web.Http.AcceptVerbs("GET","POST")]
         [HttpPost]
-        public IHttpActionResult GetUsuarioLogin(String mail, String password)
+        public IHttpActionResult Login(string mail , string password)
         {
             try
             {
