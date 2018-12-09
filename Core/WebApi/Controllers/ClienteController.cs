@@ -13,7 +13,7 @@ namespace WebApi.Controllers
 {
     public class ClienteController : ApiController
     {
-        [Route("api/NewUser")]
+   
         [HttpPost]
         public IHttpActionResult InsertarCliente(ClienteVO cvo)
         {

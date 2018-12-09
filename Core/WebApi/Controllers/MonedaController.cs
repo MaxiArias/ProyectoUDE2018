@@ -11,7 +11,6 @@ namespace WebApi.Controllers
 {
     public class MonedaController : ApiController
     {
-        [Route("api/Moneda")]
         [HttpGet]
         public IHttpActionResult DarMonedas()
         {

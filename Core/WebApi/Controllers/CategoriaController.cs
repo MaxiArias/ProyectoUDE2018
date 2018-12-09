@@ -11,7 +11,7 @@ namespace WebApi.Controllers
 {
     public class CategoriaController : ApiController
     {
-        [Route("api/Categorias")]
+        
         [HttpGet]
         public IHttpActionResult ListarCategorias()
         {

@@ -11,7 +11,7 @@ namespace WebApi.Controllers
 {
     public class UsuarioController : ApiController
     {
-        [Route("api/Login")]
+        
         [HttpPost]
         public IHttpActionResult GetUsuarioLogin(String mail, String password)
         {

@@ -6,12 +6,12 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
+using Modelo.ValueObjects;
 
 namespace WebApi.Controllers
 {
-    public class ProductoController : ApiController
-    {
-        [Route("api/Productos")]
+        public class ProductoController : ApiController
+        {
         [HttpGet]
         public IHttpActionResult ListarProductos()
         {
@@ -22,11 +22,20 @@ namespace WebApi.Controllers
                 return Ok(productos);
             }
             catch (Exception)
-            {return InternalServerError();
+            { return InternalServerError();
             }
         }
+     
+        //Get api/Producto/5
+        /*[HttpGet]
+        public IEnumerable<ProductoVO> Get (int catid)
+        {
+                IFachadaWeb fac = new FabricaFachadas().CrearFachadaWeb;
+                var productoscat = fac.ListarProductosPorCategoriaHabilitados(catid);
+                return productoscat;
+        }*/
 
-        [Route("api/ProductosxCategoria")]
+        //Get api/Producto/5
         [HttpGet]
         public IHttpActionResult ListarProductosCategoria(int catid)
         {

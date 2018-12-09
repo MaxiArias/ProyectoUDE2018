@@ -12,7 +12,6 @@ namespace WebApi.Controllers
     public class CarritoController : ApiController
     {
 
-        [Route("api/DarCarrito")]
         [HttpGet]
         public IHttpActionResult DarCarrito(int usrid)
         {
@@ -28,9 +27,7 @@ namespace WebApi.Controllers
             }
         }
 
-
-        [Route("api/DelCarrito")]
-        [HttpGet]
+        [HttpDelete]
         public IHttpActionResult BorrarCarrito(int usrid)
         {
             try

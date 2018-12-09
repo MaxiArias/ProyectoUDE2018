@@ -12,7 +12,7 @@ namespace WebApi.Controllers
 {
     public class ItemCarritoController : ApiController
     {
-        [Route("api/InsertItem")]
+        
         [HttpPost]
         public IHttpActionResult InsertarItemCarrito(int cliid, ItemCarritoVO item)
         {
@@ -29,7 +29,7 @@ namespace WebApi.Controllers
 
         }
 
-        [Route("api/DeleteItem")]
+        
         [HttpDelete]
         public IHttpActionResult BorrarItemCarrito(int cliid, int proid)
         {
