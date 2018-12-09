@@ -13,7 +13,7 @@ namespace WebApi.Controllers
         public class ProductoController : ApiController
         {
         [HttpGet]
-        public IHttpActionResult ListarProductos()
+        public IHttpActionResult Get()
         {
             try
             {
@@ -25,36 +25,7 @@ namespace WebApi.Controllers
             { return InternalServerError();
             }
         }
-     
-        //Get api/Producto/5
-        /*[HttpGet]
-        public IEnumerable<ProductoVO> Get (int catid)
-        {
-                IFachadaWeb fac = new FabricaFachadas().CrearFachadaWeb;
-                var productoscat = fac.ListarProductosPorCategoriaHabilitados(catid);
-                return productoscat;
-        }*/
 
-        //Get api/Producto/5
-        [HttpGet]
-        public IHttpActionResult ListarProductosCategoria(int catid)
-        {
-            try
-            {
-                IFachadaWeb fac = new FabricaFachadas().CrearFachadaWeb;
-                var productoscat = fac.ListarProductosPorCategoriaHabilitados(catid);
-                return Ok(productoscat);
-            }
-            catch (CategoriaNoExisteException)
-            {
-                return NotFound();
-            }
-            catch (Exception)
-            {
-                return InternalServerError();
-            }
+
         }
-
-
-    }
 }
