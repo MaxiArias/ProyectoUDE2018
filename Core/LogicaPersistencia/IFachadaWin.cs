@@ -53,6 +53,7 @@ namespace LogicaPersistencia
 
         //metodos de cliente
         void BorrarCliente(int cliid);
-        List<ClienteVO> ListarClientes();
+        List<PersonaVO> ListarPersonas();
+        List<EmpresaVO> ListarEmpresas();
     }
 } 

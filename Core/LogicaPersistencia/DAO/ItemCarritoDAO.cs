@@ -20,35 +20,35 @@ namespace LogicaPersistencia.DAO
             }
         }
 
-        public void BorrarItemCarrito(int idproducto)
+        public void BorrarItemCarrito(int idcli, int idproducto)
         {
             using (TiendaVirtualEntities db = new TiendaVirtualEntities())
             {
-                var icarro = db.ItemCarrito.Where(s => s.ProductoId == idproducto).FirstOrDefault();
+                var icarro = db.ItemCarrito.Where(s => s.ProductoId == idproducto && s.Carrito.Cliente.UsuarioId == idcli).FirstOrDefault();
                 db.ItemCarrito.Remove(icarro);
                 db.SaveChanges();
             }
         }
 
-        public bool ExisteItemCarrito(int idproducto)
+        public bool ExisteItemCarrito(int idcli, int idproducto)
         {
             using (TiendaVirtualEntities db = new TiendaVirtualEntities())
             {
 
                 var primerIdProducto = (from back in db.ItemCarrito
-                                       where back.ProductoId== idproducto
+                                        where back.ProductoId == idproducto && back.Carrito.UsuarioId == idcli
                                        select back).FirstOrDefault();
 
                 return primerIdProducto != null;
             }
         }
 
-        public void AgregarItemCarrito(int idproducto)
+        public void AgregarItemCarrito(int cliid, int idproducto)
         {
 
             using (TiendaVirtualEntities db = new TiendaVirtualEntities())
             {
-                var icarro = db.ItemCarrito.Where(s => s.ProductoId == idproducto).FirstOrDefault();
+                var icarro = db.ItemCarrito.Where(s => s.ProductoId == idproducto && s.Carrito.UsuarioId == cliid).FirstOrDefault();
                 if (icarro != null)
                 {
                     icarro.ProductoCantidad++;
@@ -58,12 +58,12 @@ namespace LogicaPersistencia.DAO
 
         }
 
-        public void SacarItemCarrito(int idproducto)
+        public void SacarItemCarrito(int cliid, int idproducto)
         {
 
             using (TiendaVirtualEntities db = new TiendaVirtualEntities())
             {
-                var icarro = db.ItemCarrito.Where(s => s.ProductoId == idproducto).FirstOrDefault();
+                var icarro = db.ItemCarrito.Where(s => s.ProductoId == idproducto && s.Carrito.UsuarioId == cliid).FirstOrDefault();
                 if (icarro != null && icarro.ProductoCantidad>1)
                 {
                     icarro.ProductoCantidad--;

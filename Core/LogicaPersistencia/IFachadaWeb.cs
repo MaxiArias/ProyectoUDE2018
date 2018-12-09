@@ -31,7 +31,11 @@ namespace LogicaPersistencia
         void BorrarCarrito(int carid);
         void ModificarMonedaCarrito(int carid, int monid);
 
-        //metodos monedas
+        //metodos de moneda
         List<MonedaVO> ListarMonedas();
+
+        //metodos de item carrito
+        void AgregarItemCarrito(int cliid, ItemCarritoVO item);
+        void BorrarItemCarrito(int cliid, int itcid);
     }
 }

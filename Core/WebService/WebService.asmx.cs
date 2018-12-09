@@ -630,10 +630,15 @@ namespace WebService
         public Enumerados.TipoError ListarClientes(out List<ClienteVO> lista)
         {
             lista = null;
+            List<PersonaVO> listaP = null;
+            List<EmpresaVO> listaE = null;
             try
             {
                 IFachadaWin fac = new FabricaFachadas().CrearFachadaWin;
-                lista = fac.ListarClientes();
+                listaP = fac.ListarPersonas();
+                listaE = fac.ListarEmpresas();
+                lista.AddRange(listaP);
+                lista.AddRange(listaE);
                 return Enumerados.TipoError.Ok;
             }
             catch (Exception)

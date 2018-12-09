@@ -553,10 +553,16 @@ namespace LogicaPersistencia
             }
         }
 
-        public List<ClienteVO> ListarClientes()
+        public List<PersonaVO> ListarPersonas()
         {
             ClienteDAO clidao = new ClienteDAO();
-            return clidao.ListarClientes();
+            return clidao.ListarPersona();
+        }
+
+        public List<EmpresaVO> ListarEmpresas()
+        {
+            ClienteDAO clidao = new ClienteDAO();
+            return clidao.ListarEmpresa();
         }
 
         //metodos de carrito
@@ -635,12 +641,40 @@ namespace LogicaPersistencia
         //metodos de item carrito
         public void AgregarItemCarrito(int cliid, ItemCarritoVO item)
         {
-            
+            ClienteDAO clidao = new ClienteDAO();
+            if (clidao.ExisteCliente(cliid))
+            {
+                ItemCarritoDAO itcdao = new ItemCarritoDAO();
+                if (itcdao.ExisteItemCarrito(cliid, item.IdProducto))
+                {
+                    itcdao.AgregarItemCarrito(cliid, item.IdProducto);
+                }
+                else
+                {
+                    itcdao.InsertarItemCarrito(item);
+                }
+            }
+            else
+            {
+                throw new ClienteNoExisteException("No existe un cliente con ese id");
+            }
         }
 
-        public void BorrarItemCarrito(int cliid, int itcid)
+        public void BorrarItemCarrito(int cliid, int proid)
         {
-
+            ClienteDAO clidao = new ClienteDAO();
+            if (clidao.ExisteCliente(cliid))
+            {
+                ItemCarritoDAO itcdao = new ItemCarritoDAO();
+                if (itcdao.ExisteItemCarrito(cliid, proid))
+                {
+                    itcdao.AgregarItemCarrito(cliid, proid);
+                }
+            }
+            else
+            {
+                throw new ClienteNoExisteException("No existe un cliente con ese id");
+            }
         }
         
     }
