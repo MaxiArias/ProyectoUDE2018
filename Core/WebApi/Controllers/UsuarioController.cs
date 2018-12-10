@@ -12,15 +12,23 @@ namespace WebApi.Controllers
 {
     public class UsuarioController : ApiController
     {
-       [System.Web.Http.AcceptVerbs("GET","POST")]
-        [HttpPost]
-        public IHttpActionResult Login(string mail , string password)
+        public class LoginRequest
+    {
+        public string mail { get; set; }
+        public string password { get; set; }
+    }
+    
+        [ActionName("Login")]
+        [HttpPost,HttpGet]
+        [AcceptVerbs("GET", "POST")]
+          public IHttpActionResult Login([FromBody] LoginRequest login)
         {
             try
             {
                 IFachadaWeb fac = new FabricaFachadas().CrearFachadaWeb;
-                fac.UsuarioLoginWEB(mail, password);
-                return Ok(fac.DarIdUsuario(mail));
+                fac.UsuarioLoginWEB(login.mail, login.password);
+                return Ok(fac.DarIdUsuario(login.mail));
+                
             }
             catch (UsuarioNoHabilitadoException)
 
