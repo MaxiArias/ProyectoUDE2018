@@ -13,17 +13,18 @@ namespace WebApi.Controllers
         public class ProductoController : ApiController
         {
         [HttpGet]
-        public IHttpActionResult Get()
+        //public IHttpActionResult Get()
+        public IEnumerable<ProductoVO> GetProductos()
         {
-            try
-            {
+           // try
+           // {
                 IFachadaWeb fac = new FabricaFachadas().CrearFachadaWeb;
                 var productos = fac.ListarProductosHabilitados();
-                return Ok(productos);
-            }
-            catch (Exception)
+                return productos;
+           // }
+            /*catch (Exception)
             { return InternalServerError();
-            }
+            }*/
         }
 
 
