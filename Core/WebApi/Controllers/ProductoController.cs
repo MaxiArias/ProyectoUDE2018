@@ -13,8 +13,18 @@ namespace WebApi.Controllers
         public class ProductoController : ApiController
         {
         [HttpGet]
-        //public IHttpActionResult Get()
-        public IEnumerable<ProductoVO> GetProductos()
+        public IHttpActionResult Get(int id)
+        {
+            IFachadaWeb fac = new FabricaFachadas().CrearFachadaWeb;
+            var prod = fac.DarProductoPorId(id);
+            if (prod == null)
+            {
+                return NotFound();
+            }
+            return Ok(prod);
+        }
+        
+            public IEnumerable<ProductoVO> GetProductos()
         {
            // try
            // {
