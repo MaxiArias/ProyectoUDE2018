@@ -13,8 +13,8 @@ namespace LogicaPersistencia
         public ItemCarrito(ItemCarritoInsVO vo)
         {
             this.ProductoId = vo.IdProducto;
-            this.ProductoCantidad = vo.Cantidad;
-            this.Carrito.Cliente.UsuarioId = vo.IdCliente;
+             this.ProductoCantidad = vo.Cantidad;
+            this.CarritoId = vo.IdCarrito;
         }
 
         public ItemCarritoVO DarItemCarrito()

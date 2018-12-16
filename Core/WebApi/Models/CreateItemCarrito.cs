@@ -9,7 +9,7 @@ namespace WebApi.Models
     {
         public int IdProducto { get; set; }
         public int Cantidad { get; set; }
-        public int IdCliente { get; set; }
+        public int IdCarrito{ get; set; }
 
     }
 }

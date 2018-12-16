@@ -11,44 +11,42 @@ namespace LogicaPersistencia.DAO
     {
         public void InsertarItemCarrito(ItemCarritoInsVO carivo)
         {
-            ItemCarrito ica = new ItemCarrito(carivo);
-
             using (TiendaVirtualEntities db = new TiendaVirtualEntities())
             {
+                ItemCarrito ica = new ItemCarrito(carivo);
                 db.ItemCarrito.Add(ica);
                 db.SaveChanges();
             }
         }
 
-        public void BorrarItemCarrito(int idcli, int idproducto)
+        public void BorrarItemCarrito(int idcarro, int idproducto)
         {
             using (TiendaVirtualEntities db = new TiendaVirtualEntities())
             {
-                var icarro = db.ItemCarrito.Where(s => s.ProductoId == idproducto && s.Carrito.Cliente.UsuarioId == idcli).FirstOrDefault();
+                var icarro = db.ItemCarrito.Where(s => s.ProductoId == idproducto && s.CarritoId == idcarro).FirstOrDefault();
                 db.ItemCarrito.Remove(icarro);
                 db.SaveChanges();
             }
         }
 
-        public bool ExisteItemCarrito(int idcli, int idproducto)
+        public bool ExisteItemCarrito(int idcarro, int idproducto)
         {
             using (TiendaVirtualEntities db = new TiendaVirtualEntities())
             {
 
                 var primerIdProducto = (from back in db.ItemCarrito
-                                        where back.ProductoId == idproducto && back.Carrito.UsuarioId == idcli
+                                        where back.ProductoId == idproducto && back.CarritoId == idcarro
                                        select back).FirstOrDefault();
-
-                return primerIdProducto != null;
+                                        return primerIdProducto != null;
             }
         }
 
-        public void AgregarItemCarrito(int cliid, int idproducto)
+        public void AgregarItemCarrito(int idcarro, int idproducto)
         {
 
             using (TiendaVirtualEntities db = new TiendaVirtualEntities())
             {
-                var icarro = db.ItemCarrito.Where(s => s.ProductoId == idproducto && s.Carrito.UsuarioId == cliid).FirstOrDefault();
+                var icarro = db.ItemCarrito.Where(s => s.ProductoId == idproducto && s.CarritoId == idcarro).FirstOrDefault();
                 if (icarro != null)
                 {
                     icarro.ProductoCantidad++;
@@ -58,12 +56,12 @@ namespace LogicaPersistencia.DAO
 
         }
 
-        public void SacarItemCarrito(int cliid, int idproducto)
+        public void SacarItemCarrito(int idcarro, int idproducto)
         {
 
             using (TiendaVirtualEntities db = new TiendaVirtualEntities())
             {
-                var icarro = db.ItemCarrito.Where(s => s.ProductoId == idproducto && s.Carrito.UsuarioId == cliid).FirstOrDefault();
+                var icarro = db.ItemCarrito.Where(s => s.ProductoId == idproducto && s.CarritoId == idcarro).FirstOrDefault();
                 if (icarro != null && icarro.ProductoCantidad>1)
                 {
                     icarro.ProductoCantidad--;

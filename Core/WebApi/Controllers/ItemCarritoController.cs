@@ -9,6 +9,7 @@ using System.Web.Http;
 using Modelo.ValueObjects;
 using WebApi.Models;
 
+
 namespace WebApi.Controllers
 {
     public class ItemCarritoController : ApiController
@@ -17,16 +18,16 @@ namespace WebApi.Controllers
         [ActionName("InsertItem")]
         [HttpPost]
         [AcceptVerbs("POST")]
-        public IHttpActionResult InsertarItemCarrito([FromBody] int cliid, [FromBody] CreateItemCarrito items)
+        public IHttpActionResult InsertarItemCarrito([FromBody] CreateItemCarrito items)
         {
             try
             {
                 IFachadaWeb fac = new FabricaFachadas().CrearFachadaWeb;
                 ItemCarritoInsVO itemvo = new ItemCarritoInsVO();
-                itemvo.IdCliente = itemvo.IdCliente;
-                itemvo.IdProducto = itemvo.IdProducto;
+                itemvo.IdCarrito = items.
+                itemvo.IdProducto = items.IdProducto;
                 itemvo.Cantidad = items.Cantidad;
-                fac.AgregarItemCarrito(cliid, itemvo);
+                fac.AgregarItemCarrito(itemvo);
                 return Ok();
             }
             catch (UsuarioYaExisteException)

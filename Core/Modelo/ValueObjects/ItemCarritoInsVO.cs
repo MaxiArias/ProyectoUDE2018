@@ -16,7 +16,7 @@ namespace Modelo.ValueObjects
         // Properties
         public int IdProducto { get; set; }
         public int Cantidad { get; set; }
-        public int IdCliente { get; set; }
+        public int IdCarrito{ get; set; }
 
         // Constructores
         public ItemCarritoInsVO()
@@ -24,11 +24,11 @@ namespace Modelo.ValueObjects
 
         }
 
-        public ItemCarritoInsVO(int idp, int cant, int idcliente)
+        public ItemCarritoInsVO(int idp, int cant, int idcarrito)
         {
             IdProducto = idp;
             Cantidad = cant;
-            IdCliente = idcliente;
+            IdCarrito = idcarrito;
         }
     }
 }
