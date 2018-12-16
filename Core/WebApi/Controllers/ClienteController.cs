@@ -13,15 +13,30 @@ namespace WebApi.Controllers
 {
     public class ClienteController : ApiController
     {
+
+        //public class CreateClientPersona
+        //{
+        //    public bool Activo { get; set; }
+        //    public string Direccion { get; set; }
+        //    public string Email { get; set; }
+        //    public string Nombre { get; set; }
+        //    public string Password { get; set; }
+        //    public string Telefono { get; set; }
+        //    public Enumerados.TipoCliente TipoCliente { get; set; }
+        //    public Enumerados.TipoUsuario TipoUsuario { get; set; }
+        //    public int Cedula { get; set; }
+
+        //}
+
         [ActionName("RegisterPersona")]
         [HttpPost]
         [AcceptVerbs("POST")]
-        public IHttpActionResult Persona(PersonaVO cvo)
+        public IHttpActionResult Persona([FromBody] PersonaVO persona)
         {
             try
             {
                 IFachadaWeb fac = new FabricaFachadas().CrearFachadaWeb;
-                fac.InsertarCliente(cvo);
+                fac.InsertarCliente(persona);
                 return Ok();
             }
             catch (UsuarioYaExisteException)
@@ -34,12 +49,12 @@ namespace WebApi.Controllers
         [ActionName("RegisterEmpresa")]
         [HttpPost]
         [AcceptVerbs("POST")]
-        public IHttpActionResult Empresa(EmpresaVO cvo)
+        public IHttpActionResult Empresa([FromBody] EmpresaVO empresa)
         {
             try
             {
                 IFachadaWeb fac = new FabricaFachadas().CrearFachadaWeb;
-                fac.InsertarCliente(cvo);
+                fac.InsertarCliente(empresa);
                 return Ok();
             }
             catch (UsuarioYaExisteException)
