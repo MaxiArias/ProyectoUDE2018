@@ -639,7 +639,7 @@ namespace LogicaPersistencia
         }
 
         //metodos de item carrito
-        public void AgregarItemCarrito(int cliid, ItemCarritoVO item)
+        public void AgregarItemCarrito(int cliid, ItemCarritoInsVO item)
         {
             ClienteDAO clidao = new ClienteDAO();
             if (clidao.ExisteCliente(cliid))

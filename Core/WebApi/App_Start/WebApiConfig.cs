@@ -58,6 +58,20 @@ namespace WebApi
                constraints: new { httpMethod = new HttpMethodConstraint(HttpMethod.Post) }
            );
 
+            config.Routes.MapHttpRoute(
+            name: "InsertItem",
+            routeTemplate: "api/InsertItem;{IdCliente};{IdProducto};{Cantidad}",
+
+          defaults: new
+          {
+              controller = "ItemCarrito",
+              action = "InsertItem",
+              mail = RouteParameter.Optional,
+              password = RouteParameter.Optional
+          },
+               constraints: new { httpMethod = new HttpMethodConstraint(HttpMethod.Post) }
+           );
+
 
 
             config.Routes.MapHttpRoute(

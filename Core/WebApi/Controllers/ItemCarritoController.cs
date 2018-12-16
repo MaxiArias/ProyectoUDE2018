@@ -7,19 +7,26 @@ using System.Net;
 using System.Net.Http;
 using System.Web.Http;
 using Modelo.ValueObjects;
+using WebApi.Models;
 
 namespace WebApi.Controllers
 {
     public class ItemCarritoController : ApiController
     {
-        
+
+        [ActionName("InsertItem")]
         [HttpPost]
-        public IHttpActionResult InsertarItemCarrito(int cliid, ItemCarritoVO item)
+        [AcceptVerbs("POST")]
+        public IHttpActionResult InsertarItemCarrito([FromBody] int cliid, [FromBody] CreateItemCarrito items)
         {
             try
             {
                 IFachadaWeb fac = new FabricaFachadas().CrearFachadaWeb;
-                fac.AgregarItemCarrito(cliid, item);
+                ItemCarritoInsVO itemvo = new ItemCarritoInsVO();
+                itemvo.IdCliente = itemvo.IdCliente;
+                itemvo.IdProducto = itemvo.IdProducto;
+                itemvo.Cantidad = items.Cantidad;
+                fac.AgregarItemCarrito(cliid, itemvo);
                 return Ok();
             }
             catch (UsuarioYaExisteException)
@@ -29,8 +36,9 @@ namespace WebApi.Controllers
 
         }
 
-        
+        [ActionName("DeleteItem")]
         [HttpDelete]
+        [AcceptVerbs("DELETE")]
         public IHttpActionResult BorrarItemCarrito(int cliid, int proid)
         {
             try

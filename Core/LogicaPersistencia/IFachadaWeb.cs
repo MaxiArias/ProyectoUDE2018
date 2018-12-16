@@ -35,7 +35,7 @@ namespace LogicaPersistencia
         List<MonedaVO> ListarMonedas();
 
         //metodos de item carrito
-        void AgregarItemCarrito(int cliid, ItemCarritoVO item);
+        void AgregarItemCarrito(int cliid, ItemCarritoInsVO item);
         void BorrarItemCarrito(int cliid, int itcid);
     }
 }
