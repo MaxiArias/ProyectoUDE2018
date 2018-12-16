@@ -10,11 +10,9 @@ namespace LogicaPersistencia
     public partial class ItemCarrito
     {
 
-        public ItemCarrito(ItemCarritoVO vo)
+        public ItemCarrito(ItemCarritoInsVO vo)
         {
             this.ProductoId = vo.IdProducto;
-            this.Producto.ProductoNombre = vo.ProductoNombre; 
-            this.Producto.ProductoDescripcion= vo.ProductoDescripcion;
             this.ProductoCantidad = vo.Cantidad;
             this.Carrito.Cliente.UsuarioId = vo.IdCliente;
         }

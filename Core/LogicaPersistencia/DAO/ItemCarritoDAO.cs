@@ -9,7 +9,7 @@ namespace LogicaPersistencia.DAO
 {
     public class ItemCarritoDAO
     {
-        public void InsertarItemCarrito(ItemCarritoVO carivo)
+        public void InsertarItemCarrito(ItemCarritoInsVO carivo)
         {
             ItemCarrito ica = new ItemCarrito(carivo);
 
