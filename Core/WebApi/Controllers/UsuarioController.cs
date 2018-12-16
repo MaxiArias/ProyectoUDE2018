@@ -6,17 +6,13 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
-
+using WebApi.Models;
 
 namespace WebApi.Controllers
 {
     public class UsuarioController : ApiController
     {
-        public class LoginRequest
-    {
-        public string mail { get; set; }
-        public string password { get; set; }
-    }
+       
     
         [ActionName("Login")]
         [HttpPost,HttpGet]
