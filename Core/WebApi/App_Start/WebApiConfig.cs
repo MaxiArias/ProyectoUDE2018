@@ -30,6 +30,36 @@ namespace WebApi
         );
 
 
+         config.Routes.MapHttpRoute(
+         name: "PersonaRoute",
+         routeTemplate: "api/Cliente/Persona;{Activo};{Direccion};{Email};{Nombre};{Password};{Telefono};{TipoCliente};{TipoUsuario};{Cedula}",
+         defaults: new
+        {
+            controller = "Cliente",
+            action = "RegisterPersona",
+            mail = RouteParameter.Optional,
+            password = RouteParameter.Optional
+        },
+            constraints: new { httpMethod = new HttpMethodConstraint(HttpMethod.Post) }
+        );
+
+
+            config.Routes.MapHttpRoute(
+            name: "EmpresaRoute",
+            routeTemplate: "api/Cliente/Empresa;{Rut};{Contacto};{Direccion};{Telefono};{TipoCliente};{Nombre};{Email};{Password};{Activo};{TipoUsuario}",
+            
+            defaults: new
+            {
+                controller = "Cliente",
+                action = "RegisterEmpresa",
+                mail = RouteParameter.Optional,
+                password = RouteParameter.Optional
+            },
+               constraints: new { httpMethod = new HttpMethodConstraint(HttpMethod.Post) }
+           );
+
+
+
             config.Routes.MapHttpRoute(
                 name: "DefaultApi",
                 routeTemplate: "api/{controller}/{id}",

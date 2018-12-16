@@ -13,9 +13,10 @@ namespace WebApi.Controllers
 {
     public class ClienteController : ApiController
     {
-        
+        [ActionName("RegisterPersona")]
         [HttpPost]
-        public IHttpActionResult InsertarCliente(ClienteVO cvo)
+        [AcceptVerbs("POST")]
+        public IHttpActionResult Persona(PersonaVO cvo)
         {
             try
             {
@@ -29,7 +30,25 @@ namespace WebApi.Controllers
             }
 
         }
-        
-   
+
+        [ActionName("RegisterEmpresa")]
+        [HttpPost]
+        [AcceptVerbs("POST")]
+        public IHttpActionResult Empresa(EmpresaVO cvo)
+        {
+            try
+            {
+                IFachadaWeb fac = new FabricaFachadas().CrearFachadaWeb;
+                fac.InsertarCliente(cvo);
+                return Ok();
+            }
+            catch (UsuarioYaExisteException)
+            {
+                return Conflict();
+            }
+
+        }
+
+
     }
 }

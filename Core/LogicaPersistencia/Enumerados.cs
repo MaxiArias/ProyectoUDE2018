@@ -10,8 +10,8 @@
 
         public enum TipoUsuario
         {
-            Backoffice = 0,
-            Cliente = 1
+            backoffice = 0,
+            cliente = 1
         }
 
         public enum TipoCliente
